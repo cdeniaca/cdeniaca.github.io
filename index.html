@@ -16,7 +16,7 @@
         }
 
         header {
-            background: #3f1c58; /* Violeta pastel */
+            background: #3f1c58;
             padding: 50px 0;
             text-align: center;
         }
@@ -24,12 +24,53 @@
         header h1 {
             font-size: 3em;
             margin-bottom: 0.5em;
-            color: #f5d1f7; /* Violeta pastel más claro */
+            color: #f5d1f7;
         }
 
         header p {
             font-size: 1.2em;
             color: #bbb;
+        }
+
+        /* Barra de navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #3f1c58; /* Violeta pastel */
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #fff;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f5d1f7; /* Violeta más claro */
+        }
+
+        /* Espaciado para evitar que el contenido quede debajo de la barra */
+        .content {
+            margin-top: 80px;
+        }
+
+        /* Estilos de las secciones */
+        section {
+            padding: 60px 20px;
+            margin: 20px 0;
+            background-color: #2e2e2e;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 20px;
         }
 
         .project-container {
@@ -75,7 +116,7 @@
         }
 
         .btn-github {
-            background-color: #9b4d96; /* Violeta pastel */
+            background-color: #9b4d96;
             color: #fff;
             text-decoration: none;
             padding: 10px 20px;
@@ -84,57 +125,106 @@
         }
 
         .btn-github:hover {
-            background-color: #7e3b75; /* Violeta más oscuro */
+            background-color: #7e3b75;
         }
 
         footer {
-            background-color: #3f1c58; /* Violeta pastel */
+            background-color: #3f1c58;
             color: #bbb;
             text-align: center;
             padding: 20px 0;
-            position: absolute;
+            position: relative;
             width: 100%;
             bottom: 0;
         }
-
     </style>
 </head>
 <body>
+    <!-- Barra de Navegación -->
+    <nav>
+        <div class="container text-center">
+            <a href="#introduction">Introduction</a>
+            <a href="#about-me">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+        </div>
+    </nav>
+
     <header>
         <h1>Mis Proyectos en GitHub</h1>
         <p>Explora algunos de mis proyectos más interesantes en GitHub.</p>
     </header>
 
-    <div class="project-container">
-        <!-- Proyecto 1 -->
-        <div class="project-card">
-            <img src="https://via.placeholder.com/300x200.png?text=Proyecto+1" alt="Proyecto 1">
-            <div class="card-body">
-                <h5 class="card-title">Proyecto 1: Página Web Interactiva</h5>
-                <p class="card-text">Este es un proyecto interactivo que utiliza HTML, CSS y JavaScript para crear una experiencia web dinámica.</p>
-                <a href="https://github.com/tu_usuario/proyecto1" class="btn-github" target="_blank">Ver en GitHub</a>
-            </div>
-        </div>
+    <div class="content">
+        <!-- Sección de Introducción -->
+        <section id="introduction">
+            <h2 class="section-title">Introducción</h2>
+            <p>Bienvenido a mi página de proyectos en GitHub. Aquí podrás ver algunos de los proyectos que he desarrollado utilizando diferentes tecnologías. ¡Espero que te gusten!</p>
+        </section>
 
-        <!-- Proyecto 2 -->
-        <div class="project-card">
-            <img src="https://via.placeholder.com/300x200.png?text=Proyecto+2" alt="Proyecto 2">
-            <div class="card-body">
-                <h5 class="card-title">Proyecto 2: API de Clima</h5>
-                <p class="card-text">API que te permite obtener información sobre el clima en tiempo real usando Node.js y Express.</p>
-                <a href="https://github.com/tu_usuario/proyecto2" class="btn-github" target="_blank">Ver en GitHub</a>
-            </div>
-        </div>
+        <!-- Sección Acerca de Mí -->
+        <section id="about-me">
+            <h2 class="section-title">About Me</h2>
+            <p>Soy un desarrollador web apasionado por la tecnología. Me encanta aprender nuevas herramientas y frameworks, y crear proyectos que impacten positivamente.</p>
+        </section>
 
-        <!-- Proyecto 3 -->
-        <div class="project-card">
-            <img src="https://via.placeholder.com/300x200.png?text=Proyecto+3" alt="Proyecto 3">
-            <div class="card-body">
-                <h5 class="card-title">Proyecto 3: Juego en 3D</h5>
-                <p class="card-text">Un juego interactivo en 3D utilizando Three.js y WebGL.</p>
-                <a href="https://github.com/tu_usuario/proyecto3" class="btn-github" target="_blank">Ver en GitHub</a>
+        <!-- Sección de Proyectos -->
+        <section id="projects">
+            <h2 class="section-title">Proyectos</h2>
+            <div class="project-container">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+1" alt="Proyecto 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Proyecto 1: Página Web Interactiva</h5>
+                        <p class="card-text">Este es un proyecto interactivo que utiliza HTML, CSS y JavaScript para crear una experiencia web dinámica.</p>
+                        <a href="https://github.com/tu_usuario/proyecto1" class="btn-github" target="_blank">Ver en GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+2" alt="Proyecto 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Proyecto 2: API de Clima</h5>
+                        <p class="card-text">API que te permite obtener información sobre el clima en tiempo real usando Node.js y Express.</p>
+                        <a href="https://github.com/tu_usuario/proyecto2" class="btn-github" target="_blank">Ver en GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+3" alt="Proyecto 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Proyecto 3: Juego en 3D</h5>
+                        <p class="card-text">Un juego interactivo en 3D utilizando Three.js y WebGL.</p>
+                        <a href="https://github.com/tu_usuario/proyecto3" class="btn-github" target="_blank">Ver en GitHub</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Sección de Habilidades -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <p>Aquí puedes ver algunas de las habilidades que tengo como desarrollador:</p>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>React, Node.js</li>
+                <li>Git, GitHub</li>
+            </ul>
+        </section>
+
+        <!-- Sección de Certificaciones -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <p>Aquí están algunas de mis certificaciones más recientes:</p>
+            <ul>
+                <li>Certificación en JavaScript - Codecademy</li>
+                <li>Certificación en Desarrollo Web Full Stack - freeCodeCamp</li>
+            </ul>
+        </section>
     </div>
 
     <footer>
