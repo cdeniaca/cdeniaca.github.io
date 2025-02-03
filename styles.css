@@ -44,8 +44,10 @@ section h2 {
 }
 
 img {
-    max-width: 150px;
-    border-radius: 50%;
+    max-width: 200px; /* Tamaño máximo de la imagen */
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Imagen redonda */
     margin-bottom: 20px;
 }
 
