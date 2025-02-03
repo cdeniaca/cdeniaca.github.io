@@ -3,12 +3,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #f4f4f9; /* Fondo gris claro */
     color: #333;
 }
 
 header {
-    background-color: #6a4c9c; /* Color violeta pastel */
+    background-color: #E6E6FA; /* Lavanda (violeta pastel) */
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -52,7 +52,7 @@ img {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #6a4c9c;
+    background-color: #E6E6FA; /* Lavanda (violeta pastel) */
     color: white;
 }
 
