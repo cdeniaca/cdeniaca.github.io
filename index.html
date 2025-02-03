@@ -1,236 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Proyectos en GitHub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e1e1e;
-            color: #f1f1f1;
-        }
-
-        header {
-            background: #3f1c58;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
-            color: #f5d1f7;
-        }
-
-        header p {
-            font-size: 1.2em;
-            color: #bbb;
-        }
-
-        /* Barra de navegación */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #3f1c58; /* Violeta pastel */
-            padding: 10px 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: #fff;
-            font-size: 1.1em;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #f5d1f7; /* Violeta más claro */
-        }
-
-        /* Espaciado para evitar que el contenido quede debajo de la barra */
-        .content {
-            margin-top: 80px;
-        }
-
-        /* Estilos de las secciones */
-        section {
-            padding: 60px 20px;
-            margin: 20px 0;
-            background-color: #2e2e2e;
-            border-radius: 10px;
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        .project-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px;
-        }
-
-        .project-card {
-            background-color: #2e2e2e;
-            margin: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            width: 300px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: scale(1.05);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.5em;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .card-text {
-            color: #ccc;
-            font-size: 1em;
-        }
-
-        .btn-github {
-            background-color: #9b4d96;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-github:hover {
-            background-color: #7e3b75;
-        }
-
-        footer {
-            background-color: #3f1c58;
-            color: #bbb;
-            text-align: center;
-            padding: 20px 0;
-            position: relative;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil - Cristina Deniá Carretero</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Barra de Navegación -->
+
+  <!-- Barra de navegación -->
+  <header>
     <nav>
-        <div class="container text-center">
-            <a href="#introduction">Introduction</a>
-            <a href="#about-me">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#certifications">Certifications</a>
-        </div>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#about-me">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <header>
-        <h1>Mis Proyectos en GitHub</h1>
-        <p>Explora algunos de mis proyectos más interesantes en GitHub.</p>
-    </header>
+  <!-- Sección Introduction -->
+  <section id="introduction">
+    <h1>Welcome to My Profile</h1>
+    <p>I'm Cristina Deniá Carretero, a Junior Data Analyst passionate about transforming data into actionable insights.</p>
+  </section>
 
-    <div class="content">
-        <!-- Sección de Introducción -->
-        <section id="introduction">
-            <h2 class="section-title">Introducción</h2>
-            <p>Bienvenido a mi página de proyectos en GitHub. Aquí podrás ver algunos de los proyectos que he desarrollado utilizando diferentes tecnologías. ¡Espero que te gusten!</p>
-        </section>
-
-        <!-- Sección Acerca de Mí -->
-        <section id="about-me">
-            <h2 class="section-title">About Me</h2>
-            <p>Soy un desarrollador web apasionado por la tecnología. Me encanta aprender nuevas herramientas y frameworks, y crear proyectos que impacten positivamente.</p>
-        </section>
-
-        <!-- Sección de Proyectos -->
-        <section id="projects">
-            <h2 class="section-title">Proyectos</h2>
-            <div class="project-container">
-                <!-- Proyecto 1 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+1" alt="Proyecto 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Proyecto 1: Página Web Interactiva</h5>
-                        <p class="card-text">Este es un proyecto interactivo que utiliza HTML, CSS y JavaScript para crear una experiencia web dinámica.</p>
-                        <a href="https://github.com/tu_usuario/proyecto1" class="btn-github" target="_blank">Ver en GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 2 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+2" alt="Proyecto 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Proyecto 2: API de Clima</h5>
-                        <p class="card-text">API que te permite obtener información sobre el clima en tiempo real usando Node.js y Express.</p>
-                        <a href="https://github.com/tu_usuario/proyecto2" class="btn-github" target="_blank">Ver en GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 3 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200.png?text=Proyecto+3" alt="Proyecto 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Proyecto 3: Juego en 3D</h5>
-                        <p class="card-text">Un juego interactivo en 3D utilizando Three.js y WebGL.</p>
-                        <a href="https://github.com/tu_usuario/proyecto3" class="btn-github" target="_blank">Ver en GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección de Habilidades -->
-        <section id="skills">
-            <h2 class="section-title">Skills</h2>
-            <p>Aquí puedes ver algunas de las habilidades que tengo como desarrollador:</p>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>React, Node.js</li>
-                <li>Git, GitHub</li>
-            </ul>
-        </section>
-
-        <!-- Sección de Certificaciones -->
-        <section id="certifications">
-            <h2 class="section-title">Certifications</h2>
-            <p>Aquí están algunas de mis certificaciones más recientes:</p>
-            <ul>
-                <li>Certificación en JavaScript - Codecademy</li>
-                <li>Certificación en Desarrollo Web Full Stack - freeCodeCamp</li>
-            </ul>
-        </section>
+  <!-- Sección About Me -->
+  <section id="about-me">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <!-- Imagen de perfil -->
+      <img src="images/photo_profile.jpg" alt="Cristina Deniá Carretero" class="profile-img">
+      
+      <!-- Texto sobre ti -->
+      <p>
+        Welcome to my profile!<br><br>
+        I am a Junior Data Analyst currently pursuing a degree in Business Administration and Management, effectively balancing my studies with professional responsibilities. As a results-driven and committed individual, I specialize in transforming complex data into valuable insights that inform strategic decision-making.<br><br>
+        I have hands-on experience with Power BI, SQL, and Python, where I develop effective analytics and visualizations to support data-driven decisions. My passion for data analysis is complemented by continuous learning through certified courses in data analytics and visualization, enabling me to stay updated with industry trends.<br><br>
+        My latest focus is on leveraging the power of data with Power BI and Excel to tackle complex business challenges. I am enthusiastic about setting clear objectives and working persistently towards achieving my goals.<br><br>
+        I aspire to join a company that encourages personal and professional growth, providing an environment where I can flourish and contribute to the organization’s success.<br><br>
+        Thank you for visiting my profile! I look forward to connecting with fellow professionals and exploring potential collaboration opportunities.
+      </p>
     </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 Todos los derechos reservados</p>
-    </footer>
+  <!-- Sección Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Coming soon... Here you will find information about my data analysis and visualization projects.</p>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Sección Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Power BI</li>
+      <li>SQL</li>
+      <li>Python</li>
+      <li>Excel</li>
+    </ul>
+  </section>
+
+  <!-- Sección Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <p>Coming soon... Here you will find the certifications I have achieved in the field of Data Analytics and Business.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Connect with me on <a href="https://www.linkedin.com/in/cristinadeniacarretero/" target="_blank">LinkedIn</a>.</p>
+  </footer>
+
 </body>
 </html>
