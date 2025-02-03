@@ -1,94 +1,134 @@
-/* Global styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #F4E1FF; /* Violeta pastel */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    background-color: #a8a1d1; /* Violeta pastel */
+    width: 100%;
+    background: #A87EBE; /* Tono lavanda oscuro */
     padding: 10px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 nav ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 0 20px;
+    display: inline;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-    background-color: #e5d6e6; /* Lila más claro */
-    color: #2a2a2a;
+    background: #C89FEF; /* Tono más claro de lavanda */
+    color: #222;
 }
 
+/* Sections */
 section {
-    padding: 40px 20px;
-    margin: 20px 0;
+    padding: 80px 20px;
     text-align: center;
+    max-width: 900px;
+    margin: auto;
 }
 
-#about-me img {
+/* Profile Image */
+.profile-photo {
     width: 200px;
-    height: auto;
+    height: 200px;
     border-radius: 50%;
+    object-fit: cover;
     margin-top: 20px;
-    border: 4px solid #a8a1d1; /* Violeta pastel */
+    border: 5px solid #A87EBE; /* Borde en tono lavanda */
 }
 
-#introduction, #about-me, #experience, #skills, #certifications {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+/* Section Headings */
+h1, h2 {
+    color: #6C3FA0; /* Morado oscuro */
+    margin-bottom: 15px;
 }
 
-h1, h2, h3 {
-    color: #4a4a4a;
+/* Paragraph Styling */
+p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Experience & Skills List */
+h3 {
+    color: #8A56C0; /* Morado medio */
+    margin-top: 15px;
 }
 
 ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 ul li {
-    background-color: #f0f0f0;
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 5px;
+    font-size: 18px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-ul li:hover {
-    background-color: #e5d6e6; /* Lila más claro */
+/* Logo Styling */
+.tool-logo {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
 }
 
-section img {
-    max-width: 100%;
-    height: auto;
+.tool-logo:hover {
+    transform: scale(1.2);
 }
 
-/* Efecto hover sobre el panel de navegación */
-nav ul li a:hover {
-    color: #4a4a4a;
-    background-color: #d1c1ea; /* Sutil tono lila */
+/* Hover Effect for Sections */
+section:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.5s ease-in-out;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
 }
