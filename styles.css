@@ -1,107 +1,66 @@
-/* Estilos para el cuerpo de la página */
+/* General styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-/* Barra de navegación */
 header {
-  background-color: #7A57D1; /* Violeta pastel */
-  padding: 15px;
+    background-color: #6a4c9c; /* Color violeta pastel */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
 }
 
-header nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
+nav ul {
+    list-style: none;
+    padding: 0;
 }
 
-header nav ul li {
-  margin: 0 20px;
+nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-header nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1em;
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
-header nav ul li a:hover {
-  text-decoration: underline;
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
-/* Secciones generales */
 section {
-  padding: 40px;
-  margin: 20px 0;
-  background-color: white;
-  border-radius: 8px;
+    padding: 40px;
+    margin: 20px 0;
 }
 
-/* Títulos */
-h1, h2 {
-  color: #7A57D1; /* Violeta pastel */
+section h2 {
+    color: #6a4c9c; /* Color violeta pastel */
 }
 
-/* Sección About Me */
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+img {
+    max-width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
 }
 
-.about-content {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-#about-me p {
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* Estilos de los proyectos */
-#projects ul {
-  list-style-type: none;
-}
-
-#projects li {
-  font-size: 1.2em;
-}
-
-/* Estilos de las habilidades */
-#skills ul {
-  list-style-type: none;
-}
-
-#skills li {
-  font-size: 1.2em;
-}
-
-/* Footer */
 footer {
-  background-color: #7A57D1;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
+    text-align: center;
+    padding: 10px;
+    background-color: #6a4c9c;
+    color: white;
 }
 
 footer a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 footer a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
