@@ -1,20 +1,16 @@
-/* General page styling */
+/* General Body and Header Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f3f9;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7;
     margin: 0;
     padding: 0;
     color: #333;
-    line-height: 1.6;
 }
 
-/* Header */
 header {
-    background-color: #6a4c9c; /* Violet pastel */
-    color: white;
-    padding: 30px;
+    background-color: #6a4c9c; /* Color violeta pastel */
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header nav ul {
@@ -24,113 +20,90 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin-right: 25px;
+    margin: 0 20px;
 }
 
 header nav ul li a {
-    color: white;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: color 0.3s ease-in-out;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.2em;
 }
 
 header nav ul li a:hover {
-    color: #e6e6fa; /* Light lavender */
-}
-
-/* Section styling */
-section {
-    padding: 50px;
-    margin: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    color: #ffb3ff; /* Color de hover */
 }
 
 /* About Me Section */
-#about-me img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    margin-top: 20px;
-    border: 5px solid #e6e6fa;
-    transition: transform 0.3s ease-in-out;
-}
-
-#about-me img:hover {
-    transform: scale(1.1);
-}
-
-/* Section Titles */
-h2 {
-    color: #6a4c9c;
+#about-me {
     text-align: center;
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+#about-me h2 {
     font-size: 2.5em;
+    color: #6a4c9c; /* Color violeta pastel */
     margin-bottom: 20px;
 }
 
-/* Job/Experience Section */
-.job {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+#about-me img {
+    width: 200px; /* Ajusta el tamaño de la imagen */
+    height: 200px;
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    margin-top: 20px;
+    border: 5px solid #e6e6fa; /* Borde suave de color lavanda */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Añade sombra para darle profundidad */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out; /* Transición suave */
 }
 
-.job h3 {
-    color: #6a4c9c;
-    font-size: 1.8em;
-    margin-bottom: 10px;
+/* Efecto hover para la imagen */
+#about-me img:hover {
+    transform: scale(1.1); /* Aumenta el tamaño ligeramente cuando pasa el ratón */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra más intensa para dar el efecto de iluminación */
+    filter: brightness(1.2); /* Ilumina la imagen cuando se pasa el ratón */
 }
 
-.job p {
-    color: #333;
-    font-size: 1.1em;
-}
-
-.job ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.job ul li {
-    margin-bottom: 10px;
-}
-
-/* Footer */
-footer {
+/* Experience Section */
+#experience {
+    background-color: #fafafa;
+    padding: 40px;
     text-align: center;
-    padding: 20px;
-    background-color: #e6e6fa;
+}
+
+#experience h2 {
+    font-size: 2.5em;
     color: #6a4c9c;
+    margin-bottom: 20px;
+}
+
+.experience-item {
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.experience-item h3 {
+    font-size: 1.8em;
+    color: #6a4c9c;
+}
+
+.experience-item p {
     font-size: 1.1em;
 }
 
-footer a {
-    color: #6a4c9c;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+.experience-item:hover {
+    transform: translateY(-10px); /* Efecto de elevar el contenedor */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
 }
 
-footer a:hover {
-    color: #4c3b6f;
-}
-
-footer p {
-    margin-top: 10px;
+/* Estilos Responsivos */
+@media screen and (max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
 }
