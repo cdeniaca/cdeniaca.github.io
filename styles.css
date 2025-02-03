@@ -82,24 +82,20 @@ p {
 }
 
 /* Experience & Skills List */
-h3 {
-    color: #8A56C0; /* Morado medio */
-    margin-top: 15px;
+/* Ajuste del tamaño de los logos en Skills */
+.tool-logo {
+    width: 25px;  /* Tamaño reducido */
+    height: 25px;
+    vertical-align: middle; /* Alineación con el texto */
+    margin-right: 8px; /* Espaciado entre el logo y el texto */
+    transition: transform 0.3s ease-in-out;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+/* Efecto hover para los logos */
+.tool-logo:hover {
+    transform: scale(1.1); /* Ligera animación al pasar el ratón */
 }
 
-ul li {
-    font-size: 18px;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
 
 /* Logo Styling */
 .tool-logo {
