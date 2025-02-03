@@ -1,28 +1,105 @@
-/* Estilos adicionales para la sección de experiencia */
-#experience {
-    background-color: #f9f9f9; /* Fondo claro para diferenciar la sección */
-    padding: 40px;
-    margin: 20px 0;
+/* General page styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
 }
 
-#experience h2 {
-    color: #6a4c9c; /* Color violeta pastel */
-}
-
-.job {
-    background-color: #fff; /* Fondo blanco para cada trabajo */
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+/* Header */
+header {
+    background-color: #6a4c9c; /* Violet pastel */
+    color: white;
+    padding: 30px;
+    text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 25px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+header nav ul li a:hover {
+    color: #e6e6fa; /* Light lavender */
+}
+
+/* Section styling */
+section {
+    padding: 50px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* About Me Section */
+#about-me img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-top: 20px;
+    border: 5px solid #e6e6fa;
+    transition: transform 0.3s ease-in-out;
+}
+
+#about-me img:hover {
+    transform: scale(1.1);
+}
+
+/* Section Titles */
+h2 {
+    color: #6a4c9c;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Job/Experience Section */
+.job {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .job h3 {
-    color: #6a4c9c; /* Color violeta pastel para el título del trabajo */
+    color: #6a4c9c;
+    font-size: 1.8em;
+    margin-bottom: 10px;
 }
 
 .job p {
     color: #333;
+    font-size: 1.1em;
 }
 
 .job ul {
@@ -34,18 +111,26 @@
     margin-bottom: 10px;
 }
 
+/* Footer */
 footer {
     text-align: center;
-    padding: 10px;
-    background-color: #E6E6FA; /* Lavanda (violeta pastel) */
-    color: white;
+    padding: 20px;
+    background-color: #e6e6fa;
+    color: #6a4c9c;
+    font-size: 1.1em;
 }
 
 footer a {
-    color: white;
+    color: #6a4c9c;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    color: #4c3b6f;
+}
+
+footer p {
+    margin-top: 10px;
 }
