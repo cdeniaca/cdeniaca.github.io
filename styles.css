@@ -1,54 +1,37 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9; /* Fondo gris claro */
-    color: #333;
-}
-
-header {
-    background-color: #E6E6FA; /* Lavanda (violeta pastel) */
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-section {
+/* Estilos adicionales para la sección de experiencia */
+#experience {
+    background-color: #f9f9f9; /* Fondo claro para diferenciar la sección */
     padding: 40px;
     margin: 20px 0;
 }
 
-section h2 {
+#experience h2 {
     color: #6a4c9c; /* Color violeta pastel */
 }
 
-img {
-    max-width: 200px; /* Tamaño máximo de la imagen */
-    width: 100%;
-    height: auto;
-    border-radius: 50%; /* Imagen redonda */
+.job {
+    background-color: #fff; /* Fondo blanco para cada trabajo */
+    padding: 15px;
     margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job h3 {
+    color: #6a4c9c; /* Color violeta pastel para el título del trabajo */
+}
+
+.job p {
+    color: #333;
+}
+
+.job ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.job ul li {
+    margin-bottom: 10px;
 }
 
 footer {
