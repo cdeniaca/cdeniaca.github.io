@@ -1,138 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Junior Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
+  <title>Junior Data Analyst | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .section {
+      padding: 60px 0;
+    }
+    .profile-photo {
+      width: 180px;
+      border-radius: 100%;
+      margin-bottom: 20px;
+    }
+    .tool-logo {
+      height: 24px;
+      margin-right: 8px;
+    }
+  </style>
 </head>
+
 <body>
-
-    <!-- Header / Navigation Bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#about-me">About Me</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Introduction Section -->
-    <section id="introduction">
-        <h1>Welcome to My Profile!</h1>
-        <p>
-            I am a Junior Data Analyst currently pursuing a degree in Business Administration and Management, 
-            balancing studies with professional responsibilities. I specialize in transforming complex data 
-            into valuable insights that inform strategic decision-making.
-        </p>
-        <p>
-            I have hands-on experience with Power BI, SQL, and Python, where I develop effective analytics 
-            and visualizations to support data-driven decisions. My passion for data analysis is complemented 
-            by continuous learning through certified courses in data analytics and visualization, enabling me 
-            to stay updated with industry trends.
-        </p>
-        <p>
-            My latest focus is on leveraging the power of data with Power BI and VSC to tackle complex 
-            business challenges. I am enthusiastic about setting clear objectives and working persistently 
-            towards achieving my goals.
-        </p>
-        <p>
-            I aspire to join a company that encourages personal and professional growth, providing an environment 
-            where I can flourish and contribute to the organization’s success.
-        </p>
-        <p>
-            Thank you for visiting my profile! I look forward to connecting with fellow professionals and exploring 
-            potential collaboration opportunities.
-        </p>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about-me">
-        <h2>About Me</h2>
-        <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo">
-        <p>
-            I am a Junior Data Analyst passionate about extracting insights from data. I have hands-on experience 
-            in Power BI, SQL, and Python. I specialize in creating data models and dashboards to present business 
-            information in a meaningful and accessible way.
-        </p>
-        <p>
-            My approach to data analysis focuses on identifying patterns, optimizing processes, and improving 
-            business decision-making. My experience extends to using tools like Power Query, VSC, and DAX to 
-            generate powerful reports.
-        </p>
-        <p>
-            I constantly work on expanding my knowledge and staying updated with industry trends, taking 
-            courses and certifications in data analytics and visualization.
-        </p>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2>Experience</h2>
-        <div>
-            <h3>NTT DATA Europe & Latam</h3>
-            <p><strong>Business Process Analyst</strong><br>March 2024 - Present</p>
-            <p>
-                - Develop comprehensive reports in Power BI from scratch, beginning with data reception from 
-                various sources, including VSC, Access, and databases, ensuring seamless integration (utilizing 
-                advanced SQL for queries and transformations).
-            </p>
-            <p>
-                - Leverage Power Query for data transformation and cleansing, applying advanced techniques in M and DAX 
-                to enhance accuracy and utility.
-            </p>
-            <p>
-                - Write Python scripts to generate tables and optimize data processing steps in Power Query, increasing 
-                efficiency and streamlining workflows.
-            </p>
-            <p>
-                - Model data efficiently to enhance performance and clarity of reports.
-            </p>
-            <p>
-                - Design visually impactful and coherent reports based on storytelling principles, incorporating 
-                graphs, filters, and other visual elements.
-            </p>
-            <p>Tools Used: <img src="images/powerbi-logo.png" alt="Power BI" class="tool-logo"> 
-                <img src="images/vsc-logo.png" alt="Visual Studio Code" class="tool-logo"> 
-                <img src="images/sql-logo.png" alt="SQL" class="tool-logo"> 
-                <img src="images/python-logo.png" alt="Python" class="tool-logo">
-            </p>
-        </div>
-
-        <div>
-            <h3>Data Analyst Student (Internship)</h3>
-            <p><strong>May 2023 - Feb 2024</strong></p>
-            <p>
-                Worked with Microsoft Power BI, VSC, and other tools to support data analysis projects, focusing 
-                on report creation and visualization. Assisted in analyzing business data to inform decision-making 
-                processes.
-            </p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <h2>Skills</h2>
-<ul>
-    <li><img src="images/powerbi-logo.png" alt="Power BI" class="tool-logo"> Power BI</li>
-    <li><img src="images/sql-logo.png" alt="SQL" class="tool-logo"> SQL</li>
-    <li><img src="images/python-logo.png" alt="Python" class="tool-logo"> Python</li>
-    <li><img src="images/VSC-logo.png" alt="Visual Studio Code" class="tool-logo"> Visual Studio Code</li>
-</ul>
-
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Power BI Certification</li>
-            <li>Data Analytics Fundamentals</li>
-            <li>Advanced VSC Skills</li>
-            <li>Python for Data Science</li>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
         </ul>
-    </section>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="section text-center bg-light">
+    <div class="container">
+      <h1 class="mb-4">Hi, I'm a Junior Data Analyst</h1>
+      <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
+      <a href="#about" class="btn btn-primary mt-3">Learn More</a>
+    </div>
+  </section>
+
+  <!-- About Me -->
+  <section class="section" id="about">
+    <div class="container text-center">
+      <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo" />
+      <h2>About Me</h2>
+      <p>I am currently studying Business Administration and Management while gaining real-world experience as a Junior Data Analyst.</p>
+      <p>I focus on creating data models and dashboards using Power BI, SQL, and Python. My goal is to communicate data insights clearly and effectively for strategic decisions.</p>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section bg-light" id="experience">
+    <div class="container">
+      <h2 class="text-center mb-4">Experience</h2>
+      <div class="mb-4">
+        <h4>NTT DATA Europe & Latam <small class="text-muted">(March 2024 - Present)</small></h4>
+        <p><strong>Business Process Analyst</strong></p>
+        <ul>
+          <li>Created advanced Power BI reports from data extracted via VSC, Access, and databases.</li>
+          <li>Applied M and DAX in Power Query for efficient transformations.</li>
+          <li>Used Python to optimize data processing and automate workflows.</li>
+          <li>Designed dashboards with strong storytelling and data visual impact.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Internship - Data Analyst Student <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
+        <p>Supported data analysis projects with Power BI and VSC. Assisted in business decision-making through effective reporting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="text-center mb-4">Skills</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-3 text-center">
+          <i class="fab fa-microsoft fa-2x text-warning"></i>
+          <p>Power BI</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fas fa-database fa-2x text-primary"></i>
+          <p>SQL</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fab fa-python fa-2x text-info"></i>
+          <p>Python</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fas fa-code fa-2x text-success"></i>
+          <p>Visual Studio Code</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="section bg-light" id="certifications">
+    <div class="container">
+      <h2 class="text-center mb-4">Certifications</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Power BI Certification</li>
+        <li class="list-group-item">Data Analytics Fundamentals</li>
+        <li class="list-group-item">Advanced VSC Skills</li>
+        <li class="list-group-item">Python for Data Science</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-dark text-white">
+    <p>&copy; 2025 Your Name | www.tudominio.com</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
