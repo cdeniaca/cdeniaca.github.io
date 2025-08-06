@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Junior Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
   <title>Juan Duran | Website</title>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" type="image/png" href="images/custom-icon.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -82,7 +82,7 @@
   </div>
 
   <div class="sidebar">
-    <h4><img src="images/favicon.png" alt="Logo" style="height: 24px; vertical-align: middle; margin-right: 8px;"> Juan Duran</h4>
+    <h4><img src="images/custom-icon.png" alt="Logo" style="height: 24px; vertical-align: middle; margin-right: 8px;"> Juan Duran</h4>
     <ul>
       <li><a href="#about">👤 About Me</a></li>
       <li><a href="#experience">💼 Experience</a></li>
@@ -103,15 +103,14 @@
       <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
     </div>
 
-
     <!-- About Section -->
     <section class="section" id="about">
       <div class="container text-center">
         <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo">
         <h2 data-lang="en">About Me</h2>
         <h2 data-lang="es">Sobre Mí</h2>
-        <p data-lang="en">I am a Junior Data Analyst passionate about extracting insights from data...</p>
-        <p data-lang="es">Soy un Analista de Datos Junior apasionado por extraer información de los datos...</p>
+        <p data-lang="en">I am a Junior Data Analyst passionate about extracting insights from data. I have hands-on experience in Power BI, SQL, and Python. I specialize in creating data models and dashboards to present business information in a meaningful and accessible way.</p>
+        <p data-lang="es">Soy un Analista de Datos Junior apasionado por extraer información de los datos. Tengo experiencia práctica con Power BI, SQL y Python. Me especializo en crear modelos de datos y paneles para presentar información empresarial de forma significativa y accesible.</p>
       </div>
     </section>
 
@@ -127,6 +126,10 @@
           <ul>
             <li data-lang="en">Developed Power BI reports integrating SQL, VSC and databases.</li>
             <li data-lang="es">Desarrollé informes en Power BI integrando SQL, VSC y bases de datos.</li>
+            <li data-lang="en">Used Power Query and DAX for data modeling and cleansing.</li>
+            <li data-lang="es">Usé Power Query y DAX para modelado y limpieza de datos.</li>
+            <li data-lang="en">Automated workflows with Python scripts to optimize data processing.</li>
+            <li data-lang="es">Automatización de procesos con scripts en Python para optimización.</li>
           </ul>
         </div>
       </div>
@@ -165,19 +168,20 @@
       <div class="container text-center">
         <h2 data-lang="en">Contact Me</h2>
         <h2 data-lang="es">Contáctame</h2>
-        <p data-lang="en">Feel free to reach out via email.</p>
-        <p data-lang="es">No dudes en escribirme por email.</p>
-        <a href="mailto:cristinadeniacarretero@gmail.com" class="btn btn-outline-primary">Email</a>
+        <p data-lang="en">Feel free to reach out via email or connect with me on LinkedIn.</p>
+        <p data-lang="es">No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
+        <a href="mailto:youremail@example.com" class="btn btn-outline-primary m-2"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com/in/yourprofile" class="btn btn-outline-info m-2" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="text-center py-4 bg-dark text-white">
-      <p>&copy; 2025 Cristina | www.cristinadeniacarretero.com</p>
+      <p>&copy; 2025 Juan Duran | www.tudominio.com</p>
     </footer>
   </div>
 
-  <<script>
+  <script>
     function setLanguage(lang) {
       document.querySelectorAll('[data-lang]').forEach(el => {
         el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
