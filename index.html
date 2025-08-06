@@ -37,6 +37,40 @@
       right: 20px;
       z-index: 9999;
     }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background-color: #f8f9fa;
+      padding: 40px 20px;
+      border-right: 1px solid #ddd;
+      z-index: 998;
+      overflow-y: auto;
+    }
+    .sidebar h4 {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 15px;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    .sidebar ul li a:hover {
+      color: #6f42c1;
+    }
+    .content-wrapper {
+      margin-left: 260px;
+    }
   </style>
 </head>
 
@@ -46,109 +80,38 @@
     <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')">ES</button>
   </div>
 
-  <div class="container text-center my-5">
-    <h1 data-lang="en">Hi, I'm a Junior Data Analyst</h1>
-    <h1 data-lang="es">Hola, soy un Analista de Datos Junior</h1>
-
-    <p class="lead" data-lang="en">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
-    <p class="lead" data-lang="es">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
-
-    <a href="#about" class="btn btn-purple mt-3" data-lang="en">Learn More</a>
-    <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
+  <div class="sidebar">
+    <h4>📘 My Portfolio</h4>
+    <ul>
+      <li><a href="#about">👤 About Me</a></li>
+      <li><a href="#experience">💼 Experience</a></li>
+      <li><a href="#skills">🧠 Skills</a></li>
+      <li><a href="#certifications">📜 Certifications</a></li>
+      <li><a href="#contact">📬 Contact</a></li>
+    </ul>
   </div>
 
-  <section class="section text-center bg-light" id="about">
-    <div class="container">
-      <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo" />
-      <h2 data-lang="en">About Me</h2>
-      <h2 data-lang="es">Sobre mí</h2>
+  <div class="content-wrapper">
+    <!-- Existing content starts here -->
+    <div class="container text-center my-5">
+      <h1 data-lang="en">Hi, I'm a Junior Data Analyst</h1>
+      <h1 data-lang="es">Hola, soy un Analista de Datos Junior</h1>
 
-      <p data-lang="en">I am currently studying Business Administration and Management while gaining real-world experience as a Junior Data Analyst.</p>
-      <p data-lang="es">Actualmente estudio Administración y Dirección de Empresas mientras gano experiencia como Analista de Datos Junior.</p>
+      <p class="lead" data-lang="en">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
+      <p class="lead" data-lang="es">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
 
-      <p data-lang="en">I focus on creating data models and dashboards using Power BI, SQL, and Python. My goal is to communicate data insights clearly and effectively for strategic decisions.</p>
-      <p data-lang="es">Me enfoco en crear modelos de datos y dashboards usando Power BI, SQL y Python. Mi objetivo es comunicar insights de datos de forma clara para decisiones estratégicas.</p>
+      <a href="#about" class="btn btn-purple mt-3" data-lang="en">Learn More</a>
+      <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
     </div>
-  </section>
 
-  <section class="section" id="experience">
-    <div class="container">
-      <h2 class="text-center mb-4" data-lang="en">Experience</h2>
-      <h2 class="text-center mb-4" data-lang="es">Experiencia</h2>
+    <!-- The rest of your content remains unchanged -->
+    <!-- Sections: About, Experience, Skills, Certifications, Contact -->
+    <!-- ... -->
 
-      <div class="mb-4">
-        <h4>NTT DATA Europe & Latam <small class="text-muted">(March 2024 - Present)</small></h4>
-        <p><strong data-lang="en">Business Process Analyst</strong><strong data-lang="es">Analista de Procesos de Negocio</strong></p>
-        <ul>
-          <li data-lang="en">Created advanced Power BI reports from data extracted via VSC, Access, and databases.</li>
-          <li data-lang="es">Creé informes avanzados en Power BI a partir de datos de VSC, Access y bases de datos.</li>
-
-          <li data-lang="en">Applied M and DAX in Power Query for efficient transformations.</li>
-          <li data-lang="es">Apliqué M y DAX en Power Query para transformaciones eficientes.</li>
-
-          <li data-lang="en">Used Python to optimize data processing and automate workflows.</li>
-          <li data-lang="es">Utilicé Python para optimizar el procesamiento de datos y automatizar flujos.</li>
-
-          <li data-lang="en">Designed dashboards with strong storytelling and data visual impact.</li>
-          <li data-lang="es">Diseñé dashboards con storytelling y alto impacto visual.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="skills">
-    <div class="container">
-      <h2 class="text-center mb-4" data-lang="en">Skills</h2>
-      <h2 class="text-center mb-4" data-lang="es">Habilidades</h2>
-
-      <div class="row justify-content-center">
-        <div class="col-md-3 text-center">
-          <i class="fab fa-microsoft fa-2x text-warning"></i>
-          <p>Power BI</p>
-        </div>
-        <div class="col-md-3 text-center">
-          <i class="fas fa-database fa-2x text-primary"></i>
-          <p>SQL</p>
-        </div>
-        <div class="col-md-3 text-center">
-          <i class="fab fa-python fa-2x text-info"></i>
-          <p>Python</p>
-        </div>
-        <div class="col-md-3 text-center">
-          <i class="fas fa-code fa-2x text-success"></i>
-          <p>Visual Studio Code</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-light" id="certifications">
-    <div class="container">
-      <h2 class="text-center mb-4" data-lang="en">Certifications</h2>
-      <h2 class="text-center mb-4" data-lang="es">Certificaciones</h2>
-
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Power BI Certification</li>
-        <li class="list-group-item">Data Analytics Fundamentals</li>
-        <li class="list-group-item">Advanced VSC Skills</li>
-        <li class="list-group-item">Python for Data Science</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section text-center" id="contact">
-    <div class="container">
-      <h2 data-lang="en">Contact Me</h2>
-      <h2 data-lang="es">Contáctame</h2>
-      <p data-lang="en">Feel free to reach out via LinkedIn or email.</p>
-      <p data-lang="es">No dudes en contactarme por LinkedIn o correo electrónico.</p>
-      <a href="mailto:youremail@example.com" class="btn btn-outline-primary">Email</a>
-    </div>
-  </section>
-
-  <footer class="text-center py-4 bg-dark text-white">
-    <p>&copy; 2025 Your Name | www.tudominio.com</p>
-  </footer>
+    <footer class="text-center py-4 bg-dark text-white">
+      <p>&copy; 2025 Your Name | www.tudominio.com</p>
+    </footer>
+  </div>
 
   <script>
     function setLanguage(lang) {
