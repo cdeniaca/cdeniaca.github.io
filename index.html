@@ -88,6 +88,15 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Skill Hover Effects */
+    .skill-icon {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .skill-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 
@@ -98,7 +107,7 @@
   </div>
 
   <div class="sidebar">
-    <h4><img src="imagescustom-icon.png" alt="Logo"> Cristina Denia</h4>
+    <h4><img src="images/custom-icon.png" alt="Logo"> Cristina Denia</h4>
     <ul>
       <li><a href="#about">👤 About Me</a></li>
       <li><a href="#experience">💼 Experience</a></li>
@@ -164,31 +173,30 @@
     </section>
 
     <!-- Skills Section -->
-<section class="section bg-light" id="skills">
-  <div class="container text-center">
-    <h2 class="mb-4" data-lang="en">Skills</h2>
-    <h2 class="mb-4" data-lang="es">Habilidades</h2>
-    <div class="row justify-content-center">
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/powerbi-logo.png" alt="Power BI" class="img-fluid mb-2" style="height: 60px;">
-        <p>Power BI</p>
+    <section class="section bg-light" id="skills">
+      <div class="container text-center">
+        <h2 class="mb-4" data-lang="en">Skills</h2>
+        <h2 class="mb-4" data-lang="es">Habilidades</h2>
+        <div class="row justify-content-center">
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/powerbi-logo.png" alt="Power BI" title="Power BI" class="img-fluid mb-2 skill-icon" style="height: 60px;">
+            <p>Power BI</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/sql-logo.png" alt="SQL" title="SQL" class="img-fluid mb-2 skill-icon" style="height: 60px;">
+            <p>SQL</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/python-logo.png" alt="Python" title="Python" class="img-fluid mb-2 skill-icon" style="height: 60px;">
+            <p>Python</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/vsc-logo.png" alt="Visual Studio Code" title="Visual Studio Code" class="img-fluid mb-2 skill-icon" style="height: 60px;">
+            <p>Visual Studio Code</p>
+          </div>
+        </div>
       </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/sql-logo.png" alt="SQL" class="img-fluid mb-2" style="height: 60px;">
-        <p>SQL</p>
-      </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/python-logo.png" alt="Python" class="img-fluid mb-2" style="height: 60px;">
-        <p>Python</p>
-      </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/vsc-logo.png" alt="Visual Studio Code" class="img-fluid mb-2" style="height: 60px;">
-        <p>Visual Studio Code</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Certifications Section -->
     <section class="section" id="certifications">
