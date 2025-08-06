@@ -15,14 +15,13 @@
     .section {
       padding: 60px 0;
     }
+    [data-lang] {
+      display: none;
+    }
     .profile-photo {
       width: 180px;
       border-radius: 100%;
       margin-bottom: 20px;
-    }
-    .tool-logo {
-      height: 24px;
-      margin-right: 8px;
     }
     .btn-purple {
       background-color: #6f42c1;
@@ -32,213 +31,133 @@
       background-color: #5a32a3;
       color: white;
     }
-    .integration-card {
-      border-radius: 20px;
-      padding: 25px;
-      color: #000;
-      font-weight: 500;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .integration-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    .card-github {
-      background-color: #ccff90;
-    }
-    .card-linkedin {
-      background-color: #d0e7ff;
-    }
-    .sidebar {
+    .language-switch {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 240px;
-      height: 100vh;
-      background-color: #f8f9fa;
-      padding: 40px 20px;
-      border-right: 1px solid #ddd;
-      z-index: 1030;
-      overflow-y: auto;
-    }
-    .sidebar h4 {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .sidebar ul li {
-      margin-bottom: 15px;
-    }
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    .sidebar ul li a:hover {
-      color: #6f42c1;
-    }
-    .content-wrapper {
-      margin-left: 260px;
+      top: 10px;
+      right: 20px;
+      z-index: 9999;
     }
   </style>
 </head>
 
 <body>
-  <!-- Sidebar Navigation -->
-  <div class="sidebar">
-    <h4>📘 My Portfolio</h4>
-    <ul>
-      <li><a href="#about">👤 About Me</a></li>
-      <li><a href="#experience">💼 Experience</a></li>
-      <li><a href="#skills">🧠 Skills</a></li>
-      <li><a href="#certifications">📜 Certifications</a></li>
-      <li><a href="#integration">🔗 Integrations</a></li>
-      <li><a href="#contact">📬 Contact</a></li>
-    </ul>
+  <div class="language-switch">
+    <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')">EN</button>
+    <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')">ES</button>
   </div>
 
-  <!-- Main Content -->
-  <div class="content-wrapper">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">My Portfolio</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
-            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-            <li class="nav-item"><a class="nav-link" href="#integration">Integrations</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <div class="container text-center my-5">
+    <h1 data-lang="en">Hi, I'm a Junior Data Analyst</h1>
+    <h1 data-lang="es">Hola, soy un Analista de Datos Junior</h1>
 
-    <!-- Hero Section -->
-    <section class="section text-center bg-light">
-      <div class="container">
-        <h1 class="mb-4">Hi, I'm a Junior Data Analyst</h1>
-        <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
-        <a href="#about" class="btn btn-purple mt-3">Learn More</a>
-      </div>
-    </section>
+    <p class="lead" data-lang="en">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
+    <p class="lead" data-lang="es">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
 
-    <!-- About Me -->
-    <section class="section" id="about">
-      <div class="container text-center">
-        <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo" />
-        <h2>About Me</h2>
-        <p>I am currently studying Business Administration and Management while gaining real-world experience as a Junior Data Analyst.</p>
-        <p>I focus on creating data models and dashboards using Power BI, SQL, and Python. My goal is to communicate data insights clearly and effectively for strategic decisions.</p>
-      </div>
-    </section>
+    <a href="#about" class="btn btn-purple mt-3" data-lang="en">Learn More</a>
+    <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
+  </div>
 
-    <!-- Experience -->
-    <section class="section bg-light" id="experience">
-      <div class="container">
-        <h2 class="text-center mb-4">Experience</h2>
-        <div class="mb-4">
-          <h4>NTT DATA Europe & Latam <small class="text-muted">(March 2024 - Present)</small></h4>
-          <p><strong>Business Process Analyst</strong></p>
-          <ul>
-            <li>Created advanced Power BI reports from data extracted via VSC, Access, and databases.</li>
-            <li>Applied M and DAX in Power Query for efficient transformations.</li>
-            <li>Used Python to optimize data processing and automate workflows.</li>
-            <li>Designed dashboards with strong storytelling and data visual impact.</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Internship - Data Analyst Student <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
-          <p>Supported data analysis projects with Power BI and VSC. Assisted in business decision-making through effective reporting.</p>
-        </div>
-      </div>
-    </section>
+  <section class="section text-center bg-light" id="about">
+    <div class="container">
+      <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo" />
+      <h2 data-lang="en">About Me</h2>
+      <h2 data-lang="es">Sobre mí</h2>
 
-    <!-- Skills -->
-    <section class="section" id="skills">
-      <div class="container">
-        <h2 class="text-center mb-4">Skills</h2>
-        <div class="row justify-content-center">
-          <div class="col-md-3 text-center">
-            <i class="fab fa-microsoft fa-2x text-warning"></i>
-            <p>Power BI</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <i class="fas fa-database fa-2x text-primary"></i>
-            <p>SQL</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <i class="fab fa-python fa-2x text-info"></i>
-            <p>Python</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <i class="fas fa-code fa-2x text-success"></i>
-            <p>Visual Studio Code</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      <p data-lang="en">I am currently studying Business Administration and Management while gaining real-world experience as a Junior Data Analyst.</p>
+      <p data-lang="es">Actualmente estudio Administración y Dirección de Empresas mientras gano experiencia como Analista de Datos Junior.</p>
 
-    <!-- Certifications -->
-    <section class="section bg-light" id="certifications">
-      <div class="container">
-        <h2 class="text-center mb-4">Certifications</h2>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Power BI Certification</li>
-          <li class="list-group-item">Data Analytics Fundamentals</li>
-          <li class="list-group-item">Advanced VSC Skills</li>
-          <li class="list-group-item">Python for Data Science</li>
+      <p data-lang="en">I focus on creating data models and dashboards using Power BI, SQL, and Python. My goal is to communicate data insights clearly and effectively for strategic decisions.</p>
+      <p data-lang="es">Me enfoco en crear modelos de datos y dashboards usando Power BI, SQL y Python. Mi objetivo es comunicar insights de datos de forma clara para decisiones estratégicas.</p>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="text-center mb-4" data-lang="en">Experience</h2>
+      <h2 class="text-center mb-4" data-lang="es">Experiencia</h2>
+
+      <div class="mb-4">
+        <h4>NTT DATA Europe & Latam <small class="text-muted">(March 2024 - Present)</small></h4>
+        <p><strong data-lang="en">Business Process Analyst</strong><strong data-lang="es">Analista de Procesos de Negocio</strong></p>
+        <ul>
+          <li data-lang="en">Created advanced Power BI reports from data extracted via VSC, Access, and databases.</li>
+          <li data-lang="es">Creé informes avanzados en Power BI a partir de datos de VSC, Access y bases de datos.</li>
+
+          <li data-lang="en">Applied M and DAX in Power Query for efficient transformations.</li>
+          <li data-lang="es">Apliqué M y DAX en Power Query para transformaciones eficientes.</li>
+
+          <li data-lang="en">Used Python to optimize data processing and automate workflows.</li>
+          <li data-lang="es">Utilicé Python para optimizar el procesamiento de datos y automatizar flujos.</li>
+
+          <li data-lang="en">Designed dashboards with strong storytelling and data visual impact.</li>
+          <li data-lang="es">Diseñé dashboards con storytelling y alto impacto visual.</li>
         </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Integration Cards -->
-    <section class="section" id="integration">
-      <div class="container text-center">
-        <h2 class="mb-5">Connect Your Developer Profile</h2>
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-3">
-            <div class="integration-card card-github">
-              <i class="fab fa-github fa-2x mb-2"></i>
-              <h5>GitHub</h5>
-              <p>Showcase your repositories, contributions, and coding activity</p>
-              <span class="badge bg-success">Available</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="integration-card card-linkedin">
-              <i class="fab fa-linkedin fa-2x mb-2"></i>
-              <h5>LinkedIn</h5>
-              <p>Display your professional experience and education</p>
-              <span class="badge bg-primary">New</span>
-            </div>
-          </div>
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="text-center mb-4" data-lang="en">Skills</h2>
+      <h2 class="text-center mb-4" data-lang="es">Habilidades</h2>
+
+      <div class="row justify-content-center">
+        <div class="col-md-3 text-center">
+          <i class="fab fa-microsoft fa-2x text-warning"></i>
+          <p>Power BI</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fas fa-database fa-2x text-primary"></i>
+          <p>SQL</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fab fa-python fa-2x text-info"></i>
+          <p>Python</p>
+        </div>
+        <div class="col-md-3 text-center">
+          <i class="fas fa-code fa-2x text-success"></i>
+          <p>Visual Studio Code</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <div class="container text-center">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out via LinkedIn or email.</p>
-        <a href="mailto:youremail@example.com" class="btn btn-outline-primary">Send Email</a>
-      </div>
-    </section>
+  <section class="section bg-light" id="certifications">
+    <div class="container">
+      <h2 class="text-center mb-4" data-lang="en">Certifications</h2>
+      <h2 class="text-center mb-4" data-lang="es">Certificaciones</h2>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
-      <p>&copy; 2025 Your Name | www.tudominio.com</p>
-    </footer>
-  </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Power BI Certification</li>
+        <li class="list-group-item">Data Analytics Fundamentals</li>
+        <li class="list-group-item">Advanced VSC Skills</li>
+        <li class="list-group-item">Python for Data Science</li>
+      </ul>
+    </div>
+  </section>
 
+  <section class="section text-center" id="contact">
+    <div class="container">
+      <h2 data-lang="en">Contact Me</h2>
+      <h2 data-lang="es">Contáctame</h2>
+      <p data-lang="en">Feel free to reach out via LinkedIn or email.</p>
+      <p data-lang="es">No dudes en contactarme por LinkedIn o correo electrónico.</p>
+      <a href="mailto:youremail@example.com" class="btn btn-outline-primary">Email</a>
+    </div>
+  </section>
+
+  <footer class="text-center py-4 bg-dark text-white">
+    <p>&copy; 2025 Your Name | www.tudominio.com</p>
+  </footer>
+
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
+    }
+    setLanguage('en');
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
