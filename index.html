@@ -32,6 +32,23 @@
       background-color: #5a32a3;
       color: white;
     }
+    .integration-card {
+      border-radius: 20px;
+      padding: 25px;
+      color: #000;
+      font-weight: 500;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .integration-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .card-github {
+      background-color: #ccff90;
+    }
+    .card-linkedin {
+      background-color: #d0e7ff;
+    }
   </style>
 </head>
 
@@ -60,6 +77,31 @@
       <h1 class="mb-4">Hi, I'm a Junior Data Analyst</h1>
       <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
       <a href="#about" class="btn btn-purple mt-3">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Integration Cards -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="mb-5">Connect Your Developer Profile</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <div class="integration-card card-github">
+            <i class="fab fa-github fa-2x mb-2"></i>
+            <h5>GitHub</h5>
+            <p>Showcase your repositories, contributions, and coding activity</p>
+            <span class="badge bg-success">Available</span>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="integration-card card-linkedin">
+            <i class="fab fa-linkedin fa-2x mb-2"></i>
+            <h5>LinkedIn</h5>
+            <p>Display your professional experience and education</p>
+            <span class="badge bg-primary">New</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
