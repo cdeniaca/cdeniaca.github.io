@@ -93,13 +93,20 @@
     }
     
     .sidebar ul li a.active {
-      color: #6f42c1;
+      background-color: #f5f7fa; /* Mismo color del panel derecho */
       font-weight: bold;
-      background-color: #e9d8fd;
-      padding: 8px 12px;
-      border-radius: 6px;
+      color: #6f42c1;
+      border-top-right-radius: 999px;
+      border-bottom-right-radius: 999px;
+      padding: 10px 16px 10px 12px;
+      margin-left: -10px; /* Empuja a la derecha */
+      box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 1;
       display: block;
+      transition: all 0.3s ease;
     }
+
     .sidebar ul li a::after {
       content: '';
       position: absolute;
