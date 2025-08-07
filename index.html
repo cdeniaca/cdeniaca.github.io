@@ -331,70 +331,53 @@
 
   </div>
 
-  <!-- Script para cambio de idioma, fade-in y navegación activa -->
-  <script>
-    // Cambiar idioma visible
-    function setLanguage(lang) {
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+    <script>
+      // Cambiar idioma visible
+      function setLanguage(lang) {
+        document.querySelectorAll('[data-lang]').forEach(el => {
+          el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+        });
+      }
+    
+      // Idioma por defecto
+      setLanguage('en');
+    
+      // Observer para animaciones fade-in
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.5 });
+    
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
       });
-    }
-  
-    // Idioma por defecto
-    setLanguage('en');
-  
-    // Observer para animaciones fade-in
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.5 });
-  
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-  
-    // Resaltar enlace activo en el sidebar al hacer scroll (mejorado)
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".sidebar ul li a");
-  
-    window.addEventListener("scroll", () => {
+    
+      // Resaltar enlace activo en el sidebar al hacer scroll
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll(".sidebar ul li a");
     
-      let closestSection = null;
-      let minOffset = window.innerHeight;
+      window.addEventListener("scroll", () => {
+        let closestSection = null;
+        let minOffset = window.innerHeight;
     
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top < minOffset) {
-          minOffset = rect.top;
-          closestSection = section;
-        }
-      });
-    
-      if (closestSection) {
-        const currentId = closestSection.getAttribute("id");
-        navLinks.forEach(link => {
-          link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top < minOffset) {
+            minOffset = rect.top;
+            closestSection = section;
+          }
         });
-      }
-    });
-
-  
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${currentSectionId}`) {
-          link.classList.add("active");
+    
+        if (closestSection) {
+          const currentId = closestSection.getAttribute("id");
+          navLinks.forEach(link => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+          });
         }
       });
-    });
-  </script>
-  
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-  </html>
+    </script>
+
 
