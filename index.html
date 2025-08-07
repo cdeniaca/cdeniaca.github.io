@@ -130,9 +130,10 @@
     }
     
     .section {
+      scroll-margin-top: 100px;
       padding: 100px 0;
-      scroll-margin-top: 80px; /* para evitar que quede tapado tras el menú */
     }
+
 
     .fade-in.visible {
       opacity: 1;
@@ -353,18 +354,28 @@
     const navLinks = document.querySelectorAll(".sidebar ul li a");
   
     window.addEventListener("scroll", () => {
-      let currentSectionId = null;
-      let minDistance = Number.POSITIVE_INFINITY;
-  
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".sidebar ul li a");
+    
+      let closestSection = null;
+      let minOffset = window.innerHeight;
+    
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        const distanceFromTop = Math.abs(rect.top);
-  
-        if (distanceFromTop < minDistance && rect.top < window.innerHeight / 2) {
-          minDistance = distanceFromTop;
-          currentSectionId = section.id;
+        if (rect.top >= 0 && rect.top < minOffset) {
+          minOffset = rect.top;
+          closestSection = section;
         }
       });
+    
+      if (closestSection) {
+        const currentId = closestSection.getAttribute("id");
+        navLinks.forEach(link => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+        });
+      }
+    });
+
   
       navLinks.forEach(link => {
         link.classList.remove("active");
