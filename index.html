@@ -131,6 +131,11 @@
       transform: translateY(20px);
       transition: all 0.6s ease-out;
     }
+    
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid #eee;
+    }
 
     .fade-in.visible {
       opacity: 1;
@@ -148,46 +153,69 @@
   <div class="sidebar">
     <h4><img src="images/custom-icon.png" alt="Logo"> Cristina Denia Carretero</h4>
     <ul>
+      <li><a href="#home">🏠 Home</a></li>
       <li><a href="#about">👤 About Me</a></li>
       <li><a href="#experience">💼 Experience</a></li>
       <li><a href="#skills">🧠 Skills</a></li>
       <li><a href="#certifications">📜 Certifications</a></li>
       <li><a href="#contact">📬 Contact</a></li>
     </ul>
+
   </div>
 
   <div class="content-wrapper">
-    <!-- Hero Section -->
-    <div class="container text-center my-5">
+    
+  <!-- Hero Section -->
+  <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
+    <div class="container">
       <h1 data-lang="en">Hi, I'm a Junior Data Analyst</h1>
       <h1 data-lang="es">Hola, soy un Analista de Datos Junior</h1>
-      <p class="lead" data-lang="en">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
-      <p class="lead" data-lang="es">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
+  
+      <p class="lead" data-lang="en">
+        I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.
+      </p>
+      <p class="lead" data-lang="es">
+        Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.
+      </p>
+  
       <a href="#about" class="btn btn-purple mt-3" data-lang="en">Learn More</a>
       <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
     </div>
-
-    <!-- About Me Section -->
-    <section class="section bg-light fade-in" id="about">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4 text-center">
-            <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo">
+  </section>
+  
+  <!-- About Me Section -->
+  <section class="section bg-light fade-in" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Imagen -->
+        <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
+          <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
+        </div>
+  
+        <!-- Texto -->
+        <div class="col-lg-8 col-md-7">
+          <h2 data-lang="en">About Me</h2>
+          <h2 data-lang="es">Sobre Mí</h2>
+  
+          <!-- ENGLISH -->
+          <div data-lang="en">
+            <p>I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition...</p>
+            <p>My academic background in Business Administration helps me see the bigger picture...</p>
+            <p>I'm currently expanding my skills with advanced training...</p>
+            <p>When I'm not analyzing data, I enjoy exploring new technologies...</p>
           </div>
-          <div class="col-md-8">
-            <h2 data-lang="en">About Me</h2>
-            <h2 data-lang="es">Sobre Mí</h2>
-    
-            <!-- ENGLISH TEXT -->
-            <p data-lang="en">I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition. With hands-on experience in tools like Power BI, SQL, and Python, I create visually engaging dashboards and insightful reports that drive better business decisions.</p>
-            <p data-lang="en">My academic background in Business Administration helps me see the bigger picture behind the data, allowing me to link numbers with real-world business needs. I thrive in dynamic environments and love solving problems through data.</p>
-            <p data-lang="en">I'm currently expanding my skills with advanced training in data visualization, automation, and storytelling. My goal is not just to analyze data—but to empower others to act on it confidently.</p>
-            <p data-lang="en">When I'm not analyzing data, I enjoy exploring new technologies, writing about analytics, and collaborating on real-world projects that make a measurable impact.</p>
-    
-            <!-- SPANISH TEXT -->
-            <p data-lang="es">Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico e intuición empresarial. Con experiencia práctica en herramientas como Power BI, SQL y Python, creo paneles visuales atractivos e informes perspicaces que impulsan decisiones empresariales efectivas.</p>
-            <p data-lang="es">Mi formación académica en Administración de Empresas me permite ver más allá de los datos y conectar los números con las necesidades reales del negocio. Me desenvuelvo bien en entornos dinámicos y disfruto resolviendo problemas mediante el análisis.</p>
-    
+  
+          <!-- SPANISH -->
+          <div data-lang="es">
+            <p>Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico...</p>
+            <p>Mi formación académica en Administración de Empresas me permite ver más allá de los datos...</p>
+            <p>Actualmente amplío mis conocimientos con formación avanzada en visualización...</p>
+            <p>Cuando no estoy analizando datos, me gusta explorar nuevas tecnologías...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <!-- Experience Section -->
     <section class="section fade-in" id="experience">
