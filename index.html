@@ -94,7 +94,15 @@
       display: inline-block;
       transition: color 0.3s ease;
     }
-
+    
+    .sidebar ul li a.active {
+      color: #6f42c1;
+      font-weight: bold;
+      background-color: #e9d8fd;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: block;
+    }
     .sidebar ul li a::after {
       content: '';
       position: absolute;
@@ -160,8 +168,8 @@
     </div>
 
     <!-- About Me Section -->
-    <section class="section bg-light" id="about">
-      <div class="container fade-in">
+    <section class="section bg-light fade-in" id="about">
+      <div class="container">
         <div class="row align-items-center">
           <div class="col-md-4 text-center">
             <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo">
@@ -169,24 +177,24 @@
           <div class="col-md-8">
             <h2 data-lang="en">About Me</h2>
             <h2 data-lang="es">Sobre Mí</h2>
+    
+            <!-- ENGLISH TEXT -->
             <p data-lang="en">I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition. With hands-on experience in tools like Power BI, SQL, and Python, I create visually engaging dashboards and insightful reports that drive better business decisions.</p>
             <p data-lang="en">My academic background in Business Administration helps me see the bigger picture behind the data, allowing me to link numbers with real-world business needs. I thrive in dynamic environments and love solving problems through data.</p>
             <p data-lang="en">I'm currently expanding my skills with advanced training in data visualization, automation, and storytelling. My goal is not just to analyze data—but to empower others to act on it confidently.</p>
             <p data-lang="en">When I'm not analyzing data, I enjoy exploring new technologies, writing about analytics, and collaborating on real-world projects that make a measurable impact.</p>
+    
+            <!-- SPANISH TEXT -->
             <p data-lang="es">Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico e intuición empresarial. Con experiencia práctica en herramientas como Power BI, SQL y Python, creo paneles visuales atractivos e informes perspicaces que impulsan decisiones empresariales efectivas.</p>
             <p data-lang="es">Mi formación académica en Administración de Empresas me permite ver más allá de los datos y conectar los números con las necesidades reales del negocio. Me desenvuelvo bien en entornos dinámicos y disfruto resolviendo problemas mediante el análisis.</p>
-            <p data-lang="es">Actualmente amplío mis conocimientos con formación avanzada en visualización de datos, automatización y storytelling. Mi objetivo no es solo analizar datos, sino también capacitar a otros para actuar con confianza basándose en ellos.</p>
-            <p data-lang="es">Cuando no estoy analizando datos, me gusta explorar nuevas tecnologías, escribir sobre analítica y participar en proyectos reales que generen impacto medible.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Experience Section -->
-    <section class="section" id="experience">
+    <section class="section fade-in" id="experience">
       <div class="container">
         <h2 class="text-center mb-4" data-lang="en">Experience</h2>
         <h2 class="text-center mb-4" data-lang="es">Experiencia</h2>
+        
         <div class="mb-4">
           <h4>NTT DATA Europe & Latam <small class="text-muted">(2024 - Present)</small></h4>
           <p data-lang="en">Business Process Analyst</p>
@@ -203,59 +211,85 @@
       </div>
     </section>
 
+
     <!-- Skills Section -->
-<section class="section bg-light" id="skills">
-  <div class="container text-center">
-    <h2 class="mb-4" data-lang="en">Skills</h2>
-    <h2 class="mb-4" data-lang="es">Habilidades</h2>
-    <div class="row justify-content-center">
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/powerbi-logo.png" alt="Power BI" class="img-fluid mb-2" style="height: 60px;">
-        <p>Power BI</p>
+    <section class="section bg-light fade-in" id="skills">
+      <div class="container text-center">
+        <h2 class="mb-4" data-lang="en">Skills</h2>
+        <h2 class="mb-4" data-lang="es">Habilidades</h2>
+        <div class="row justify-content-center">
+          
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/powerbi-logo.png" alt="Power BI" class="img-fluid mb-2" style="height: 60px;">
+            <p>Power BI</p>
+          </div>
+    
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/sql-logo.png" alt="SQL" class="img-fluid mb-2" style="height: 60px;">
+            <p>SQL</p>
+          </div>
+    
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/python-logo.png" alt="Python" class="img-fluid mb-2" style="height: 60px;">
+            <p>Python</p>
+          </div>
+    
+          <div class="col-6 col-md-3 mb-4">
+            <img src="images/vsc-logo.png" alt="Visual Studio Code" class="img-fluid mb-2" style="height: 60px;">
+            <p data-lang="en">Visual Studio Code</p>
+            <p data-lang="es">Visual Studio Code</p>
+          </div>
+          
+        </div>
       </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/sql-logo.png" alt="SQL" class="img-fluid mb-2" style="height: 60px;">
-        <p>SQL</p>
-      </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/python-logo.png" alt="Python" class="img-fluid mb-2" style="height: 60px;">
-        <p>Python</p>
-      </div>
-      <div class="col-6 col-md-3 mb-4">
-        <img src="images/vsc-logo.png" alt="Visual Studio Code" class="img-fluid mb-2" style="height: 60px;">
-        <p>Visual Studio Code</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+
 
 
     <!-- Certifications Section -->
-    <section class="section" id="certifications">
+    <section class="section fade-in" id="certifications">
       <div class="container">
         <h2 class="text-center mb-4" data-lang="en">Certifications</h2>
         <h2 class="text-center mb-4" data-lang="es">Certificaciones</h2>
-        <ul class="list-group list-group-flush">
+    
+        <!-- Lista en inglés -->
+        <ul class="list-group list-group-flush" data-lang="en">
           <li class="list-group-item">Power BI Certification</li>
           <li class="list-group-item">Data Analytics Fundamentals</li>
           <li class="list-group-item">Advanced VSC Skills</li>
           <li class="list-group-item">Python for Data Science</li>
         </ul>
+    
+        <!-- Lista en español -->
+        <ul class="list-group list-group-flush" data-lang="es">
+          <li class="list-group-item">Certificación en Power BI</li>
+          <li class="list-group-item">Fundamentos de Analítica de Datos</li>
+          <li class="list-group-item">Habilidades Avanzadas en VSC</li>
+          <li class="list-group-item">Python para Ciencia de Datos</li>
+        </ul>
       </div>
     </section>
 
+
     <!-- Contact Section -->
-    <section class="section bg-light" id="contact">
+    <section class="section bg-light fade-in" id="contact">
       <div class="container text-center">
         <h2 data-lang="en">Contact Me</h2>
         <h2 data-lang="es">Contáctame</h2>
+        
         <p data-lang="en">Feel free to reach out via email or connect with me on LinkedIn.</p>
         <p data-lang="es">No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
-        <a href="mailto:info@cristinadeniacarretero.com" class="btn btn-outline-primary m-2"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://www.linkedin.com/in/cristinadeniacarretero" class="btn btn-outline-info m-2" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        
+        <a href="mailto:info@cristinadeniacarretero.com" class="btn btn-outline-primary m-2">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+        
+        <a href="https://www.linkedin.com/in/cristinadeniacarretero" class="btn btn-outline-info m-2" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
       </div>
     </section>
-
+ 
     <!-- Footer -->
     <footer class="text-center py-3" style="background-color: #6f42c1; color: white;">
       <p class="mb-0" data-lang="en">&copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp; <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a></p>
@@ -264,8 +298,9 @@
 
   </div>
 
-  <!-- Script para cambio de idioma y fade-in -->
+    <!-- Script para cambio de idioma, fade-in y navegación activa -->
   <script>
+    // Cambiar idioma visible
     function setLanguage(lang) {
       document.querySelectorAll('[data-lang]').forEach(el => {
         el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
@@ -273,7 +308,7 @@
     }
 
     // Idioma por defecto
-    setLanguage('es');
+    setLanguage('en');
 
     // Observer para animaciones fade-in
     const observer = new IntersectionObserver(entries => {
@@ -288,10 +323,31 @@
     document.querySelectorAll('.fade-in').forEach(el => {
       observer.observe(el);
     });
+
+    // Resaltar enlace activo en el sidebar al hacer scroll
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".sidebar ul li a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
   </script>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
