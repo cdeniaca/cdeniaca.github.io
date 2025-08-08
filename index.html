@@ -147,6 +147,26 @@
     .section {
       padding: 80px 0;
     }
+    
+    /* Tamaño base para iconos */
+    .skill-icon {
+      max-height: 70px;
+      width: auto;
+    }
+    
+    /* Más pequeños en escritorio */
+    @media (min-width: 768px) {
+      .skill-icon {
+        max-height: 60px;
+      }
+    }
+    
+    /* Mucho más pequeños en móvil */
+    @media (max-width: 576px) {
+      .skill-icon {
+        max-height: 40px;
+      }
+    }
 
     .fade-in {
       opacity: 0;
@@ -312,24 +332,25 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-6 col-md-3 mb-4">
-            <img src="images/Powerbi_Logo.png" alt="Power BI" class="img-fluid mb-2 skill-icon">
+            <img src="images/Powerbi_Logo.png" alt="Power BI" class="skill-icon mb-2">
             <p>Power BI</p>
           </div>
           <div class="col-6 col-md-3 mb-4">
-            <img src="images/sql_Logo.jpg" alt="SQL" class="img-fluid mb-2 skill-icon">
+            <img src="images/sql_Logo.jpg" alt="SQL" class="skill-icon mb-2">
             <p>SQL</p>
           </div>
           <div class="col-6 col-md-3 mb-4">
-            <img src="images/python-logo.png" alt="Python" class="img-fluid mb-2 skill-icon">
+            <img src="images/python-logo.png" alt="Python" class="skill-icon mb-2">
             <p>Python</p>
           </div>
           <div class="col-6 col-md-3 mb-4">
-            <img src="images/VSC-logo.png" alt="Visual Studio Code" class="img-fluid mb-2 skill-icon">
+            <img src="images/VSC-logo.png" alt="Visual Studio Code" class="skill-icon mb-2">
             <p>Visual Studio Code</p>
           </div>
         </div>
       </div>
     </section>
+
   
     <!-- Certifications Section -->
     <section class="section fade-in" id="certifications">
