@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Junior Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
+  <meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
   <title>Cristina Denia Carretero | Website</title>
   <link rel="icon" type="image/png" href="images/custom-icon.png" />
   
@@ -177,17 +177,22 @@
     </ul>
   </div>
 
-  <!-- Navbar para móvil -->
-  <nav class="navbar navbar-light bg-light d-md-none">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
+  <!-- Botón de menú móvil fijo -->
+  <button 
+    class="navbar-toggler position-fixed d-md-none" 
+    type="button" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#mobileMenu"
+    aria-controls="mobileMenu" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation"
+    style="top: 10px; left: 20px; z-index: 9999; background-color: white; border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px;">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <!-- Menú móvil colapsable -->
   <div class="collapse d-md-none" id="mobileMenu">
-    <div class="bg-light p-3">
+    <div class="bg-light p-3 mt-5">
       <ul class="list-unstyled">
         <li><a href="#home">🏠 Home</a></li>
         <li><a href="#about">👤 About Me</a></li>
@@ -208,7 +213,7 @@
     <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
       <div class="container">
         <div data-lang="en">
-          <h1>Hi, I'm a Junior Data Analyst</h1>
+          <h1>Hi, I'm a Data Analyst</h1>
           <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
           <a href="#about" class="btn btn-purple mt-3">Learn More</a>
         </div>
@@ -230,14 +235,14 @@
           <div class="col-lg-8 col-md-7">
             <div data-lang="en">
               <h2>About Me</h2>
-              <p>I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition...</p>
+              <p>I'm a passionate Data Analyst with a unique blend of analytical rigor and business intuition...</p>
               <p>My academic background in Business Administration helps me see the bigger picture...</p>
               <p>I'm currently expanding my skills with advanced training...</p>
               <p>When I'm not analyzing data, I enjoy exploring new technologies...</p>
             </div>
             <div data-lang="es">
               <h2>Sobre Mí</h2>
-              <p>Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico...</p>
+              <p>Soy un apasionado Analista de Datos con una combinación única de rigor analítico...</p>
               <p>Mi formación académica en Administración de Empresas me permite ver más allá de los datos...</p>
               <p>Actualmente amplío mis conocimientos con formación avanzada en visualización...</p>
               <p>Cuando no estoy analizando datos, me gusta explorar nuevas tecnologías...</p>
