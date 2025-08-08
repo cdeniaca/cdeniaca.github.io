@@ -111,24 +111,26 @@
 
     .content-wrapper { margin-left: 220px; padding: 40px; }
 
-    /* ⬇️ CENTRADO TOTAL DE TODAS LAS SECCIONES */
-    .section {
-      min-height: 100vh;            /* que ocupen toda la altura de la ventana */
+    /* Layout de secciones normal */
+    .section { padding: 80px 0; }
+
+    /* ⬇️ Solo HOME centrado vertical/horizontal */
+    .section-center {
+      min-height: 100vh;          /* ocupa toda la altura */
       display: flex;
       flex-direction: column;
-      justify-content: center;      /* centra vertical */
-      align-items: center;          /* centra horizontal */
+      justify-content: center;    /* centra vertical */
+      align-items: center;        /* centra horizontal */
       text-align: center;
-      padding: 80px 0;              /* respiración vertical */
     }
 
-    /* Iconos (skills / projects) */
-    .skill-icon, .Projects-icon { max-height: 70px; width: auto; }
+    /* Iconos (Projects / projects) */
+    .Projects-icon, .Projects-icon { max-height: 70px; width: auto; }
     @media (min-width: 768px) {
-      .skill-icon, .Projects-icon { max-height: 60px; }
+      .Projects-icon, .Projects-icon { max-height: 60px; }
     }
     @media (max-width: 576px) {
-      .skill-icon, .Projects-icon { max-height: 40px; }
+      .Projects-icon, .Projects-icon { max-height: 40px; }
     }
 
     .fade-in {
@@ -186,8 +188,7 @@
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#about">👤 About Me</a></li>
       <li><a href="#experience">💼 Experience</a></li>
-      <li><a href="#Projects">🧠 Projects</a></li>
-      <li><a href="#skills">🧩 Skills</a></li>
+      <li><a href="#Projects">🧩 Projects</a></li>
       <li><a href="#certifications">📜 Certifications</a></li>
       <li><a href="#contact">📬 Contact</a></li>
     </ul>
@@ -196,8 +197,7 @@
       <li><a href="#home">🏠 Inicio</a></li>
       <li><a href="#about">👤 Sobre mí</a></li>
       <li><a href="#experience">💼 Experiencia</a></li>
-      <li><a href="#Projects">🧠 Proyectos</a></li>
-      <li><a href="#skills">🧩 Habilidades</a></li>
+      <li><a href="#Projects">🧩 Habilidades</a></li>
       <li><a href="#certifications">📜 Certificaciones</a></li>
       <li><a href="#contact">📬 Contacto</a></li>
     </ul>
@@ -228,8 +228,7 @@
         <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
         <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
         <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
-        <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧠 Projects</a></li>
-        <li><a class="d-block py-2" href="#skills" data-bs-dismiss="offcanvas">🧩 Skills</a></li>
+        <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Projects</a></li>
         <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
         <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
       </ul>
@@ -238,8 +237,7 @@
         <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
         <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
         <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
-        <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧠 Proyectos</a></li>
-        <li><a class="d-block py-2" href="#skills" data-bs-dismiss="offcanvas">🧩 Habilidades</a></li>
+        <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Habilidades</a></li>
         <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
         <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
       </ul>
@@ -249,8 +247,8 @@
   <!-- Contenido -->
   <div class="content-wrapper">
 
-    <!-- Hero -->
-    <section class="section fade-in text-center" id="home">
+    <!-- Hero (solo este centrado) -->
+    <section class="section section-center fade-in text-center" id="home">
       <div class="container">
         <img src="images/photo_profile.jpg" alt="Cristina Denia Carretero" class="profile-photo img-fluid mb-4" style="border-radius: 0; width: 100%; height: auto;">
         <div data-lang="en">
@@ -317,26 +315,26 @@
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="section bg-light fade-in" id="skills">
+    <!-- Projects -->
+    <section class="section bg-light fade-in" id="Projects">
       <div class="container">
-        <div data-lang="en"><h2 class="mb-4">Skills</h2></div>
+        <div data-lang="en"><h2 class="mb-4">Projects</h2></div>
         <div data-lang="es"><h2 class="mb-4">Habilidades</h2></div>
         <div class="row justify-content-center">
           <div class="col-6 col-md-3 mb-4 text-center">
-            <img src="images/Powerbi_Logo.png" alt="Power BI" class="skill-icon mb-2">
+            <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
             <p>Power BI</p>
           </div>
           <div class="col-6 col-md-3 mb-4 text-center">
-            <img src="images/sql_Logo.jpg" alt="SQL" class="skill-icon mb-2">
+            <img src="images/sql_Logo.jpg" alt="SQL" class="Projects-icon mb-2">
             <p>SQL</p>
           </div>
           <div class="col-6 col-md-3 mb-4 text-center">
-            <img src="images/python-logo.png" alt="Python" class="skill-icon mb-2">
+            <img src="images/python-logo.png" alt="Python" class="Projects-icon mb-2">
             <p>Python</p>
           </div>
           <div class="col-6 col-md-3 mb-4 text-center">
-            <img src="images/VSC-logo.png" alt="Visual Studio Code" class="skill-icon mb-2">
+            <img src="images/VSC-logo.png" alt="Visual Studio Code" class="Projects-icon mb-2">
             <p>Visual Studio Code</p>
           </div>
         </div>
@@ -351,7 +349,7 @@
           <ul class="list-group list-group-flush mx-auto" style="max-width: 700px; text-align:left;">
             <li class="list-group-item">Power BI Certification</li>
             <li class="list-group-item">Data Analytics Fundamentals</li>
-            <li class="list-group-item">Advanced VSC Skills</li>
+            <li class="list-group-item">Advanced VSC Projects</li>
             <li class="list-group-item">Python for Data Science</li>
           </ul>
         </div>
