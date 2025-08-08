@@ -206,8 +206,10 @@
   </div>
 
   <!-- Sidebar solo para escritorio -->
-  <div class="sidebar d-none d-md-flex">
-    <ul>
+  <div class="sidebar d-none d-md-flex flex-column">
+  
+    <!-- ENGLISH -->
+    <ul data-lang="en">
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#about">👤 About Me</a></li>
       <li><a href="#experience">💼 Experience</a></li>
@@ -215,7 +217,19 @@
       <li><a href="#certifications">📜 Certifications</a></li>
       <li><a href="#contact">📬 Contact</a></li>
     </ul>
+  
+    <!-- SPANISH -->
+    <ul data-lang="es">
+      <li><a href="#home">🏠 Inicio</a></li>
+      <li><a href="#about">👤 Sobre mí</a></li>
+      <li><a href="#experience">💼 Experiencia</a></li>
+      <li><a href="#Projects">🧠 Proyectos</a></li>
+      <li><a href="#certifications">📜 Certificaciones</a></li>
+      <li><a href="#contact">📬 Contacto</a></li>
+    </ul>
+  
   </div>
+
 
   <!-- Botón de menú móvil fijo -->
   <button
@@ -237,7 +251,9 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <ul class="list-unstyled mb-0">
+  
+      <!-- ENGLISH MENU -->
+      <ul class="list-unstyled mb-0" data-lang="en">
         <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
         <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
         <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
@@ -245,8 +261,20 @@
         <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
         <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
       </ul>
+  
+      <!-- SPANISH MENU -->
+      <ul class="list-unstyled mb-0" data-lang="es">
+        <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
+        <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
+        <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
+        <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧠 Proyectos</a></li>
+        <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
+        <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
+      </ul>
+  
     </div>
   </div>
+
 
 
 
