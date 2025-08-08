@@ -454,7 +454,7 @@
 
 
     <!-- Certifications -->
-    <section class="section fade-in" id="certifications">
+    <section class="section bg-light fade-in" id="certifications">
       <div class="container">
         <div class="row align-items-center justify-content-center flex-row-reverse">
           <!-- Imagen derecha -->
@@ -464,31 +464,108 @@
     
           <!-- Texto izquierda -->
           <div class="col-lg-8 col-md-7" style="padding-left: 30px;">
+            
             <!-- EN -->
             <div data-lang="en">
               <h2 class="mb-4">Certifications</h2>
-              <ul class="list-group list-group-flush mx-auto" style="max-width: 700px; text-align:left;">
-                <li class="list-group-item">Power BI Certification</li>
-                <li class="list-group-item">Data Analytics Fundamentals</li>
-                <li class="list-group-item">Advanced VSC Skills</li>
-                <li class="list-group-item">Python for Data Science</li>
+              <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certBootcampEN">
+                    Data Analytics Bootcamp – Ironhack
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certDegreeEN">
+                    University Degree – Universidad Miguel Hernández <em>(In progress)</em>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certPL300EN">
+                    Certification PL-300 – Microsoft <em>(In progress)</em>
+                  </a>
+                </li>
               </ul>
             </div>
     
             <!-- ES -->
             <div data-lang="es">
               <h2 class="mb-4">Certificaciones</h2>
-              <ul class="list-group list-group-flush mx-auto" style="max-width: 700px; text-align:left;">
-                <li class="list-group-item">Certificación en Power BI</li>
-                <li class="list-group-item">Fundamentos de Analítica de Datos</li>
-                <li class="list-group-item">Habilidades Avanzadas en VSC</li>
-                <li class="list-group-item">Python para Ciencia de Datos</li>
+              <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certBootcampES">
+                    Bootcamp en Data Analytics – Ironhack
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certDegreeES">
+                    Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#certPL300ES">
+                    Certificación PL-300 – Microsoft <em>(En progreso)</em>
+                  </a>
+                </li>
               </ul>
             </div>
+    
           </div>
         </div>
       </div>
     </section>
+    
+    <!-- CSS para los enlaces -->
+    <style>
+      .cert-link { text-decoration: none; color: inherit; }
+      .cert-link:hover { text-decoration: underline; color: #6f42c1; }
+    </style>
+    
+    <!-- Modales EN -->
+    <div class="modal fade" id="certBootcampEN" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/bootcamp_en.jpg" alt="Data Analytics Bootcamp – Ironhack" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="certDegreeEN" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/degree_in_progress_en.jpg" alt="University Degree – In Progress" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="certPL300EN" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/pl300_in_progress_en.jpg" alt="PL-300 – In Progress" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modales ES -->
+    <div class="modal fade" id="certBootcampES" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/bootcamp_es.jpg" alt="Bootcamp en Data Analytics – Ironhack" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="certDegreeES" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/degree_in_progress_es.jpg" alt="Grado universitario – En progreso" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="certPL300ES" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+          <img src="images/certifications/pl300_in_progress_es.jpg" alt="Certificación PL-300 – En progreso" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+
 
     <!-- Contact -->
     <section class="section section-center bg-light fade-in" id="contact">
