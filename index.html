@@ -150,6 +150,18 @@
       border-radius: 12px;       /* bordes redondeados */
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* sombra ligera */
     }
+    .project-link {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      padding: 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .project-link:hover {
+      background-color: rgba(111, 66, 193, 0.1); /* fondo suave del color del botón */
+      transform: translateY(-3px);
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -380,15 +392,16 @@
     <section class="section bg-light fade-in" id="Projects">
       <div class="container">
         <div class="row align-items-center justify-content-center flex-row-reverse">
-
-    
-          <!-- Texto + iconos izquierda -->
+          
+          <!-- Texto + iconos -->
           <div class="col-lg-8 col-md-7" style="padding-left: 30px;">
+            
             <!-- EN -->
             <div data-lang="en">
               <h2 class="mb-4">Projects</h2>
-              <p class="mb-4">Selected work across <strong>Power BI</strong>, <strong>SQL</strong> and <strong>Python</strong>.</p>
+              <p class="mb-4">Selected work across <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em> and <em>DAX Studio</em>.</p>
             </div>
+            
             <!-- ES -->
             <div data-lang="es">
               <h2 class="mb-4">Proyectos</h2>
@@ -397,27 +410,57 @@
     
             <!-- Iconos -->
             <div class="row justify-content-center">
+              
               <div class="col-6 col-md-3 mb-4 text-center">
-                <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
-                <p>Power BI</p>
+                <a href="powerbi.html" class="project-link">
+                  <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
+                  <p>Power BI</p>
+                </a>
               </div>
+              
               <div class="col-6 col-md-3 mb-4 text-center">
-                <img src="images/sql_Logo.jpg" alt="SQL" class="Projects-icon mb-2">
-                <p>SQL</p>
+                <a href="sql.html" class="project-link">
+                  <img src="images/sql_Logo.jpg" alt="SQL" class="Projects-icon mb-2">
+                  <p>SQL</p>
+                </a>
               </div>
+              
               <div class="col-6 col-md-3 mb-4 text-center">
-                <img src="images/python-logo.png" alt="Python" class="Projects-icon mb-2">
-                <p>Python</p>
+                <a href="python.html" class="project-link">
+                  <img src="images/python-logo.png" alt="Python" class="Projects-icon mb-2">
+                  <p>Python</p>
+                </a>
               </div>
+              
               <div class="col-6 col-md-3 mb-4 text-center">
-                <img src="images/VSC-logo.png" alt="Visual Studio Code" class="Projects-icon mb-2">
-                <p>VS Code</p>
+                <a href="vscode.html" class="project-link">
+                  <img src="images/VSC-logo.png" alt="Visual Studio Code" class="Projects-icon mb-2">
+                  <p>VS Code</p>
+                </a>
               </div>
+    
             </div>
           </div>
         </div>
       </div>
     </section>
+    
+    <!-- CSS extra -->
+    <style>
+      .project-link {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      .project-link:hover {
+        background-color: rgba(111, 66, 193, 0.1); /* tono suave morado */
+        transform: translateY(-3px);
+      }
+    </style>
+
 
 
     <!-- Certifications -->
