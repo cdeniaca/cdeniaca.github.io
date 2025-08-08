@@ -19,7 +19,23 @@
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #f5f7fa, #e8ecf3);
       margin: 0;
+      font-size: 15px; /* un poco más pequeño que el valor por defecto (~16px) */
     }
+
+/* Para escritorio grande */
+@media (min-width: 992px) {
+  body {
+    font-size: 14px; /* ligeramente más pequeño en desktop */
+  }
+}
+
+/* Para tablet y móvil */
+@media (max-width: 768px) {
+  body {
+    font-size: 13px; /* aún más pequeño en móvil */
+  }
+}
+
 
     .profile-photo {
       width: 180px;
