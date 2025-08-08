@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,12 +18,12 @@
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #f5f7fa, #e8ecf3);
+      margin: 0;
     }
 
-   
     .profile-photo {
       width: 180px;
-      border-radius: 100%;
+      border-radius: 0%;
       margin-bottom: 20px;
     }
 
@@ -51,19 +49,16 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 200px; /* o 260px si prefieres */
+      width: 200px;
       height: 100vh;
       background-color: #ffffff;
       padding: 40px 20px;
       border-right: 1px solid #ddd;
       z-index: 998;
       overflow-y: auto;
-    
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
-
 
     .sidebar h4 {
       font-size: 1.2rem;
@@ -96,20 +91,17 @@
       display: inline-block;
       transition: color 0.3s ease;
     }
-    
+
     .sidebar ul li a.active {
-      background-color: #f5f7fa; /* Mismo color del panel derecho */
+      background-color: #f5f7fa;
       font-weight: bold;
       color: #6f42c1;
       border-top-right-radius: 999px;
       border-bottom-right-radius: 999px;
       padding: 10px 16px 10px 12px;
-      margin-left: -10px; /* Empuja a la derecha */
+      margin-left: -10px;
       box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
-      position: relative;
-      z-index: 1;
       display: block;
-      transition: all 0.3s ease;
     }
 
     .sidebar ul li a::after {
@@ -133,6 +125,11 @@
 
     .content-wrapper {
       margin-left: 220px;
+      padding: 40px;
+    }
+
+    .section {
+      padding: 80px 0;
     }
 
     .fade-in {
@@ -140,33 +137,36 @@
       transform: translateY(20px);
       transition: all 0.6s ease-out;
     }
-    
-    .section {
-      scroll-margin-top: 100px;
-      padding: 100px 0;
-    }
-
-    .skill-icon {
-      height: 60px;
-      width: auto;
-      object-fit: contain;
-      max-width: 100%;
-    }
 
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .content-wrapper {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
+  <!-- Botón de idioma -->
   <div class="language-switch">
     <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')">EN</button>
     <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')">ES</button>
   </div>
-  
-  <div class="sidebar">
+
+  <!-- Sidebar solo para escritorio -->
+  <div class="sidebar d-none d-md-flex">
     <ul>
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#about">👤 About Me</a></li>
@@ -175,204 +175,220 @@
       <li><a href="#certifications">📜 Certifications</a></li>
       <li><a href="#contact">📬 Contact</a></li>
     </ul>
-  
+  </div>
+
+  <!-- Navbar para móvil -->
+  <nav class="navbar navbar-light bg-light d-md-none">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="collapse d-md-none" id="mobileMenu">
+    <div class="bg-light p-3">
+      <ul class="list-unstyled">
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#about">👤 About Me</a></li>
+        <li><a href="#experience">💼 Experience</a></li>
+        <li><a href="#skills">🧠 Skills</a></li>
+        <li><a href="#certifications">📜 Certifications</a></li>
+        <li><a href="#contact">📬 Contact</a></li>
+      </ul>
+    </div>
   </div>
 
 
 
 
   <div class="content-wrapper">
-    
-  <!-- Hero Section -->
-  <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
-    <div class="container">
-      <h1 data-lang="en">Hi, I'm a Junior Data Analyst</h1>
-      <h1 data-lang="es">Hola, soy un Analista de Datos Junior</h1>
   
-      <p class="lead" data-lang="en">
-        I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.
-      </p>
-      <p class="lead" data-lang="es">
-        Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.
-      </p>
-  
-      <a href="#about" class="btn btn-purple mt-3" data-lang="en">Learn More</a>
-      <a href="#about" class="btn btn-purple mt-3" data-lang="es">Saber más</a>
-    </div>
-  </section>
-  
-  <!-- About Me Section -->
-  <section class="section bg-light fade-in" id="about">
-    <div class="container">
-      <div class="row align-items-center">
-        <!-- Imagen -->
-        <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
-          <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
+    <!-- Hero Section -->
+    <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
+      <div class="container">
+        <div data-lang="en">
+          <h1>Hi, I'm a Junior Data Analyst</h1>
+          <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
+          <a href="#about" class="btn btn-purple mt-3">Learn More</a>
         </div>
+        <div data-lang="es">
+          <h1>Hola, soy un Analista de Datos Junior</h1>
+          <p class="lead">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
+          <a href="#about" class="btn btn-purple mt-3">Saber más</a>
+        </div>
+      </div>
+    </section>
   
-        <!-- Texto -->
-        <div class="col-lg-8 col-md-7">
-          <h2 data-lang="en">About Me</h2>
-          <h2 data-lang="es">Sobre Mí</h2>
-  
-          <!-- ENGLISH -->
-          <div data-lang="en">
-            <p>I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition...</p>
-            <p>My academic background in Business Administration helps me see the bigger picture...</p>
-            <p>I'm currently expanding my skills with advanced training...</p>
-            <p>When I'm not analyzing data, I enjoy exploring new technologies...</p>
+    <!-- About Me Section -->
+    <section class="section bg-light fade-in" id="about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
+            <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
           </div>
-  
-          <!-- SPANISH -->
-          <div data-lang="es">
-            <p>Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico...</p>
-            <p>Mi formación académica en Administración de Empresas me permite ver más allá de los datos...</p>
-            <p>Actualmente amplío mis conocimientos con formación avanzada en visualización...</p>
-            <p>Cuando no estoy analizando datos, me gusta explorar nuevas tecnologías...</p>
+          <div class="col-lg-8 col-md-7">
+            <div data-lang="en">
+              <h2>About Me</h2>
+              <p>I'm a passionate Junior Data Analyst with a unique blend of analytical rigor and business intuition...</p>
+              <p>My academic background in Business Administration helps me see the bigger picture...</p>
+              <p>I'm currently expanding my skills with advanced training...</p>
+              <p>When I'm not analyzing data, I enjoy exploring new technologies...</p>
+            </div>
+            <div data-lang="es">
+              <h2>Sobre Mí</h2>
+              <p>Soy un apasionado Analista de Datos Junior con una combinación única de rigor analítico...</p>
+              <p>Mi formación académica en Administración de Empresas me permite ver más allá de los datos...</p>
+              <p>Actualmente amplío mis conocimientos con formación avanzada en visualización...</p>
+              <p>Cuando no estoy analizando datos, me gusta explorar nuevas tecnologías...</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  
     <!-- Experience Section -->
     <section class="section fade-in" id="experience">
       <div class="container">
-        <h2 class="text-center mb-4" data-lang="en">Experience</h2>
-        <h2 class="text-center mb-4" data-lang="es">Experiencia</h2>
-        
-        <div class="mb-4">
+        <div data-lang="en">
+          <h2 class="text-center mb-4">Experience</h2>
           <h4>NTT DATA Europe & Latam <small class="text-muted">(2024 - Present)</small></h4>
-          <p data-lang="en">Business Process Analyst</p>
-          <p data-lang="es">Analista de Procesos de Negocio</p>
+          <p>Business Process Analyst</p>
           <ul>
-            <li data-lang="en">Developed Power BI reports integrating SQL, VSC and databases.</li>
-            <li data-lang="es">Desarrollé informes en Power BI integrando SQL, VSC y bases de datos.</li>
-            <li data-lang="en">Used Power Query and DAX for data modeling and cleansing.</li>
-            <li data-lang="es">Usé Power Query y DAX para modelado y limpieza de datos.</li>
-            <li data-lang="en">Automated workflows with Python scripts to optimize data processing.</li>
-            <li data-lang="es">Automatización de procesos con scripts en Python para optimización.</li>
+            <li>Developed Power BI reports integrating SQL, VSC and databases.</li>
+            <li>Used Power Query and DAX for data modeling and cleansing.</li>
+            <li>Automated workflows with Python scripts to optimize data processing.</li>
+          </ul>
+        </div>
+        <div data-lang="es">
+          <h2 class="text-center mb-4">Experiencia</h2>
+          <h4>NTT DATA Europe & Latam <small class="text-muted">(2024 - Actualidad)</small></h4>
+          <p>Analista de Procesos de Negocio</p>
+          <ul>
+            <li>Desarrollé informes en Power BI integrando SQL, VSC y bases de datos.</li>
+            <li>Usé Power Query y DAX para modelado y limpieza de datos.</li>
+            <li>Automatización de procesos con scripts en Python para optimización.</li>
           </ul>
         </div>
       </div>
     </section>
-
-
+  
     <!-- Skills Section -->
     <section class="section bg-light fade-in" id="skills">
       <div class="container text-center">
-        <h2 class="mb-4" data-lang="en">Skills</h2>
-        <h2 class="mb-4" data-lang="es">Habilidades</h2>
+        <div data-lang="en">
+          <h2 class="mb-4">Skills</h2>
+        </div>
+        <div data-lang="es">
+          <h2 class="mb-4">Habilidades</h2>
+        </div>
         <div class="row justify-content-center">
-          
           <div class="col-6 col-md-3 mb-4">
             <img src="images/Powerbi_Logo.png" alt="Power BI" class="img-fluid mb-2 skill-icon">
             <p>Power BI</p>
           </div>
-    
           <div class="col-6 col-md-3 mb-4">
             <img src="images/sql_Logo.jpg" alt="SQL" class="img-fluid mb-2 skill-icon">
             <p>SQL</p>
           </div>
-    
           <div class="col-6 col-md-3 mb-4">
             <img src="images/python-logo.png" alt="Python" class="img-fluid mb-2 skill-icon">
             <p>Python</p>
           </div>
-    
           <div class="col-6 col-md-3 mb-4">
             <img src="images/VSC-logo.png" alt="Visual Studio Code" class="img-fluid mb-2 skill-icon">
-            <p data-lang="en">Visual Studio Code</p>
-            <p data-lang="es">Visual Studio Code</p>
+            <p>Visual Studio Code</p>
           </div>
-          
         </div>
       </div>
     </section>
-
-
-
+  
     <!-- Certifications Section -->
     <section class="section fade-in" id="certifications">
       <div class="container">
-        <h2 class="text-center mb-4" data-lang="en">Certifications</h2>
-        <h2 class="text-center mb-4" data-lang="es">Certificaciones</h2>
-    
-        <!-- Lista en inglés -->
-        <ul class="list-group list-group-flush" data-lang="en">
-          <li class="list-group-item">Power BI Certification</li>
-          <li class="list-group-item">Data Analytics Fundamentals</li>
-          <li class="list-group-item">Advanced VSC Skills</li>
-          <li class="list-group-item">Python for Data Science</li>
-        </ul>
-    
-        <!-- Lista en español -->
-        <ul class="list-group list-group-flush" data-lang="es">
-          <li class="list-group-item">Certificación en Power BI</li>
-          <li class="list-group-item">Fundamentos de Analítica de Datos</li>
-          <li class="list-group-item">Habilidades Avanzadas en VSC</li>
-          <li class="list-group-item">Python para Ciencia de Datos</li>
-        </ul>
+        <div data-lang="en">
+          <h2 class="text-center mb-4">Certifications</h2>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Power BI Certification</li>
+            <li class="list-group-item">Data Analytics Fundamentals</li>
+            <li class="list-group-item">Advanced VSC Skills</li>
+            <li class="list-group-item">Python for Data Science</li>
+          </ul>
+        </div>
+        <div data-lang="es">
+          <h2 class="text-center mb-4">Certificaciones</h2>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Certificación en Power BI</li>
+            <li class="list-group-item">Fundamentos de Analítica de Datos</li>
+            <li class="list-group-item">Habilidades Avanzadas en VSC</li>
+            <li class="list-group-item">Python para Ciencia de Datos</li>
+          </ul>
+        </div>
       </div>
     </section>
-
-
+  
     <!-- Contact Section -->
     <section class="section bg-light fade-in" id="contact">
       <div class="container text-center">
-        <h2 data-lang="en">Contact Me</h2>
-        <h2 data-lang="es">Contáctame</h2>
-        
-        <p data-lang="en">Feel free to reach out via email or connect with me on LinkedIn.</p>
-        <p data-lang="es">No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
-        
+        <div data-lang="en">
+          <h2>Contact Me</h2>
+          <p>Feel free to reach out via email or connect with me on LinkedIn.</p>
+        </div>
+        <div data-lang="es">
+          <h2>Contáctame</h2>
+          <p>No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
+        </div>
+  
         <a href="mailto:info@cristinadeniacarretero.com" class="btn btn-outline-primary m-2">
           <i class="fas fa-envelope"></i> Email
         </a>
-        
+  
         <a href="https://www.linkedin.com/in/cristinadeniacarretero" class="btn btn-outline-info m-2" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-linkedin"></i> LinkedIn
         </a>
       </div>
     </section>
- 
-    <!-- Footer -->
-    <div class="text-center mt-5">
-      <img src="images/custom-icon.png" alt="Logo" style="width: 40px; height: auto;">
-    </div> 
-    
-    <footer class="text-center py-3" style="background-color: #6f42c1; color: white;">
-      <!-- English Version -->
+  
+  </div>
+  
+   
+  <!-- Footer -->
+  <footer class="text-center py-4 mt-5" style="background-color: #6f42c1; color: white;">
+    <div class="container">
+      <div class="mb-2">
+        <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
+      </div>
+  
       <p class="mb-0" data-lang="en">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp; 
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">
           www.cristinadeniacarretero.com
         </a>
       </p>
-    
-      <!-- Spanish Version -->
+  
       <p class="mb-0" data-lang="es">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp; 
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">
           www.cristinadeniacarretero.com
         </a>
       </p>
-    </footer>
-
-  </div>
-
-    <script>
-      // Cambiar idioma visible
-      function setLanguage(lang) {
-        document.querySelectorAll('[data-lang]').forEach(el => {
-          el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
-        });
-      }
-    
-      // Idioma por defecto
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script>
+    // Cambiar idioma visible
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+      });
+    }
+  
+    // Idioma por defecto al cargar
+    document.addEventListener("DOMContentLoaded", () => {
       setLanguage('en');
-    
-      // Observer para animaciones fade-in
+  
+      // Observer para fade-in
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -380,19 +396,19 @@
           }
         });
       }, { threshold: 0.5 });
-    
+  
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
       });
-    
-      // Resaltar enlace activo en el sidebar al hacer scroll
+  
+      // Resaltar enlace activo al hacer scroll
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll(".sidebar ul li a");
-    
+  
       window.addEventListener("scroll", () => {
         let closestSection = null;
         let minOffset = window.innerHeight;
-    
+  
         sections.forEach(section => {
           const rect = section.getBoundingClientRect();
           if (rect.top >= 0 && rect.top < minOffset) {
@@ -400,7 +416,7 @@
             closestSection = section;
           }
         });
-    
+  
         if (closestSection) {
           const currentId = closestSection.getAttribute("id");
           navLinks.forEach(link => {
@@ -408,6 +424,5 @@
           });
         }
       });
-    </script>
-
-
+  });
+</script>
