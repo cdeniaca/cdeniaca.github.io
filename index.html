@@ -91,6 +91,29 @@
       display: inline-block;
       transition: color 0.3s ease;
     }
+    
+    .site-footer {
+      background-color: #6f42c1;
+      color: #fff;
+      text-align: center;
+      padding: 1.25rem 0; /* equivalente a py-4 aprox */
+      width: 100%;
+    }
+    .site-footer a { color: #fff; text-decoration: underline; }
+    
+    .site-footer__inner {
+      max-width: 900px;           /* ajusta a tu gusto */
+      margin: 0 auto;
+      padding: 0 16px;            /* respiración lateral */
+    }
+    
+    .site-footer p { font-size: 0.9rem; }
+    
+    /* Fuente más pequeña en móvil */
+    @media (max-width: 768px) {
+      .site-footer p { font-size: 0.8rem; }
+    }
+
     .sidebar ul li a.active {
       background-color: #f5f7fa;
       font-weight: 700;
@@ -376,29 +399,22 @@
   </div><!-- /content-wrapper -->
 
   <!-- Footer -->
-  <footer class="text-center py-4 mt-5" style="background-color: #6f42c1; color: white; width: 100%;">
-    <div style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
+  <footer class="site-footer">
+    <div class="site-footer__inner">
       <div class="mb-2">
         <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
       </div>
-      <p class="mb-0" data-lang="en" style="font-size: 0.9rem;">
+      <p class="mb-0" data-lang="en">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
-      <p class="mb-0" data-lang="es" style="font-size: 0.9rem;">
+      <p class="mb-0" data-lang="es">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
     </div>
   </footer>
 
-<style>
-  @media (max-width: 768px) {
-    footer p {
-      font-size: 0.8rem !important;
-    }
-  }
-</style>
 
 
   <!-- Scripts -->
