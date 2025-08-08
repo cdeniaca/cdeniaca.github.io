@@ -280,21 +280,47 @@
 
   <div class="content-wrapper">
   
-    <!-- Hero Section -->
-    <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
-      <div class="container">
-        <div data-lang="en">
-          <h1>Hi, I'm a Data Analyst</h1>
-          <p class="lead">I specialize in transforming complex data into valuable business insights using Power BI, SQL, Python and more.</p>
-          <a href="#about" class="btn btn-purple mt-3">Learn More</a>
-        </div>
-        <div data-lang="es">
-          <h1>Hola, soy un Analista de Datos Junior</h1>
-          <p class="lead">Me especializo en transformar datos complejos en insights valiosos para negocios usando Power BI, SQL, Python y más.</p>
-          <a href="#about" class="btn btn-purple mt-3">Saber más</a>
-        </div>
+  <!-- Hero Section -->
+  <section class="section fade-in text-center" id="home" style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
+    <div class="container">
+      
+      <!-- Foto centrada -->
+      <img src="images/photo_profile.jpg" 
+           alt="Cristina Denia Carretero" 
+           class="profile-photo img-fluid mb-4" 
+           style="border-radius: 0; max-width: 180px; width: 100%; height: auto;">
+  
+      <!-- English -->
+      <div data-lang="en">
+        <h1>Welcome to my profile!</h1>
+        <p class="lead">I'm a Data Analyst driven by curiosity and purpose — passionate about finding patterns, uncovering stories hidden in numbers, and turning them into meaningful decisions that create real impact.</p>
+        <a href="#about" class="btn btn-purple mt-3">Discover More</a>
       </div>
-    </section>
+      
+      <!-- Español -->
+      <div data-lang="es">
+        <h1>¡Bienvenidos a mi perfil!</h1>
+        <p class="lead">Soy Analista de Datos, guiada por la curiosidad y el propósito, apasionada por encontrar patrones, descubrir las historias que esconden los números y transformarlas en decisiones que generen un impacto real.</p>
+        <a href="#about" class="btn btn-purple mt-3">Descubrir más</a>
+      </div>
+  
+    </div>
+  </section>
+  
+  <style>
+    /* Ajuste del tamaño de la foto según el dispositivo */
+    @media (max-width: 768px) {
+      .profile-photo {
+        max-width: 140px;
+      }
+    }
+    @media (min-width: 769px) {
+      .profile-photo {
+        max-width: 200px;
+      }
+    }
+  </style>
+
   
     <!-- About Me Section -->
     <section class="section bg-light fade-in" id="about">
