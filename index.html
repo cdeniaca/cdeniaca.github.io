@@ -376,21 +376,30 @@
   </div><!-- /content-wrapper -->
 
   <!-- Footer -->
-  <footer class="text-center py-4 mt-5" style="background-color: #6f42c1; color: white;">
-    <div class="container">
+  <footer class="text-center py-4 mt-5" style="background-color: #6f42c1; color: white; width: 100%;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
       <div class="mb-2">
         <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
       </div>
-      <p class="mb-0" data-lang="en">
+      <p class="mb-0" data-lang="en" style="font-size: 0.9rem;">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
-      <p class="mb-0" data-lang="es">
+      <p class="mb-0" data-lang="es" style="font-size: 0.9rem;">
         &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
     </div>
   </footer>
+
+<style>
+  @media (max-width: 768px) {
+    footer p {
+      font-size: 0.8rem !important;
+    }
+  }
+</style>
+
 
   <!-- Scripts -->
   <script>
