@@ -182,6 +182,7 @@
       width: 100%;
       display: flex;                /* Centrado con flexbox */
       justify-content: center;      /* Centra horizontalmente */
+      align-items: center;          /* Centra verticalmente */
     }
     
     .site-footer a { 
@@ -190,7 +191,10 @@
     }
     
     .site-footer__inner {
-      text-align: center;           /* Centra el contenido dentro */
+      max-width: 900px;
+      padding: 0 16px;
+      text-align: center;
+      margin: 0 auto;
     }
     
     .site-footer p { 
@@ -201,27 +205,15 @@
     @media (max-width: 768px) {
       .site-footer p { font-size: 0.8rem; }
     }
-    /* Centrar el footer respecto a la columna de contenido cuando el sidebar está visible */
-    .site-footer {
-      display: flex;
-      justify-content: center;
-    }
     
-    /* En escritorio, aplica el mismo desplazamiento que content-wrapper */
+    /* En escritorio: alineado exacto al panel izquierdo */
     @media (min-width: 769px) {
       .site-footer {
-        margin-left: 220px;           /* igual que .content-wrapper */
-        width: calc(100% - 220px);    /* resta el ancho del panel izquierdo */
+        margin-left: 200px;              /* ancho real del sidebar */
+        width: calc(100% - 200px);       /* ocupa el resto */
       }
     }
-    
-    /* Mantén tu estilo interno como lo tenías */
-    .site-footer__inner {
-      max-width: 900px;
-      padding: 0 16px;
-      text-align: center;
-      margin: 0 auto;
-    }
+
 
   </style>
 </head>
