@@ -121,6 +121,66 @@
     .sidebar ul li a:hover { color: #6f42c1; }
     .sidebar ul li a:hover::after { width: 100%; }
     
+    /* Sidebar: estructura interna para centrar sin romper */
+    .sidebar{
+      position: fixed;
+      top: 0; left: 0;
+      width: 200px; height: 100vh;
+      background:#fff;
+      border-right:1px solid #ddd;
+      z-index:998;
+      overflow: hidden;           /* evitamos scroll doble */
+    }
+    .sidebar-inner{
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      padding:60px 20px;          /* aire arriba/abajo y laterales */
+    }
+    .sidebar-nav{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap:14px;                    /* separación uniforme */
+      margin-top:auto;             /* centra verticalmente el bloque */
+      margin-bottom:auto;
+    }
+    .sidebar-nav li{ margin:0; }
+    
+    .sidebar-nav a{
+      display:block;               /* ocupa todo el ancho del “botón” */
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+      padding:8px 12px;            /* padding consistente */
+      border-radius:10px;          /* sensación de botón */
+      transition:background .25s ease, color .25s ease;
+    }
+    
+    /* hover sutil */
+    .sidebar-nav a:hover{
+      color:#6f42c1;
+      background:rgba(111,66,193,.08);
+    }
+    
+    /* estado activo sin desplazar nada (quitamos margin-left:-10px) */
+    .sidebar-nav a.active{
+      color:#6f42c1;
+      background:#f5f7fa;
+      font-weight:700;
+      box-shadow:inset 0 0 0 1px rgba(111,66,193,.12);
+    }
+    
+    /* eliminamos la “línea” morada que aparecía abajo */
+    .sidebar ul li a::after{ content:none; }
+    
+    /* Responsive: oculto en móvil como ya tenías */
+    @media (max-width: 768px){
+      .sidebar{ display:none; }
+    }
+
     .content-wrapper { margin-left: 220px; padding: 40px; }
     
     /* Layout de secciones normal */
@@ -246,26 +306,29 @@
   </div>
 
   <!-- Sidebar solo para escritorio -->
-  <div class="sidebar d-none d-md-flex flex-column">
-    <!-- EN -->
-    <ul data-lang="en">
-      <li><a href="#home">🏠 Home</a></li>
-      <li><a href="#about">👤 About Me</a></li>
-      <li><a href="#experience">💼 Experience</a></li>
-      <li><a href="#Projects">🧩 Projects</a></li>
-      <li><a href="#certifications">📜 Certifications</a></li>
-      <li><a href="#contact">📬 Contact</a></li>
-    </ul>
-    <!-- ES -->
-    <ul data-lang="es">
-      <li><a href="#home">🏠 Inicio</a></li>
-      <li><a href="#about">👤 Sobre mí</a></li>
-      <li><a href="#experience">💼 Experiencia</a></li>
-      <li><a href="#Projects">🧩 Habilidades</a></li>
-      <li><a href="#certifications">📜 Certificaciones</a></li>
-      <li><a href="#contact">📬 Contacto</a></li>
-    </ul>
+  <div class="sidebar d-none d-md-flex">
+    <div class="sidebar-inner">
+      <!-- EN -->
+      <ul class="sidebar-nav" data-lang="en">
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#about">👤 About Me</a></li>
+        <li><a href="#experience">💼 Experience</a></li>
+        <li><a href="#Projects">🧩 Projects</a></li>
+        <li><a href="#certifications">📜 Certifications</a></li>
+        <li><a href="#contact">📬 Contact</a></li>
+      </ul>
+      <!-- ES -->
+      <ul class="sidebar-nav" data-lang="es">
+        <li><a href="#home">🏠 Inicio</a></li>
+        <li><a href="#about">👤 Sobre mí</a></li>
+        <li><a href="#experience">💼 Experiencia</a></li>
+        <li><a href="#Projects">🧩 Proyectos</a></li>
+        <li><a href="#certifications">📜 Certificaciones</a></li>
+        <li><a href="#contact">📬 Contacto</a></li>
+      </ul>
+    </div>
   </div>
+
 
   <!-- Botón de menú móvil fijo -->
   <button
