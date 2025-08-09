@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
-  <title>Cristina Denia Carretero | Website</title>
+  <title>Cristina Denia Carretero | Portfolio</title>
   <link rel="icon" type="image/png" href="images/custom-icon.png" />
 
   <!-- Google Fonts -->
@@ -176,6 +176,11 @@
     }
     
     /* Footer */
+    :root {
+      --sidebar-width: 200px;   /* ancho del panel izquierdo */
+      --sidebar-border: 1px;    /* borde derecho del panel */
+    }
+    
     .site-footer {
       background-color: #6f42c1;
       color: #fff;
@@ -185,30 +190,40 @@
       justify-content: center;
       align-items: center;
     }
+    
     .site-footer a { 
       color: #fff; 
       text-decoration: underline; 
     }
+    
     .site-footer__inner {
       max-width: 900px;
       padding: 0 16px;
       text-align: center;
       margin: 0 auto;
     }
+    
     .site-footer p { 
       font-size: 0.9rem; 
       margin: 0;
     }
+    
     @media (max-width: 768px) {
+      .site-footer {
+        margin-left: 0;
+        width: 100%;
+      }
       .site-footer p { font-size: 0.8rem; }
     }
+    
     /* En escritorio: alineado exacto al panel izquierdo */
     @media (min-width: 769px) {
       .site-footer {
-        margin-left: 220px;           /* igual que .content-wrapper */
-        width: calc(100% - 220px);    /* ocupa el resto */
+        margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
+        width: calc(100% - (var(--sidebar-width) + var(--sidebar-border)));
       }
     }
+
 
 
 
