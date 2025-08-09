@@ -178,20 +178,30 @@
     .site-footer {
       background-color: #6f42c1;
       color: #fff;
-      text-align: center;
       padding: 1.25rem 0;
       width: 100%;
+      display: flex;                /* Centrado con flexbox */
+      justify-content: center;      /* Centra horizontalmente */
     }
-    .site-footer a { color: #fff; text-decoration: underline; }
+    
+    .site-footer a { 
+      color: #fff; 
+      text-decoration: underline; 
+    }
+    
     .site-footer__inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 16px;
+      text-align: center;           /* Centra el contenido dentro */
     }
-    .site-footer p { font-size: 0.9rem; }
+    
+    .site-footer p { 
+      font-size: 0.9rem; 
+      margin: 0;                    /* Evita desplazamientos por márgenes */
+    }
+    
     @media (max-width: 768px) {
       .site-footer p { font-size: 0.8rem; }
     }
+
   </style>
 </head>
 
