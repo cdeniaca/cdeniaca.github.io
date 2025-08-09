@@ -201,6 +201,27 @@
     @media (max-width: 768px) {
       .site-footer p { font-size: 0.8rem; }
     }
+    /* Centrar el footer respecto a la columna de contenido cuando el sidebar está visible */
+    .site-footer {
+      display: flex;
+      justify-content: center;
+    }
+    
+    /* En escritorio, aplica el mismo desplazamiento que content-wrapper */
+    @media (min-width: 768px) {
+      .site-footer {
+        margin-left: 220px;           /* mismo que .content-wrapper */
+        width: calc(100% - 220px);    /* ocupa el ancho del contenido, no de toda la ventana */
+      }
+    }
+    
+    /* Mantén tu estilo interno como lo tenías */
+    .site-footer__inner {
+      max-width: 900px;
+      padding: 0 16px;
+      text-align: center;
+      margin: 0 auto;
+    }
 
   </style>
 </head>
@@ -582,7 +603,7 @@
   </div><!-- /content-wrapper -->
 
   <!-- Footer fuera del content-wrapper -->
-  <footer class="site-footer">
+  <footer class="site-footer" style="margin-left:220px; width:calc(100% - 220px);">
     <div class="site-footer__inner">
       <div class="mb-2">
         <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
@@ -597,6 +618,7 @@
       </p>
     </div>
   </footer>
+
 
   <!-- Scripts -->
   <script>
