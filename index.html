@@ -62,22 +62,21 @@
       /* ===== Sidebar ===== */
       .sidebar {
         position: fixed;
-        top: 0; 
-        left: 0;
+        top: 0; left: 0;
         width: 200px;
         height: 100vh;
         background-color: #fff;
         border-right: 1px solid #ddd;
         z-index: 998;
         overflow-y: auto;
-      
+  
         display: flex;
         flex-direction: column;
-        justify-content: center;  /* centrado vertical */
-        align-items: flex-start;  /* texto alineado a la izquierda */
+        justify-content: space-around; /* reparte verticalmente */
+        align-items: flex-start;       /* texto a la izquierda */
         padding: 40px 0;
       }
-      
+  
       .sidebar ul {
         list-style: none;
         margin: 0;
@@ -85,12 +84,11 @@
         padding-right: 0;
         display: flex;
         flex-direction: column;
-        gap: 25px; /* separación uniforme entre botones */
+        gap: 0; /* ya no usamos huecos gigantes */
         width: 100%;
       }
-      
       .sidebar ul li { margin: 0; }
-      
+  
       .sidebar ul li a {
         display: block;
         width: 100%;
@@ -101,21 +99,21 @@
         border-radius: 10px;
         transition: background .25s ease, color .25s ease;
       }
-      
+  
       .sidebar ul li a:hover {
         color: #6f42c1;
         background: rgba(111,66,193,.08);
       }
-      
+  
       .sidebar ul li a.active {
         color: #6f42c1;
         background: #f5f7fa;
         font-weight: 700;
         box-shadow: inset 0 0 0 1px rgba(111,66,193,.12);
       }
-      
+  
       .sidebar ul li a::after { content: none; }
-
+  
       .content-wrapper { margin-left: 220px; padding: 40px; }
   
       .section { padding: 80px 0; }
@@ -190,14 +188,7 @@
         text-align: center;
         margin: 0 auto;
       }
-      .project-icon{
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-        display: block;
-      }
-      .project-link { text-decoration: none; color: inherit; }
-
+  
       .site-footer p { font-size: 0.9rem; margin: 0; }
   
       @media (max-width: 768px) {
@@ -288,6 +279,31 @@
 
 
   
+    <!-- Tu contenido principal -->
+    <main class="content-wrapper">
+      <!-- secciones... -->
+    </main>
+  
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>© 2025 Cristina Denia Carretero</p>
+      </div>
+    </footer>
+  
+    <!-- Bootstrap Bundle JS (imprescindible para offcanvas) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <!-- (Opcional) Si quieres que el icono del toggler se vea sin clases navbar-dark/light: -->
+    <style>
+      .navbar-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        width: 1.5em; height: 1.5em; display: inline-block;
+      }
+    </style>
+  </body>
+  </html>
+
 
   <!-- Contenido -->
   <div class="content-wrapper">
@@ -411,85 +427,68 @@
 
 
 
-    <!-- ===== Projects ===== -->
-    <section id="Projects" class="section bg-light">
+    <!-- Projects -->
+    <section class="section bg-light fade-in" id="Projects">
       <div class="container">
-        <h2 class="mb-4">Projects</h2>
-    
-        <div class="row g-4">
-          <!-- Card 1 -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="#" class="project-link d-block"
-               data-bs-toggle="modal" data-bs-target="#projectModal"
-               data-title="Power BI Dashboard"
-               data-desc="KPI overview and drill-through insights."
-               data-img="images/projects/powerbi-dashboard.jpg">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                  <img class="project-icon" src="icons/powerbi.svg" alt="Power BI icon" loading="lazy">
-                  <h5 class="mt-3 mb-1">Power BI Dashboard</h5>
-                  <p class="text-muted mb-3">KPI overview and drill-through insights.</p>
-                  <button class="btn btn-purple w-100" type="button">Ver imagen</button>
-                </div>
-              </div>
-            </a>
+        <div class="row align-items-start">
+          
+          <!-- Texto -->
+          <div class="col-12" style="padding-left: 30px;">
+            <!-- EN -->
+            <div data-lang="en">
+              <h2 class="mb-4">Projects</h2>
+              <p class="mb-4">Selected work across <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em> and <em>DAX Studio</em>.</p>
+            </div>
+            <!-- ES -->
+            <div data-lang="es">
+              <h2 class="mb-4">Proyectos</h2>
+              <p class="mb-4">Trabajo seleccionado en <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em> y <em>DAX Studio</em>.</p>
+            </div>
           </div>
-    
-          <!-- Card 2 -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="#" class="project-link d-block"
-               data-bs-toggle="modal" data-bs-target="#projectModal"
-               data-title="SQL Reporting"
-               data-desc="Click para ampliar"
-               data-img="images/projects/sql-reporting.jpg">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                  <img class="project-icon" src="icons/sql.svg" alt="SQL icon" loading="lazy">
-                  <h5 class="mt-3 mb-1">SQL Reporting</h5>
-                  <p class="text-muted mb-3">Click para ampliar</p>
-                  <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
-                </div>
+          
+          <!-- Iconos -->
+          <div class="col-12">
+            <div class="row justify-content-center">
+              <div class="col-6 col-md-3 mb-4 text-center">
+                <a href="powerbi.html" class="project-link">
+                  <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
+                  <p>Power BI</p>
+                </a>
               </div>
-            </a>
-          </div>
-    
-          <!-- Card 3 -->
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="#" class="project-link d-block"
-               data-bs-toggle="modal" data-bs-target="#projectModal"
-               data-title="VS Code Workflow"
-               data-desc="Click para ampliar"
-               data-img="images/projects/vscode-workflow.jpg">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                  <img class="project-icon" src="icons/vscode.svg" alt="VS Code icon" loading="lazy">
-                  <h5 class="mt-3 mb-1">VS Code Workflow</h5>
-                  <p class="text-muted mb-3">Click para ampliar</p>
-                  <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
-                </div>
+              <div class="col-6 col-md-3 mb-4 text-center">
+                <a href="sql.html" class="project-link">
+                  <img src="images/sql_Logo.jpg" alt="SQL" class="Projects-icon mb-2">
+                  <p>SQL</p>
+                </a>
               </div>
-            </a>
+              
+              <div class="col-6 col-md-3 mb-4 text-center">
+                <a href="vscode.html" class="project-link">
+                  <img src="images/VSC-logo.png" alt="Visual Studio Code" class="Projects-icon mb-2">
+                  <p>VS Code</p>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- Modal (un solo modal para todas las tarjetas) -->
-    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 id="projectModalLabel" class="modal-title">Título del proyecto</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <img id="projectModalImg" src="" alt="" class="img-fluid rounded mb-3">
-            <p id="projectModalDesc" class="mb-0 text-muted"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+    <!-- CSS extra -->
+    <style>
+      .project-link {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      .project-link:hover {
+        background-color: rgba(111, 66, 193, 0.1);
+        transform: translateY(-3px);
+      }
+    </style>
 
 
 
@@ -638,39 +637,32 @@
         el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
       });
     }
-  
+
     document.addEventListener("DOMContentLoaded", () => {
       // Idioma por defecto
       setLanguage('en');
-  
+
       // Fade-in
       const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
       }, { threshold: 0.5 });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  
-      // Resaltar enlace activo en sidebar
+
+      // Resaltar enlace activo
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll(".sidebar ul li a");
       window.addEventListener("scroll", () => {
         let closestSection = null, minOffset = window.innerHeight;
         sections.forEach(section => {
           const rect = section.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top < minOffset) {
-            minOffset = rect.top;
-            closestSection = section;
-          }
+          if (rect.top >= 0 && rect.top < minOffset) { minOffset = rect.top; closestSection = section; }
         });
         if (closestSection) {
           const currentId = closestSection.getAttribute("id");
-          navLinks.forEach(link => {
-            link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
-          });
+          navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`));
         }
       });
-  
+
       // Cerrar offcanvas al pulsar enlace
       const mobileMenu = document.getElementById("mobileMenu");
       if (mobileMenu) {
@@ -682,32 +674,10 @@
           });
         });
       }
-  
-      // ==== Script para modal de proyectos ====
+    });
+  </script>
 
-      const projectModal = document.getElementById('projectModal');
-      projectModal.addEventListener('show.bs.modal', event => {
-        const trigger = event.relatedTarget.closest('.project-link');
-        const title = trigger.dataset.title || '';
-        const desc  = trigger.dataset.desc  || '';
-        const img   = trigger.dataset.img   || '';
-    
-        document.getElementById('projectModalLabel').textContent = title;
-        document.getElementById('projectModalDesc').textContent  = desc;
-    
-        const modalImg = document.getElementById('projectModalImg');
-        modalImg.src = img;
-        modalImg.alt = title + ' preview';
-      });
-      // Limpia la imagen al cerrar para evitar parpadeos al reabrir
-      projectModal.addEventListener('hidden.bs.modal', () => {
-        document.getElementById('projectModalImg').src = '';
-      });
-    </script>
-
-
-  
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-  </html>
+</body>
+</html>
