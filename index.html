@@ -629,55 +629,140 @@
 
 
 
-  <!-- Scripts -->
+
+  <!-- Bootstrap JS bundle (incluye Popper). Debe ir antes de tu script personalizado -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script personalizado -->
   <script>
-    // Cambiar idioma visible
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Utilidad: debounce para limitar la frecuencia de ejecución en scroll/resize.
+    // Evita ejecuciones excesivas y mejora rendimiento.
+    // ─────────────────────────────────────────────────────────────────────────────
+    function debounce(fn, delay = 100) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(null, args), delay);
+      };
+    }
+  
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Cambio de idioma visible: muestra solo los nodos con data-lang=lang
+    // Además, marca aria-hidden por accesibilidad y recuerda la preferencia.
+    // ─────────────────────────────────────────────────────────────────────────────
     function setLanguage(lang) {
       document.querySelectorAll('[data-lang]').forEach(el => {
-        el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+        const show = el.getAttribute('data-lang') === lang;
+        el.style.display = show ? 'block' : 'none';
+        el.toggleAttribute('aria-hidden', !show);
       });
+      // Guardar preferencia para próximas visitas
+      try { localStorage.setItem('lang', lang); } catch {}
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // Idioma por defecto
-      setLanguage('en');
-
-      // Fade-in
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.5 });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-      // Resaltar enlace activo
-      const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".sidebar ul li a");
-      window.addEventListener("scroll", () => {
-        let closestSection = null, minOffset = window.innerHeight;
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      // ───────────────────────────────────────────────────────────────────────────
+      // Idioma inicial:
+      // 1) Restaura el guardado en localStorage si existe.
+      // 2) Si no, detecta el idioma del navegador (es/en).
+      // ───────────────────────────────────────────────────────────────────────────
+      const savedLang = (() => { try { return localStorage.getItem('lang'); } catch { return null; } })();
+      const userLang = savedLang || (navigator.language && navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en');
+      setLanguage(userLang);
+  
+      // Exponer setLanguage globalmente (útil si tienes botones <button onclick="setLanguage('es')">)
+      window.setLanguage = setLanguage;
+  
+      // ───────────────────────────────────────────────────────────────────────────
+      // Animaciones de aparición (fade-in)
+      // - Usa IntersectionObserver con threshold 0.1 (aparecen antes y de forma fiable).
+      // - Respeta "prefers-reduced-motion": si el usuario prefiere menos movimiento,
+      //   se muestran directamente sin animación.
+      // ───────────────────────────────────────────────────────────────────────────
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              // Deja de observar el elemento una vez visible para ahorrar recursos
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+  
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      } else {
+        // Fallback sin animación
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      }
+  
+      // ───────────────────────────────────────────────────────────────────────────
+      // Resaltar enlace activo del sidebar:
+      // - Encuentra la sección cuyo centro está más cercano al centro del viewport.
+      // - Añade .active y aria-current al enlace correspondiente.
+      // - Usa debounce en scroll/resize para rendimiento.
+      // ───────────────────────────────────────────────────────────────────────────
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      const navLinks = Array.from(document.querySelectorAll('.sidebar ul li a'));
+  
+      function highlightCurrent() {
+        if (!sections.length || !navLinks.length) return;
+  
+        const viewportCenter = window.innerHeight / 2;
+        let closestId = null;
+        let minDist = Infinity;
+  
         sections.forEach(section => {
           const rect = section.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top < minOffset) { minOffset = rect.top; closestSection = section; }
+          // Distancia entre el centro de la sección y el centro del viewport
+          const sectionCenter = (rect.top + rect.bottom) / 2;
+          const dist = Math.abs(sectionCenter - viewportCenter);
+          if (dist < minDist) {
+            minDist = dist;
+            closestId = section.id;
+          }
         });
-        if (closestSection) {
-          const currentId = closestSection.getAttribute("id");
-          navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`));
-        }
-      });
-
-      // Cerrar offcanvas al pulsar enlace
-      const mobileMenu = document.getElementById("mobileMenu");
+  
+        if (!closestId) return;
+  
+        navLinks.forEach(link => {
+          const isActive = link.getAttribute('href') === `#${closestId}`;
+          link.classList.toggle('active', isActive);
+          link.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+      }
+  
+      window.addEventListener('scroll', debounce(highlightCurrent, 50), { passive: true });
+      window.addEventListener('resize', debounce(highlightCurrent, 100));
+      // Estado inicial
+      highlightCurrent();
+  
+      // ───────────────────────────────────────────────────────────────────────────
+      // Cerrar offcanvas en móvil al pulsar un enlace:
+      // - Si el enlace ya tiene data-bs-dismiss="offcanvas", Bootstrap se encarga.
+      // - Si no, intentamos cerrarlo nosotros como mejora de UX.
+      // ───────────────────────────────────────────────────────────────────────────
+      const mobileMenu = document.getElementById('mobileMenu');
       if (mobileMenu) {
-        const links = mobileMenu.querySelectorAll("a[data-bs-dismiss='offcanvas']");
-        links.forEach(link => {
-          link.addEventListener("click", () => {
-            const offcInstance = bootstrap.Offcanvas.getInstance(mobileMenu);
-            if (offcInstance) offcInstance.hide();
-          });
+        mobileMenu.addEventListener('click', (e) => {
+          const a = e.target.closest('a');
+          if (!a) return;
+          // Si ya está marcado para que Bootstrap lo cierre, no intervenimos
+          if (a.hasAttribute('data-bs-dismiss')) return;
+  
+          // Intentar cerrar manualmente (fallback seguro)
+          try {
+            const instance = bootstrap?.Offcanvas?.getInstance?.(mobileMenu) || new bootstrap.Offcanvas(mobileMenu);
+            if (instance) instance.hide();
+          } catch {
+            // Si Bootstrap no está disponible por algún motivo, simplemente no hacemos nada
+          }
         });
       }
     });
   </script>
-
-  <!-- Bootstrap JS bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
