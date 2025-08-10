@@ -423,11 +423,11 @@
                data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="Power BI"
                data-desc="KPI overview and drill-through insights."
-               data-img="images/powerbi_logo.png">
+               data-img="images/projects/powerbi-dashboard.jpg">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                  <img class="project-icon" src="icons/powerbi.svg" alt="Power BI icon" loading="lazy">
-                  <h5 class="mt-3 mb-1">Power BI Dashboard</h5>
+                  <img class="project-icon" src="images/powerbi_logo.png" alt="Power BI icon" loading="lazy">
+                  <h5 class="mt-3 mb-1">Power BI</h5>
                   <p class="text-muted mb-3">KPI overview and drill-through insights.</p>
                   <button class="btn btn-purple w-100" type="button">Ver imagen</button>
                 </div>
@@ -440,14 +440,14 @@
             <a href="#" class="project-link d-block"
                data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="SQL"
-               data-desc="Click para ampliar"
-               data-img="images/sql_logo.jpg">
+               data-desc="En construcción"
+               data-img="images/projects/sql-reporting.jpg">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                  <img class="project-icon" src="icons/sql.svg" alt="SQL icon" loading="lazy">
+                  <img class="project-icon" src="images/sql_LOGO.jpg" alt="SQL icon" loading="lazy">
                   <h5 class="mt-3 mb-1">SQL Reporting</h5>
-                  <p class="text-muted mb-3">Click para ampliar</p>
-                  <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
+                  <p class="text-muted mb-3">En construcción</p>
+                  <button class="btn btn-outline-secondary w-100" type="button">Ver Información</button>
                 </div>
               </div>
             </a>
@@ -458,13 +458,13 @@
             <a href="#" class="project-link d-block"
                data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="Visual Studio Code"
-               data-desc="Click para ampliar"
-               data-img="images/vsc-logo.png">
+               data-desc="En construcción"
+               data-img="images/projects/vscode-workflow.jpg">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                  <img class="project-icon" src="icons/vscode.svg" alt="VS Code icon" loading="lazy">
+                  <img class="project-icon" src="images/vsc-logo.png" alt="VS Code icon" loading="lazy">
                   <h5 class="mt-3 mb-1">VS Code Workflow</h5>
-                  <p class="text-muted mb-3">Click para ampliar</p>
+                  <p class="text-muted mb-3">En construcción</p>
                   <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
                 </div>
               </div>
@@ -479,7 +479,7 @@
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="projectModalLabel" class="modal-title">Título del proyecto</h5>
+            <h5 id="projectModalLabel" class="modal-title">En construcción</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
@@ -489,7 +489,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
 
@@ -683,11 +683,10 @@
         });
       }
   
-      // ==== Script para modal de proyectos ====
-
+      // Rellena el modal con los datos de la tarjeta clicada
       const projectModal = document.getElementById('projectModal');
-      projectModal.addEventListener('show.bs.modal', event => {
-        const trigger = event.relatedTarget.closest('.project-link');
+      projectModal.addEventListener('show.bs.modal', (event) => {
+        const trigger = event.relatedTarget.closest('.project-link'); // <a ... class="project-link">
         const title = trigger.dataset.title || '';
         const desc  = trigger.dataset.desc  || '';
         const img   = trigger.dataset.img   || '';
@@ -699,9 +698,15 @@
         modalImg.src = img;
         modalImg.alt = title + ' preview';
       });
-      // Limpia la imagen al cerrar para evitar parpadeos al reabrir
+    
+      // Limpia la imagen al cerrar para evitar flashes al reabrir
       projectModal.addEventListener('hidden.bs.modal', () => {
         document.getElementById('projectModalImg').src = '';
+      });
+    
+      // Evita el salto de página al hacer clic en <a href="#">
+      document.querySelectorAll('.project-link').forEach(a => {
+        a.addEventListener('click', (e) => e.preventDefault());
       });
     </script>
 
