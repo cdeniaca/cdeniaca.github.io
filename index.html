@@ -1,703 +1,713 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
-<title>Cristina Denia Carretero | Portfolio</title>
-<link rel="icon" type="image/png" href="images/custom-icon.png" />
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
+    <title>Cristina Denia Carretero | Portfolio</title>
+    <link rel="icon" type="image/png" href="images/custom-icon.png" />
+  
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+    <!-- Bootstrap & FontAwesome (CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(to right, #f5f7fa, #e8ecf3);
+        margin: 0;
+        font-size: 15px;
+      }
+  
+      @media (min-width: 992px) { body { font-size: 14px; } }
+      @media (max-width: 768px) { body { font-size: 13px; } }
+  
+      .profile-photo {
+        width: 180px;
+        border-radius: 0%;
+        margin-bottom: 20px;
+      }
+  
+      .btn-purple {
+        background: linear-gradient(45deg, #6f42c1, #9b59b6);
+        color: white;
+        border: none;
+      }
+      .btn-purple:hover {
+        background: linear-gradient(45deg, #5a32a3, #8e44ad);
+        color: white;
+      }
+  
+      .section h2,
+      .section h1 {
+        background: linear-gradient(45deg, #6f42c1, #9b59b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+  
+      .language-switch {
+        position: fixed;
+        top: 10px;
+        right: 20px;
+        z-index: 9999;
+      }
+  
+      /* ===== Sidebar ===== */
+      .sidebar {
+        position: fixed;
+        top: 0; 
+        left: 0;
+        width: 200px;
+        height: 100vh;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
+        z-index: 998;
+        overflow-y: auto;
+      
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  /* centrado vertical */
+        align-items: flex-start;  /* texto alineado a la izquierda */
+        padding: 40px 0;
+      }
+      
+      .sidebar ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 25px; /* separación uniforme entre botones */
+        width: 100%;
+      }
+      
+      .sidebar ul li { margin: 0; }
+      
+      .sidebar ul li a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: background .25s ease, color .25s ease;
+      }
+      
+      .sidebar ul li a:hover {
+        color: #6f42c1;
+        background: rgba(111,66,193,.08);
+      }
+      
+      .sidebar ul li a.active {
+        color: #6f42c1;
+        background: #f5f7fa;
+        font-weight: 700;
+        box-shadow: inset 0 0 0 1px rgba(111,66,193,.12);
+      }
+      
+      .sidebar ul li a::after { content: none; }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+      .content-wrapper { margin-left: 220px; padding: 40px; }
+  
+      .section { padding: 80px 0; }
+  
+      .section-center {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+  
+      .Projects-icon { max-height: 70px; width: auto; }
+      @media (min-width: 768px) { .Projects-icon { max-height: 60px; } }
+      @media (max-width: 576px) { .Projects-icon { max-height: 40px; } }
+  
+      .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+  
+      .section.bg-light {
+        margin-bottom: 60px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+  
+      .project-link {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      .project-link:hover {
+        background-color: rgba(111, 66, 193, 0.1);
+        transform: translateY(-3px);
+      }
+  
+      @media (max-width: 768px) {
+        .sidebar { display: none; }
+        .content-wrapper { margin-left: 0; padding: 90px 20px 20px; }
+        #mobileMenu { margin-top: 60px; }
+        .profile-photo { max-width: 140px; }
+      }
+      @media (min-width: 769px) {
+        .profile-photo { max-width: 200px; }
+      }
+  
+      /* ===== Footer ===== */
+      :root{
+        --sidebar-width: 200px;
+        --sidebar-border: 1px;
+      }
+  
+      .site-footer {
+        background-color: #6f42c1;
+        color: #fff;
+        padding: 1.25rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .site-footer a { color: #fff; text-decoration: underline; }
+  
+      .site-footer__inner {
+        max-width: 900px;
+        padding: 0 16px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      .project-icon{
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        display: block;
+      }
+      .project-link { text-decoration: none; color: inherit; }
 
-<!-- Bootstrap & FontAwesome (CSS) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-<style>
-body {
-font-family: 'Inter', sans-serif;
-background: linear-gradient(to right, #f5f7fa, #e8ecf3);
-margin: 0;
-font-size: 15px;
-}
-
-@media (min-width: 992px) { body { font-size: 14px; } }
-@media (max-width: 768px) { body { font-size: 13px; } }
-
-.profile-photo {
-width: 180px;
-border-radius: 0%;
-margin-bottom: 20px;
-}
-
-.btn-purple {
-background: linear-gradient(45deg, #6f42c1, #9b59b6);
-color: white;
-border: none;
-}
-.btn-purple:hover {
-background: linear-gradient(45deg, #5a32a3, #8e44ad);
-color: white;
-}
-
-.section h2,
-.section h1 {
-background: linear-gradient(45deg, #6f42c1, #9b59b6);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-color: transparent;
-font-weight: 800;
-margin-bottom: 20px;
-}
-
-.language-switch {
-position: fixed;
-top: 10px;
-right: 20px;
-z-index: 9999;
-}
-
-/* ===== Sidebar ===== */
-.sidebar {
-position: fixed;
-top: 0; 
-left: 0;
-width: 200px;
-height: 100vh;
-background-color: #fff;
-border-right: 1px solid #ddd;
-z-index: 998;
-overflow-y: auto;
-
-display: flex;
-flex-direction: column;
-justify-content: center;  /* centrado vertical */
-align-items: flex-start;  /* texto alineado a la izquierda */
-padding: 40px 0;
-}
-
-.sidebar ul {
-list-style: none;
-margin: 0;
-padding-left: 10px;
-padding-right: 0;
-display: flex;
-flex-direction: column;
-gap: 25px; /* separación uniforme entre botones */
-width: 100%;
-}
-
-.sidebar ul li { margin: 0; }
-
-.sidebar ul li a {
-display: block;
-width: 100%;
-text-decoration: none;
-color: #333;
-font-weight: 500;
-padding: 8px 10px;
-border-radius: 10px;
-transition: background .25s ease, color .25s ease;
-}
-
-.sidebar ul li a:hover {
-color: #6f42c1;
-background: rgba(111,66,193,.08);
-}
-
-.sidebar ul li a.active {
-color: #6f42c1;
-background: #f5f7fa;
-font-weight: 700;
-box-shadow: inset 0 0 0 1px rgba(111,66,193,.12);
-}
-
-.sidebar ul li a::after { content: none; }
-
-.content-wrapper { margin-left: 220px; padding: 40px; }
-
-.section { padding: 80px 0; }
-
-.section-center {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-}
-
-.Projects-icon { max-height: 70px; width: auto; }
-@media (min-width: 768px) { .Projects-icon { max-height: 60px; } }
-@media (max-width: 576px) { .Projects-icon { max-height: 40px; } }
-
-.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-.section.bg-light {
-margin-bottom: 60px;
-padding-top: 40px;
-padding-bottom: 40px;
-border-radius: 12px;
-box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-.project-link {
-display: inline-block;
-text-decoration: none;
-color: inherit;
-padding: 10px;
-border-radius: 10px;
-transition: all 0.3s ease;
-}
-.project-link:hover {
-background-color: rgba(111, 66, 193, 0.1);
-transform: translateY(-3px);
-}
-
-@media (max-width: 768px) {
-.sidebar { display: none; }
-.content-wrapper { margin-left: 0; padding: 90px 20px 20px; }
-#mobileMenu { margin-top: 60px; }
-.profile-photo { max-width: 140px; }
-}
-@media (min-width: 769px) {
-.profile-photo { max-width: 200px; }
-}
-
-/* ===== Footer ===== */
-:root{
---sidebar-width: 200px;
---sidebar-border: 1px;
-}
-
-.site-footer {
-background-color: #6f42c1;
-color: #fff;
-padding: 1.25rem 0;
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.site-footer a { color: #fff; text-decoration: underline; }
-
-.site-footer__inner {
-max-width: 900px;
-padding: 0 16px;
-text-align: center;
-margin: 0 auto;
-}
-.project-icon{
-width: 42px;
-height: 42px;
-object-fit: contain;
-display: block;
-}
-.project-link { text-decoration: none; color: inherit; }
-
-.site-footer p { font-size: 0.9rem; margin: 0; }
-
-@media (max-width: 768px) {
-.site-footer { margin-left: 0; width: 100%; }
-.site-footer p { font-size: 0.8rem; }
-}
-@media (min-width: 769px) {
-.site-footer {
-margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
-width: calc(100% - (var(--sidebar-width) + var(--sidebar-border)));
-}
-}
-</style>
-</head>
-<body>
-
-<!-- Botón de idioma -->
-<div class="language-switch">
-<button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')">EN</button>
-<button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')">ES</button>
-</div>
-
-<!-- Sidebar solo para escritorio -->
-<div class="sidebar d-none d-md-flex">
-<div class="sidebar-inner">
-<!-- EN -->
-<ul class="sidebar-nav" data-lang="en">
-<li><a href="#home">🏠 Home</a></li>
-<li><a href="#about">👤 About Me</a></li>
-<li><a href="#experience">💼 Experience</a></li>
-<li><a href="#Projects">🧩 Projects</a></li>
-<li><a href="#certifications">📜 Certifications</a></li>
-<li><a href="#contact">📬 Contact</a></li>
-</ul>
-<!-- ES -->
-<ul class="sidebar-nav" data-lang="es">
-<li><a href="#home">🏠 Inicio</a></li>
-<li><a href="#about">👤 Sobre mí</a></li>
-<li><a href="#experience">💼 Experiencia</a></li>
-<li><a href="#Projects">🧩 Proyectos</a></li>
-<li><a href="#certifications">📜 Certificaciones</a></li>
-<li><a href="#contact">📬 Contacto</a></li>
-</ul>
-</div>
-</div>
-
-<!-- Botón de menú móvil fijo -->
-<button
-class="navbar-toggler position-fixed d-md-none"
-type="button"
-data-bs-toggle="offcanvas"
-data-bs-target="#mobileMenu"
-aria-controls="mobileMenu"
-aria-expanded="false"
-aria-label="Toggle navigation"
-style="top: 10px; left: 20px; z-index: 9999; background-color: white; border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px;">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<!-- Menú móvil (Offcanvas) -->
-<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-<div class="offcanvas-header">
-<h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
-<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
-<div class="offcanvas-body">
-<!-- EN -->
-<ul class="list-unstyled mb-0" data-lang="en">
-<li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
-<li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
-<li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
-<li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Projects</a></li>
-<li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
-<li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
-</ul>
-<!-- ES -->
-<ul class="list-unstyled mb-0" data-lang="es">
-<li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
-<li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
-<li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
-<li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Proyectos</a></li>
-<li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
-<li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
-</ul>
-</div>
-</div>
-
-
-
+      .site-footer p { font-size: 0.9rem; margin: 0; }
+  
+      @media (max-width: 768px) {
+        .site-footer { margin-left: 0; width: 100%; }
+        .site-footer p { font-size: 0.8rem; }
+      }
+      @media (min-width: 769px) {
+        .site-footer {
+          margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
+          width: calc(100% - (var(--sidebar-width) + var(--sidebar-border)));
+        }
+      }
+    </style>
+  </head>
+  <body>
+  
+    <!-- Botón de idioma -->
+    <div class="language-switch">
+      <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')">EN</button>
+      <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')">ES</button>
+    </div>
+  
+    <!-- Sidebar solo para escritorio -->
+    <div class="sidebar d-none d-md-flex">
+      <div class="sidebar-inner">
+        <!-- EN -->
+        <ul class="sidebar-nav" data-lang="en">
+          <li><a href="#home">🏠 Home</a></li>
+          <li><a href="#about">👤 About Me</a></li>
+          <li><a href="#experience">💼 Experience</a></li>
+          <li><a href="#Projects">🧩 Projects</a></li>
+          <li><a href="#certifications">📜 Certifications</a></li>
+          <li><a href="#contact">📬 Contact</a></li>
+        </ul>
+        <!-- ES -->
+        <ul class="sidebar-nav" data-lang="es">
+          <li><a href="#home">🏠 Inicio</a></li>
+          <li><a href="#about">👤 Sobre mí</a></li>
+          <li><a href="#experience">💼 Experiencia</a></li>
+          <li><a href="#Projects">🧩 Proyectos</a></li>
+          <li><a href="#certifications">📜 Certificaciones</a></li>
+          <li><a href="#contact">📬 Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Botón de menú móvil fijo -->
+    <button
+      class="navbar-toggler position-fixed d-md-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="top: 10px; left: 20px; z-index: 9999; background-color: white; border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Menú móvil (Offcanvas) -->
+    <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- EN -->
+        <ul class="list-unstyled mb-0" data-lang="en">
+          <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
+          <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
+          <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
+          <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Projects</a></li>
+          <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
+          <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
+        </ul>
+        <!-- ES -->
+        <ul class="list-unstyled mb-0" data-lang="es">
+          <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
+          <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
+          <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
+          <li><a class="d-block py-2" href="#Projects" data-bs-dismiss="offcanvas">🧩 Proyectos</a></li>
+          <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
+          <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  
 
 
-<!-- Contenido -->
-<div class="content-wrapper">
+  
 
-<!-- Hero (solo este centrado) -->
-<section class="section section-center fade-in text-center" id="home">
-<div class="container">
-<img src="images/photo_profile.jpg" alt="Cristina Denia Carretero" class="profile-photo img-fluid mb-4" style="border-radius: 0; width: 100%; height: auto;">
-<div data-lang="en">
-<h1>Welcome to my profile!</h1>
-<p class="lead">I’m Cristina, a Data Analyst driven by curiosity and purpose — I find patterns, uncover stories in numbers, and turn them into decisions that create real impact.</p>
-<a href="#about" class="btn btn-purple mt-3">Discover More</a>
-</div>
-<div data-lang="es">
-<h1>¡Bienvenidos a mi perfil!</h1>
-<p class="lead">Soy Cristina, Analista de Datos, guiada por la curiosidad y el propósito: encuentro patrones, descubro las historias que esconden los números y las convierto en decisiones con impacto real.</p>
-<a href="#about" class="btn btn-purple mt-3">Descubrir más</a>
-</div>
-</div>
-</section>
+  <!-- Contenido -->
+  <div class="content-wrapper">
 
-<!-- About -->
-<section class="section bg-light fade-in" id="about">
-<div class="container">
-<div class="row align-items-center justify-content-center flex-row-reverse">
-<div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
-<img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
-</div>
-<div class="col-lg-8 col-md-7" style="padding-left: 30px;">
+    <!-- Hero (solo este centrado) -->
+    <section class="section section-center fade-in text-center" id="home">
+      <div class="container">
+        <img src="images/photo_profile.jpg" alt="Cristina Denia Carretero" class="profile-photo img-fluid mb-4" style="border-radius: 0; width: 100%; height: auto;">
+        <div data-lang="en">
+          <h1>Welcome to my profile!</h1>
+          <p class="lead">I’m Cristina, a Data Analyst driven by curiosity and purpose — I find patterns, uncover stories in numbers, and turn them into decisions that create real impact.</p>
+          <a href="#about" class="btn btn-purple mt-3">Discover More</a>
+        </div>
+        <div data-lang="es">
+          <h1>¡Bienvenidos a mi perfil!</h1>
+          <p class="lead">Soy Cristina, Analista de Datos, guiada por la curiosidad y el propósito: encuentro patrones, descubro las historias que esconden los números y las convierto en decisiones con impacto real.</p>
+          <a href="#about" class="btn btn-purple mt-3">Descubrir más</a>
+        </div>
+      </div>
+    </section>
 
-<!-- Español -->
-<div data-lang="es">
-<h2>Sobre Mí</h2>
-<p>Soy una persona <strong>curiosa por naturaleza</strong> y <strong>Analista de Datos</strong> por vocación. No trabajo con datos porque sí, sino porque me permiten <strong>descubrir patrones</strong>, <strong>contar historias</strong> y ofrecer <strong>soluciones</strong> que generan <em>impacto real</em>.</p>
-<p>Soy <strong>independiente</strong> y <strong>resolutiva</strong>, aunque creo firmemente en la fuerza del <strong>trabajo en equipo</strong>. Me caracteriza la <strong>organización</strong>: me da seguridad tener un plan y una estructura, no para controlarlo todo, sino para <em>no perderme en el camino</em>.</p>
-<p>Durante años sentí que <em>iba tarde</em>. Pero con el tiempo entendí que <strong>no existe un solo reloj</strong>. Que cada persona tiene su <strong>tiempo</strong>, su <strong>ritmo</strong>, su forma de <strong>crecer</strong>. Y si hoy miro hacia atrás, veo cuánto he crecido y cuánto me queda por crecer. Y eso no me asusta. <em>Me inspira</em>.</p>
-</div>
-
-<!-- English -->
-<div data-lang="en">
-<h2>About Me</h2>
-<p>I’m <strong>naturally curious</strong> and a <strong>Data Analyst</strong> by vocation. I don’t work with data just for the sake of it; I work with it because it allows me to <strong>discover patterns</strong>, <strong>tell stories</strong>, and deliver <strong>solutions</strong> that create <em>real impact</em>.</p>
-<p>I’m <strong>independent</strong> and <strong>resourceful</strong>, yet I firmly believe in the power of <strong>teamwork</strong>. <strong>Organization</strong> defines me: having a plan and structure gives me clarity — not to control everything, but to <em>stay on track</em>.</p>
-<p>For years, I felt I was <em>running late</em>. Over time, I realized there’s <strong>no single clock</strong>. Each person has their own <strong>pace</strong>, <strong>rhythm</strong>, and way of <strong>growing</strong>. Today, when I look back, I see how much I’ve grown and how much more I have yet to grow. And that doesn’t scare me. <em>It inspires me</em>.</p>
-</div>
-
-</div>
-</div>
-</div>
-</section>
-
-
-
-
-<!-- Experience -->
-<section class="section bg-light fade-in" id="experience">
-<div class="container" style="padding-left: 30px; padding-right: 30px;">
-
-<!-- ENGLISH -->
-<div data-lang="en">
-<h2 class="mb-4">Experience</h2>
-
-<!-- Job 1 -->
-<div class="mb-5">
-<h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Present)</small></h4>
-<p><em>Business Process Analyst</em></p>
-<ul class="text-start mx-auto" style="max-width: 700px;">
-<li>Designed and developed <strong>interactive dashboards</strong> in Power BI from scratch, integrating data from multiple sources (Excel, Access, corporate databases) using <strong>advanced SQL</strong>.</li>
-<li>Performed <strong>data modeling and cleansing</strong> with Power Query, applying advanced M and DAX techniques to ensure accuracy and usability.</li>
-<li>Automated processes and generated tables using <strong>Python scripts</strong>, reducing manual steps and optimizing load times.</li>
-<li>Created economic, operational, and productivity reports for clients in <strong>diverse industries</strong>, tailoring visualizations to strategic needs.</li>
-<li>Presented insights to stakeholders, enabling <strong>data-driven decision making</strong> and operational efficiency improvements.</li>
-<li><em>Tools:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
-</ul>
-</div>
-
-<!-- Job 2 -->
-<div class="mb-5">
-<h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
-<p><em>Business Process Analyst - Internship</em></p>
-<ul class="text-start mx-auto" style="max-width: 700px;">
-<li>Supported the development of dashboards and data analysis for internal and external projects.</li>
-<li>Transformed and cleaned data in Power BI and SQL to generate clear, actionable reports.</li>
-<li>Collaborated in process documentation and KPI definition for project monitoring.</li>
-</ul>
-</div>
-</div>
-
-<!-- SPANISH -->
-<div data-lang="es">
-<h2 class="mb-4">Experiencia</h2>
-
-<!-- Job 1 -->
-<div class="mb-5">
-<h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Actualidad)</small></h4>
-<p><em>Business Process Analyst</em></p>
-<ul class="text-start mx-auto" style="max-width: 700px;">
-<li>Diseño y desarrollo de <strong>dashboards interactivos</strong> en Power BI desde cero, integrando datos de múltiples fuentes (Excel, Access, bases de datos corporativas) mediante <strong>SQL avanzado</strong>.</li>
-<li><strong>Modelado y limpieza de datos</strong> con Power Query, aplicando técnicas avanzadas en M y DAX para garantizar precisión y usabilidad.</li>
-<li>Automatización de procesos y generación de tablas con <strong>scripts en Python</strong>, optimizando tiempos de carga y reduciendo pasos manuales.</li>
-<li>Creación de reportes económicos, operativos y de productividad para clientes de <strong>diversos sectores</strong>, ajustando visualizaciones según necesidades estratégicas.</li>
-<li>Presentación de insights clave a stakeholders, facilitando <strong>decisiones basadas en datos</strong> y mejorando la eficiencia operativa.</li>
-<li><em>Herramientas:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
-</ul>
-</div>
-
-<!-- Job 2 -->
-<div class="mb-5">
-<h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
-<p><em>Business Process Analyst - Prácticas</em></p>
-<ul class="text-start mx-auto" style="max-width: 700px;">
-<li>Apoyo en el desarrollo de paneles de control y análisis de datos para proyectos internos y externos.</li>
-<li>Transformación y depuración de datos en Power BI y SQL para generar reportes claros y accionables.</li>
-<li>Colaboración en la documentación de procesos y definición de KPIs para el seguimiento de proyectos.</li>
-</ul>
-</div>
-</div>
-
-</div>
-</section>
+    <!-- About -->
+    <section class="section bg-light fade-in" id="about">
+      <div class="container">
+        <div class="row align-items-center justify-content-center flex-row-reverse">
+          <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
+            <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
+          </div>
+          <div class="col-lg-8 col-md-7" style="padding-left: 30px;">
+            
+            <!-- Español -->
+            <div data-lang="es">
+              <h2>Sobre Mí</h2>
+              <p>Soy una persona <strong>curiosa por naturaleza</strong> y <strong>Analista de Datos</strong> por vocación. No trabajo con datos porque sí, sino porque me permiten <strong>descubrir patrones</strong>, <strong>contar historias</strong> y ofrecer <strong>soluciones</strong> que generan <em>impacto real</em>.</p>
+              <p>Soy <strong>independiente</strong> y <strong>resolutiva</strong>, aunque creo firmemente en la fuerza del <strong>trabajo en equipo</strong>. Me caracteriza la <strong>organización</strong>: me da seguridad tener un plan y una estructura, no para controlarlo todo, sino para <em>no perderme en el camino</em>.</p>
+              <p>Durante años sentí que <em>iba tarde</em>. Pero con el tiempo entendí que <strong>no existe un solo reloj</strong>. Que cada persona tiene su <strong>tiempo</strong>, su <strong>ritmo</strong>, su forma de <strong>crecer</strong>. Y si hoy miro hacia atrás, veo cuánto he crecido y cuánto me queda por crecer. Y eso no me asusta. <em>Me inspira</em>.</p>
+            </div>
+    
+            <!-- English -->
+            <div data-lang="en">
+              <h2>About Me</h2>
+              <p>I’m <strong>naturally curious</strong> and a <strong>Data Analyst</strong> by vocation. I don’t work with data just for the sake of it; I work with it because it allows me to <strong>discover patterns</strong>, <strong>tell stories</strong>, and deliver <strong>solutions</strong> that create <em>real impact</em>.</p>
+              <p>I’m <strong>independent</strong> and <strong>resourceful</strong>, yet I firmly believe in the power of <strong>teamwork</strong>. <strong>Organization</strong> defines me: having a plan and structure gives me clarity — not to control everything, but to <em>stay on track</em>.</p>
+              <p>For years, I felt I was <em>running late</em>. Over time, I realized there’s <strong>no single clock</strong>. Each person has their own <strong>pace</strong>, <strong>rhythm</strong>, and way of <strong>growing</strong>. Today, when I look back, I see how much I’ve grown and how much more I have yet to grow. And that doesn’t scare me. <em>It inspires me</em>.</p>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </section>
 
 
 
-<!-- ===== Projects ===== -->
-<section id="Projects" class="section bg-light">
-<div class="container">
-<h2 class="mb-4">Projects</h2>
 
-<div class="row g-4">
-<!-- Card 1 -->
-<div class="col-12 col-md-6 col-lg-4">
-<a href="#" class="project-link d-block"
-data-bs-toggle="modal" data-bs-target="#projectModal"
+    <!-- Experience -->
+    <section class="section bg-light fade-in" id="experience">
+      <div class="container" style="padding-left: 30px; padding-right: 30px;">
+    
+        <!-- ENGLISH -->
+        <div data-lang="en">
+          <h2 class="mb-4">Experience</h2>
+    
+          <!-- Job 1 -->
+          <div class="mb-5">
+            <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Present)</small></h4>
+            <p><em>Business Process Analyst</em></p>
+            <ul class="text-start mx-auto" style="max-width: 700px;">
+              <li>Designed and developed <strong>interactive dashboards</strong> in Power BI from scratch, integrating data from multiple sources (Excel, Access, corporate databases) using <strong>advanced SQL</strong>.</li>
+              <li>Performed <strong>data modeling and cleansing</strong> with Power Query, applying advanced M and DAX techniques to ensure accuracy and usability.</li>
+              <li>Automated processes and generated tables using <strong>Python scripts</strong>, reducing manual steps and optimizing load times.</li>
+              <li>Created economic, operational, and productivity reports for clients in <strong>diverse industries</strong>, tailoring visualizations to strategic needs.</li>
+              <li>Presented insights to stakeholders, enabling <strong>data-driven decision making</strong> and operational efficiency improvements.</li>
+              <li><em>Tools:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
+            </ul>
+          </div>
+    
+          <!-- Job 2 -->
+          <div class="mb-5">
+            <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
+            <p><em>Business Process Analyst - Internship</em></p>
+            <ul class="text-start mx-auto" style="max-width: 700px;">
+              <li>Supported the development of dashboards and data analysis for internal and external projects.</li>
+              <li>Transformed and cleaned data in Power BI and SQL to generate clear, actionable reports.</li>
+              <li>Collaborated in process documentation and KPI definition for project monitoring.</li>
+            </ul>
+          </div>
+        </div>
+    
+        <!-- SPANISH -->
+        <div data-lang="es">
+          <h2 class="mb-4">Experiencia</h2>
+    
+          <!-- Job 1 -->
+          <div class="mb-5">
+            <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Actualidad)</small></h4>
+            <p><em>Business Process Analyst</em></p>
+            <ul class="text-start mx-auto" style="max-width: 700px;">
+              <li>Diseño y desarrollo de <strong>dashboards interactivos</strong> en Power BI desde cero, integrando datos de múltiples fuentes (Excel, Access, bases de datos corporativas) mediante <strong>SQL avanzado</strong>.</li>
+              <li><strong>Modelado y limpieza de datos</strong> con Power Query, aplicando técnicas avanzadas en M y DAX para garantizar precisión y usabilidad.</li>
+              <li>Automatización de procesos y generación de tablas con <strong>scripts en Python</strong>, optimizando tiempos de carga y reduciendo pasos manuales.</li>
+              <li>Creación de reportes económicos, operativos y de productividad para clientes de <strong>diversos sectores</strong>, ajustando visualizaciones según necesidades estratégicas.</li>
+              <li>Presentación de insights clave a stakeholders, facilitando <strong>decisiones basadas en datos</strong> y mejorando la eficiencia operativa.</li>
+              <li><em>Herramientas:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
+            </ul>
+          </div>
+    
+          <!-- Job 2 -->
+          <div class="mb-5">
+            <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
+            <p><em>Business Process Analyst - Prácticas</em></p>
+            <ul class="text-start mx-auto" style="max-width: 700px;">
+              <li>Apoyo en el desarrollo de paneles de control y análisis de datos para proyectos internos y externos.</li>
+              <li>Transformación y depuración de datos en Power BI y SQL para generar reportes claros y accionables.</li>
+              <li>Colaboración en la documentación de procesos y definición de KPIs para el seguimiento de proyectos.</li>
+            </ul>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+
+
+
+    <!-- ===== Projects ===== -->
+    <section id="Projects" class="section bg-light">
+      <div class="container">
+        <h2 class="mb-4">Projects</h2>
+    
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#" class="project-link d-block"
+               data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="Power BI Dashboard"
-               data-title="Power BI"
-data-desc="KPI overview and drill-through insights."
+               data-desc="KPI overview and drill-through insights."
                data-img="images/projects/powerbi-dashboard.jpg">
-               data-img="images/powerbi_logo.png">
-<div class="card h-100 shadow-sm">
-<div class="card-body">
-<img class="project-icon" src="icons/powerbi.svg" alt="Power BI icon" loading="lazy">
-@@ -439,9 +439,9 @@
-<div class="col-12 col-md-6 col-lg-4">
-<a href="#" class="project-link d-block"
-data-bs-toggle="modal" data-bs-target="#projectModal"
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <img class="project-icon" src="icons/powerbi.svg" alt="Power BI icon" loading="lazy">
+                  <h5 class="mt-3 mb-1">Power BI Dashboard</h5>
+                  <p class="text-muted mb-3">KPI overview and drill-through insights.</p>
+                  <button class="btn btn-purple w-100" type="button">Ver imagen</button>
+                </div>
+              </div>
+            </a>
+          </div>
+    
+          <!-- Card 2 -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#" class="project-link d-block"
+               data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="SQL Reporting"
-               data-title="SQL"
-data-desc="Click para ampliar"
+               data-desc="Click para ampliar"
                data-img="images/projects/sql-reporting.jpg">
-               data-img="images/sql_logo.jpg">
-<div class="card h-100 shadow-sm">
-<div class="card-body">
-<img class="project-icon" src="icons/sql.svg" alt="SQL icon" loading="lazy">
-@@ -457,257 +457,257 @@
-<div class="col-12 col-md-6 col-lg-4">
-<a href="#" class="project-link d-block"
-data-bs-toggle="modal" data-bs-target="#projectModal"
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <img class="project-icon" src="icons/sql.svg" alt="SQL icon" loading="lazy">
+                  <h5 class="mt-3 mb-1">SQL Reporting</h5>
+                  <p class="text-muted mb-3">Click para ampliar</p>
+                  <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
+                </div>
+              </div>
+            </a>
+          </div>
+    
+          <!-- Card 3 -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="#" class="project-link d-block"
+               data-bs-toggle="modal" data-bs-target="#projectModal"
                data-title="VS Code Workflow"
-               data-title="Visual Studio Code"
-data-desc="Click para ampliar"
+               data-desc="Click para ampliar"
                data-img="images/projects/vscode-workflow.jpg">
-               data-img="images/vsc-logo.png">
-<div class="card h-100 shadow-sm">
-<div class="card-body">
-<img class="project-icon" src="icons/vscode.svg" alt="VS Code icon" loading="lazy">
-<h5 class="mt-3 mb-1">VS Code Workflow</h5>
-<p class="text-muted mb-3">Click para ampliar</p>
-<button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
-</div>
-</div>
-</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Modal (un solo modal para todas las tarjetas) -->
-<div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered">
-<div class="modal-content">
-<div class="modal-header">
-<h5 id="projectModalLabel" class="modal-title">Título del proyecto</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-</div>
-<div class="modal-body">
-<img id="projectModalImg" src="" alt="" class="img-fluid rounded mb-3">
-<p id="projectModalDesc" class="mb-0 text-muted"></p>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-<!-- Certifications -->
-<section class="section bg-light fade-in" id="certifications">
-<div class="container">
-<div class="row align-items-start">
-
-<!-- Texto -->
-<div class="col-12" style="padding-left: 30px;">
-<!-- EN -->
-<div data-lang="en">
-<h2 class="mb-4">Certifications</h2>
-<ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
-Data Analytics Bootcamp – Ironhack
-</a>
-</li>
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
-University Degree – Universidad Miguel Hernández <em>(In progress)</em>
-</a>
-</li>
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
-Certification PL-300 – Microsoft <em>(In progress)</em>
-</a>
-</li>
-</ul>
-</div>
-
-<!-- ES -->
-<div data-lang="es">
-<h2 class="mb-4">Certificaciones</h2>
-<ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
-Bootcamp en Data Analytics – Ironhack
-</a>
-</li>
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
-Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em>
-</a>
-</li>
-<li class="list-group-item">
-<a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
-Certificación PL-300 – Microsoft <em>(En progreso)</em>
-</a>
-</li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</section>
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <img class="project-icon" src="icons/vscode.svg" alt="VS Code icon" loading="lazy">
+                  <h5 class="mt-3 mb-1">VS Code Workflow</h5>
+                  <p class="text-muted mb-3">Click para ampliar</p>
+                  <button class="btn btn-outline-secondary w-100" type="button">Ver imagen</button>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Modal (un solo modal para todas las tarjetas) -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="projectModalLabel" class="modal-title">Título del proyecto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <img id="projectModalImg" src="" alt="" class="img-fluid rounded mb-3">
+            <p id="projectModalDesc" class="mb-0 text-muted"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
 
 
-<!-- Modals -->
-<!-- Bootcamp (Accredible embebido) -->
-<div class="modal fade" id="modalBootcamp" tabindex="-1" aria-hidden="true" aria-labelledby="modalBootcampLabel">
-<div class="modal-dialog modal-dialog-centered modal-xl">
-<div class="modal-content border-0">
-<div class="modal-header">
-<h5 class="modal-title" id="modalBootcampLabel">Bootcamp en Data Analytics – Ironhack</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-</div>
-<div class="modal-body p-0" style="height:80vh;">
-<iframe 
-src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-title="Certificado Bootcamp Ironhack"
-width="100%" 
-height="100%" 
-style="border:0;" 
-allowfullscreen
-loading="lazy">
-</iframe>
-</div>
-<div class="modal-footer">
-<a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-class="btn btn-purple" 
-target="_blank" 
-rel="noopener noreferrer">
-Abrir en nueva pestaña
-</a>
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Contact Section -->
-<section class="section bg-light fade-in" id="contact">
-<div class="container text-center">
-<div data-lang="en">
-<h2>Contact Me</h2>
-<p>Feel free to reach out via email or connect with me on LinkedIn.</p>
-</div>
-<div data-lang="es">
-<h2>Contáctame</h2>
-<p>No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
-</div>
-
-<a href="mailto:info@cristinadeniacarretero.com" class="btn btn-outline-primary m-2">
-<i class="fas fa-envelope"></i> Email
-</a>
-
-<a href="https://www.linkedin.com/in/cristinadeniacarretero" class="btn btn-outline-info m-2" target="_blank" rel="noopener noreferrer">
-<i class="fab fa-linkedin"></i> LinkedIn
-</a>
-</div>
-</section>
-
-</div>
-
-
-</div><!-- /content-wrapper -->
-
-<!-- Footer fuera del content-wrapper -->
-<footer class="site-footer">
-<div class="site-footer__inner">
-<div class="mb-2">
-<img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
-</div>
-<p class="mb-0" data-lang="en">
-&copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
-<a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
-</p>
-<p class="mb-0" data-lang="es">
-&copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
-<a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
-</p>
-</div>
-</footer>
+    <!-- Certifications -->
+    <section class="section bg-light fade-in" id="certifications">
+      <div class="container">
+        <div class="row align-items-start">
+          
+          <!-- Texto -->
+          <div class="col-12" style="padding-left: 30px;">
+            <!-- EN -->
+            <div data-lang="en">
+              <h2 class="mb-4">Certifications</h2>
+              <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
+                    Data Analytics Bootcamp – Ironhack
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
+                    University Degree – Universidad Miguel Hernández <em>(In progress)</em>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
+                    Certification PL-300 – Microsoft <em>(In progress)</em>
+                  </a>
+                </li>
+              </ul>
+            </div>
+    
+            <!-- ES -->
+            <div data-lang="es">
+              <h2 class="mb-4">Certificaciones</h2>
+              <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
+                    Bootcamp en Data Analytics – Ironhack
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
+                    Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
+                    Certificación PL-300 – Microsoft <em>(En progreso)</em>
+                  </a>
+                </li>
+              </ul>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </section>
 
 
+    
+    <!-- Modals -->
+    <!-- Bootcamp (Accredible embebido) -->
+    <div class="modal fade" id="modalBootcamp" tabindex="-1" aria-hidden="true" aria-labelledby="modalBootcampLabel">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalBootcampLabel">Bootcamp en Data Analytics – Ironhack</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-0" style="height:80vh;">
+            <iframe 
+              src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
+              title="Certificado Bootcamp Ironhack"
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="modal-footer">
+            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
+               class="btn btn-purple" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              Abrir en nueva pestaña
+            </a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Section -->
+    <section class="section bg-light fade-in" id="contact">
+      <div class="container text-center">
+        <div data-lang="en">
+          <h2>Contact Me</h2>
+          <p>Feel free to reach out via email or connect with me on LinkedIn.</p>
+        </div>
+        <div data-lang="es">
+          <h2>Contáctame</h2>
+          <p>No dudes en escribirme por email o conectarte conmigo en LinkedIn.</p>
+        </div>
+  
+        <a href="mailto:info@cristinadeniacarretero.com" class="btn btn-outline-primary m-2">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+  
+        <a href="https://www.linkedin.com/in/cristinadeniacarretero" class="btn btn-outline-info m-2" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+      </div>
+    </section>
+  
+  </div>
 
-<!-- Scripts -->
-<script>
-// Cambiar idioma visible
-function setLanguage(lang) {
-document.querySelectorAll('[data-lang]').forEach(el => {
-el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
-});
-}
+ 
+  </div><!-- /content-wrapper -->
 
-document.addEventListener("DOMContentLoaded", () => {
-// Idioma por defecto
-setLanguage('en');
-
-// Fade-in
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if (entry.isIntersecting) entry.target.classList.add('visible');
-});
-}, { threshold: 0.5 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Resaltar enlace activo en sidebar
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".sidebar ul li a");
-window.addEventListener("scroll", () => {
-let closestSection = null, minOffset = window.innerHeight;
-sections.forEach(section => {
-const rect = section.getBoundingClientRect();
-if (rect.top >= 0 && rect.top < minOffset) {
-minOffset = rect.top;
-closestSection = section;
-}
-});
-if (closestSection) {
-const currentId = closestSection.getAttribute("id");
-navLinks.forEach(link => {
-link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
-});
-}
-});
-
-// Cerrar offcanvas al pulsar enlace
-const mobileMenu = document.getElementById("mobileMenu");
-if (mobileMenu) {
-const links = mobileMenu.querySelectorAll("a[data-bs-dismiss='offcanvas']");
-links.forEach(link => {
-link.addEventListener("click", () => {
-const offcInstance = bootstrap.Offcanvas.getInstance(mobileMenu);
-if (offcInstance) offcInstance.hide();
-});
-});
-}
-
-// ==== Script para modal de proyectos ====
-
-const projectModal = document.getElementById('projectModal');
-projectModal.addEventListener('show.bs.modal', event => {
-const trigger = event.relatedTarget.closest('.project-link');
-const title = trigger.dataset.title || '';
-const desc  = trigger.dataset.desc  || '';
-const img   = trigger.dataset.img   || '';
-
-document.getElementById('projectModalLabel').textContent = title;
-document.getElementById('projectModalDesc').textContent  = desc;
-
-const modalImg = document.getElementById('projectModalImg');
-modalImg.src = img;
-modalImg.alt = title + ' preview';
-});
-// Limpia la imagen al cerrar para evitar parpadeos al reabrir
-projectModal.addEventListener('hidden.bs.modal', () => {
-document.getElementById('projectModalImg').src = '';
-});
-</script>
+  <!-- Footer fuera del content-wrapper -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="mb-2">
+        <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
+      </div>
+      <p class="mb-0" data-lang="en">
+        &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
+        <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
+      </p>
+      <p class="mb-0" data-lang="es">
+        &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
+        <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
+      </p>
+    </div>
+  </footer>
 
 
 
-<!-- Bootstrap JS bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  <!-- Scripts -->
+  <script>
+    // Cambiar idioma visible
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+      });
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      // Idioma por defecto
+      setLanguage('en');
+  
+      // Fade-in
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  
+      // Resaltar enlace activo en sidebar
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".sidebar ul li a");
+      window.addEventListener("scroll", () => {
+        let closestSection = null, minOffset = window.innerHeight;
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top < minOffset) {
+            minOffset = rect.top;
+            closestSection = section;
+          }
+        });
+        if (closestSection) {
+          const currentId = closestSection.getAttribute("id");
+          navLinks.forEach(link => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+          });
+        }
+      });
+  
+      // Cerrar offcanvas al pulsar enlace
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (mobileMenu) {
+        const links = mobileMenu.querySelectorAll("a[data-bs-dismiss='offcanvas']");
+        links.forEach(link => {
+          link.addEventListener("click", () => {
+            const offcInstance = bootstrap.Offcanvas.getInstance(mobileMenu);
+            if (offcInstance) offcInstance.hide();
+          });
+        });
+      }
+  
+      // ==== Script para modal de proyectos ====
+
+      const projectModal = document.getElementById('projectModal');
+      projectModal.addEventListener('show.bs.modal', event => {
+        const trigger = event.relatedTarget.closest('.project-link');
+        const title = trigger.dataset.title || '';
+        const desc  = trigger.dataset.desc  || '';
+        const img   = trigger.dataset.img   || '';
+    
+        document.getElementById('projectModalLabel').textContent = title;
+        document.getElementById('projectModalDesc').textContent  = desc;
+    
+        const modalImg = document.getElementById('projectModalImg');
+        modalImg.src = img;
+        modalImg.alt = title + ' preview';
+      });
+      // Limpia la imagen al cerrar para evitar parpadeos al reabrir
+      projectModal.addEventListener('hidden.bs.modal', () => {
+        document.getElementById('projectModalImg').src = '';
+      });
+    </script>
+
+
+  
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
