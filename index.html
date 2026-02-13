@@ -66,18 +66,6 @@
           font-weight: 800;
           margin-bottom: 20px;
         }
-        .linkedin-wrapper {
-          display: flex;
-          justify-content: center;
-          margin-top: 20px;
-        }
-        
-        /* Evita que el badge herede fondos raros */
-        .linkedin-wrapper .LI-profile-badge {
-          background: transparent !important;
-          box-shadow: none !important;
-        }
-
     
         /* ─────────────────────────────────────────────────────────────
            Selector de idioma (fijo arriba a la derecha)
@@ -746,9 +734,9 @@
         </div>
       </div>
     </div>
-      
+    
     <!-- Contact Section -->
-    <section class="section fade-in" id="contact">
+    <section class="section bg-light fade-in" id="contact">
       <div class="container text-center">
         
         <div data-lang="en">
@@ -762,28 +750,29 @@
         </div>
     
         <!-- Email -->
-        <div class="mb-4">
-          <a href="mailto:info@cristinadeniacarretero.com" 
-             class="btn btn-purple">
-            <i class="fas fa-envelope"></i> Email
-          </a>
-        </div>
+        <a href="mailto:info@cristinadeniacarretero.com" 
+           class="btn btn-outline-primary m-2">
+          <i class="fas fa-envelope"></i> Email
+        </a>
     
-        <!-- LinkedIn Badge Wrapper -->
-        <div class="linkedin-wrapper">
-          <div class="badge-base LI-profile-badge"
-               data-locale="es_ES"
-               data-size="medium"
-               data-theme="light"
-               data-type="HORIZONTAL"
-               data-vanity="cristinadeniacarretero"
+        <!-- LinkedIn Badge -->
+        <div class="m-4 d-flex justify-content-center">
+          <div class="badge-base LI-profile-badge" 
+               data-locale="es_ES" 
+               data-size="medium" 
+               data-theme="light" 
+               data-type="HORIZONTAL" 
+               data-vanity="cristinadeniacarretero" 
                data-version="v1">
+            <a class="badge-base__link LI-simple-link" 
+               href="https://es.linkedin.com/in/cristinadeniacarretero?trk=profile-badge">
+               Cristina Denia Carretero
+            </a>
           </div>
         </div>
     
       </div>
     </section>
-
 
 
  
@@ -949,4 +938,3 @@
 
 </body>
 </html>
-
