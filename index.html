@@ -531,25 +531,69 @@
          =========================== -->
     
     <!-- Modal SQL -->
-    <div class="modal fade" id="modalSQL" tabindex="-1" aria-hidden="true" aria-labelledby="modalSQLLabel">
-      <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal fade" id="modalSQL" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0">
+    
           <div class="modal-header">
-            <h5 class="modal-title" id="modalSQLLabel">SQL Project</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <h5 class="modal-title">SQL Projects</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-          <!-- Aquí mostramos la imagen del proyecto SQL -->
-          <div class="modal-body p-0 text-center">
-            <img src="images/sql_project_screenshot.png" 
-                 alt="En Construcción" 
-                 style="max-width:100%; height:auto;">
+    
+          <div class="modal-body">
+    
+            <!-- Proyecto 1 -->
+            <div class="mb-4">
+              <h6 class="fw-bold">SQL Subqueries & Nested Queries</h6>
+              <p>
+                Advanced use of subqueries for filtering, aggregation and conditional analysis.
+                Includes correlated subqueries and performance considerations.
+              </p>
+              <a href="https://github.com/cdeniaca/lab-sql-subqueries"
+                 target="_blank"
+                 class="btn btn-sm btn-purple">
+                 View Repository
+              </a>
+            </div>
+    
+            <hr>
+    
+            <!-- Proyecto 2 -->
+            <div class="mb-4">
+              <h6 class="fw-bold">Temporary Tables, Views & CTEs</h6>
+              <p>
+                Implementation of temporary tables, reusable views and Common Table Expressions (CTEs)
+                for modular query design and data transformation workflows.
+              </p>
+              <a href="https://github.com/cdeniaca/lab-sql-temp-tables-views-ctes"
+                 target="_blank"
+                 class="btn btn-sm btn-purple">
+                 View Repository
+              </a>
+            </div>
+    
+            <hr>
+    
+            <!-- Proyecto 3 -->
+            <div class="mb-4">
+              <h6 class="fw-bold">Relational Joins & Data Integration</h6>
+              <p>
+                Practical implementation of INNER, LEFT and multi-table joins to integrate
+                relational datasets and generate analytical outputs.
+              </p>
+              <a href="https://github.com/cdeniaca/lab-sql-joins"
+                 target="_blank"
+                 class="btn btn-sm btn-purple">
+                 View Repository
+              </a>
+            </div>
+    
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
+    
         </div>
       </div>
     </div>
+
     
     <!-- Modal VS Code -->
     <div class="modal fade" id="modalVSCode" tabindex="-1" aria-hidden="true" aria-labelledby="modalVSCodeLabel">
