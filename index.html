@@ -498,10 +498,8 @@
     
               <!-- Power BI → enlace normal -->
               <div class="col-6 col-md-3 mb-4 text-center">
-                <a href="Fluctuaciones de los precios.ppsx"
-                   class="project-link"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#modalPowerBI">
+
 
                   <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
                   <p>Power BI</p>
@@ -531,9 +529,59 @@
     </section>
     
     <!-- ===========================
-         Modals para SQL y VS Code
+         Modals para Power bi, SQL y VS Code
          =========================== -->
+      
+    <!-- Modal Power BI -->
+    <div class="modal fade" id="modalPowerBI" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
     
+          <div class="modal-header">
+            <h5 class="modal-title">Power BI Project</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+    
+          <div class="modal-body">
+    
+            <div data-lang="en">
+              <h6 class="fw-bold">Price Fluctuation Analysis</h6>
+              <p>
+                Analytical project developed in Power BI focused on identifying 
+                price trends, seasonal variations and market behavior patterns.
+              </p>
+            </div>
+    
+            <div data-lang="es">
+              <h6 class="fw-bold">Análisis de Fluctuaciones de Precios</h6>
+              <p>
+                Proyecto analítico desarrollado en Power BI centrado en identificar 
+                tendencias de precios, variaciones estacionales y patrones de mercado.
+              </p>
+            </div>
+    
+            <hr>
+    
+            <div class="text-center mt-4">
+              <a href="Fluctuaciones_precios.ppsx"
+                 target="_blank"
+                 class="btn btn-purple me-2">
+                 View Presentation
+              </a>
+    
+              <a href="Fluctuaciones_precios.ppsx"
+                 download
+                 class="btn btn-outline-dark">
+                 Download
+              </a>
+            </div>
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
     <!-- Modal SQL -->
     <div class="modal fade" id="modalSQL" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
