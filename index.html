@@ -732,70 +732,73 @@
 
     <!-- ===========================
          Certifications / Certificaciones
-         =========================== -->
+    =========================== -->
     <section class="section bg-light fade-in" id="certifications">
       <div class="container">
         <div class="row align-items-start">
-          
-          <!-- ────────────── Texto descriptivo ────────────── -->
           <div class="col-12" style="padding-left: 30px;">
     
-            <!-- Versión en inglés -->
+            <!-- ENGLISH -->
             <div data-lang="en">
               <h2 class="mb-4">Certifications</h2>
-              <!-- Lista de certificaciones en inglés -->
               <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
-                <!-- Cada ítem abre un modal de Bootstrap -->
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
                     Data Analytics Bootcamp – Ironhack
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">
                     University Degree – Universidad Miguel Hernández <em>(In progress)</em>
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">
                     Certification PL-300 – Microsoft <em>(In progress)</em>
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUdemy">
-                    Udemy Certification – Data Analytics & Python
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">
+                    Udemy Certifications – Data Analytics & Python
                   </a>
                 </li>
-
+    
               </ul>
             </div>
     
-            <!-- Versión en español -->
+            <!-- ESPAÑOL -->
             <div data-lang="es">
               <h2 class="mb-4">Certificaciones</h2>
-              <!-- Lista de certificaciones en español -->
               <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
                     Bootcamp en Data Analytics – Ironhack
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUMH">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">
                     Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em>
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalPL300">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">
                     Certificación PL-300 – Microsoft <em>(En progreso)</em>
                   </a>
                 </li>
+    
                 <li class="list-group-item">
-                  <a href="#" class="cert-link" data-bs-toggle="modal" data-bs-target="#modalUdemy">
-                    Certificación Udemy – Data Analytics & Python
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">
+                    Certificaciones Udemy – Data Analytics & Python
                   </a>
                 </li>
-
+    
               </ul>
             </div>
     
@@ -805,62 +808,49 @@
     </section>
     
     <!-- ===========================
-         Modals de certificaciones
-         =========================== -->
+         Modals
+    =========================== -->
     
-    <!-- Modal Bootcamp (con certificado embebido desde Accredible) -->
-    <div class="modal fade" id="modalBootcamp" tabindex="-1" aria-hidden="true" aria-labelledby="modalBootcampLabel">
+    <!-- Modal Bootcamp -->
+    <div class="modal fade" id="modalBootcamp" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content border-0">
-          <!-- Cabecera del modal -->
+    
           <div class="modal-header">
-            <h5 class="modal-title" id="modalBootcampLabel">Bootcamp en Data Analytics – Ironhack</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <h5 class="modal-title">Bootcamp en Data Analytics – Ironhack</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-          <!-- Contenido del modal -->
+    
           <div class="modal-body p-0" style="height:80vh;">
-            <!-- Iframe que carga la certificación desde Accredible -->
             <iframe 
-              src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-              title="Certificado Bootcamp Ironhack"
+              src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072"
               width="100%" 
               height="100%" 
-              style="border:0;" 
-              allowfullscreen
+              style="border:0;"
               loading="lazy">
             </iframe>
           </div>
-          <!--- Pie del modal con botón externo y cerrar --->
+    
           <div class="modal-footer">
-            <!-- Enlace para abrir la certificación en una pestaña nueva -->
-            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-               class="btn btn-purple" 
-               target="_blank" 
-               rel="noopener noreferrer">
-              Abrir en nueva pestaña
+            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072"
+               target="_blank"
+               class="btn btn-purple">
+               Abrir en nueva pestaña
             </a>
-            <!-- Botón de cierre del modal -->
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
+    
         </div>
       </div>
     </div>
     
-    <!-- 
-      NOTA:
-      - Deberías crear modales similares para #modalUMH y #modalPL300 si quieres mostrar
-        una imagen, PDF o iframe de esas certificaciones también.
-      - El atributo data-bs-toggle="modal" en los enlaces de la lista activa estos modales.
-    -->
-
-    </section>
     <!-- Modal Udemy -->
-    <div class="modal fade" id="modalUdemy" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalUdemy" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0">
     
           <div class="modal-header">
-            <h5 class="modal-title">Udemy Certification</h5>
+            <h5 class="modal-title">Udemy Certifications</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
     
@@ -868,24 +858,40 @@
     
             <div data-lang="en">
               <p>
-                Completion of advanced training in Data Analytics and Python,
-                covering data manipulation, analytical thinking and practical implementation.
+                Advanced training in Data Analytics and Python focused on practical
+                implementation, analytical thinking and business application.
               </p>
             </div>
     
             <div data-lang="es">
               <p>
-                Finalización de formación avanzada en Data Analytics y Python,
-                incluyendo manipulación de datos, pensamiento analítico y aplicación práctica.
+                Formación avanzada en Data Analytics y Python enfocada en aplicación
+                práctica, pensamiento analítico y contexto empresarial.
               </p>
             </div>
     
-            <div class="mt-4 text-center">
-              <a href="https://www.udemy.com/certificate/UC-061213dc-680a-4b2e-bfa2-1c96a2ac3912/"
-                 target="_blank"
-                 class="btn btn-purple">
-                 View Official Certificate
-              </a>
+            <hr>
+    
+            <div class="mb-4">
+              <strong>Udemy Official Certificate</strong>
+              <div class="mt-2">
+                <a href="https://www.udemy.com/certificate/UC-061213dc-680a-4b2e-bfa2-1c96a2ac3912/"
+                   target="_blank"
+                   class="btn btn-purple btn-sm">
+                   View Certificate
+                </a>
+              </div>
+            </div>
+    
+            <div>
+              <strong>NTT Data Learn – Udemy Certificate</strong>
+              <div class="mt-2">
+                <a href="https://nttdatalearn.udemy.com/certificate/UC-7bb119dc-982a-42da-9b69-7768897cd0e7/"
+                   target="_blank"
+                   class="btn btn-outline-dark btn-sm">
+                   View Certificate
+                </a>
+              </div>
             </div>
     
           </div>
@@ -894,40 +900,6 @@
       </div>
     </div>
 
-
-    
-    <!-- Modals -->
-    <!-- Bootcamp (Accredible embebido) -->
-    <div class="modal fade" id="modalBootcamp" tabindex="-1" aria-hidden="true" aria-labelledby="modalBootcampLabel">
-      <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content border-0">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalBootcampLabel">Bootcamp en Data Analytics – Ironhack</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body p-0" style="height:80vh;">
-            <iframe 
-              src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-              title="Certificado Bootcamp Ironhack"
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="modal-footer">
-            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" 
-               class="btn btn-purple" 
-               target="_blank" 
-               rel="noopener noreferrer">
-              Abrir en nueva pestaña
-            </a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
       
     <!-- Contact Section -->
     <section class="section bg-light fade-in" id="contact">
