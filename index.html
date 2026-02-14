@@ -531,10 +531,10 @@
     <!-- ===========================
          Modals para Power bi, SQL y VS Code
          =========================== -->
-      
+          
     <!-- Modal Power BI -->
     <div class="modal fade" id="modalPowerBI" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content border-0">
     
           <div class="modal-header">
@@ -542,45 +542,30 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
     
-          <div class="modal-body">
+          <div class="modal-body p-0" style="height:80vh;">
     
-            <div data-lang="en">
-              <h6 class="fw-bold">Price Fluctuation Analysis</h6>
-              <p>
-                Analytical project developed in Power BI focused on identifying 
-                price trends, seasonal variations and market behavior patterns.
-              </p>
-            </div>
+            <!-- PDF Preview -->
+            <iframe 
+              src="Fluctuaciones_precios.pdf"
+              width="100%" 
+              height="100%" 
+              style="border:0;">
+            </iframe>
     
-            <div data-lang="es">
-              <h6 class="fw-bold">Análisis de Fluctuaciones de Precios</h6>
-              <p>
-                Proyecto analítico desarrollado en Power BI centrado en identificar 
-                tendencias de precios, variaciones estacionales y patrones de mercado.
-              </p>
-            </div>
+          </div>
     
-            <hr>
-    
-            <div class="text-center mt-4">
-              <a href="Fluctuaciones_precios.ppt"
-                 target="_blank"
-                 class="btn btn-purple me-2">
-                 View Presentation
-              </a>
-    
-              <a href="Fluctuaciones_precios.ppt"
-                 download
-                 class="btn btn-outline-dark">
-                 Download
-              </a>
-            </div>
-    
+          <div class="modal-footer">
+            <a href="Fluctuaciones_precios.pdf"
+               download
+               class="btn btn-outline-dark">
+               Download PDF
+            </a>
           </div>
     
         </div>
       </div>
     </div>
+
 
     <!-- Modal SQL -->
     <div class="modal fade" id="modalSQL" tabindex="-1" aria-hidden="true">
