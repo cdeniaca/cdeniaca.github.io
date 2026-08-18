@@ -220,23 +220,36 @@
   }
 
   async function decodeImage(file) {
+    // createImageBitmap es rápido, pero algunas versiones de Safari/iOS fallan con
+    // determinadas fotos de cámara (especialmente HEIC/HEIF). Si falla, usamos
+    // HTMLImageElement como alternativa antes de dar error al usuario.
     if ('createImageBitmap' in window) {
-      const bitmap = await createImageBitmap(file);
-      return { source: bitmap, width: bitmap.width, height: bitmap.height, close: () => bitmap.close?.() };
+      try {
+        const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+        return { source: bitmap, width: bitmap.width, height: bitmap.height, close: () => bitmap.close?.() };
+      } catch (_) {
+        // Continuar con el fallback compatible con Safari.
+      }
     }
     const url = URL.createObjectURL(file);
-    const image = await new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = () => reject(new Error('El navegador no ha podido abrir esta imagen. Prueba con JPG o PNG.'));
-      img.src = url;
-    });
-    return { source: image, width: image.naturalWidth, height: image.naturalHeight, close: () => URL.revokeObjectURL(url) };
+    try {
+      const image = await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error('El navegador no ha podido abrir esta foto. Si es HEIC/HEIF, prueba con una captura de pantalla o una imagen JPG.'));
+        img.src = url;
+      });
+      return { source: image, width: image.naturalWidth, height: image.naturalHeight, close: () => URL.revokeObjectURL(url) };
+    } catch (err) {
+      URL.revokeObjectURL(url);
+      throw err;
+    }
   }
 
   async function imageToOptimizedBlob(file) {
     const decoded = await decodeImage(file);
-    const maxDimension = 2200;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '') || Math.min(window.innerWidth || 9999, window.innerHeight || 9999) < 900;
+    const maxDimension = isMobile ? 1700 : 2200;
     const scale = Math.min(1, maxDimension / Math.max(decoded.width, decoded.height));
     const width = Math.max(1, Math.round(decoded.width * scale));
     const height = Math.max(1, Math.round(decoded.height * scale));

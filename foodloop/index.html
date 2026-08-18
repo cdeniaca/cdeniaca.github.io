@@ -6,8 +6,9 @@
   <meta name="theme-color" content="#18392B">
   <meta name="description" content="FoodLoop: inventario doméstico local-first, histórico de compras y reposición basada en hábitos.">
   <title>FoodLoop</title>
+  <meta name="foodloop-version" content="1.2-mobile">
   <link rel="icon" href="./assets/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css?v=1.2">
 </head>
 <body>
   <div class="app-shell">
@@ -254,12 +255,17 @@
         </div>
 
         <div class="receipt-capture-actions">
-          <button class="secondary-button" type="button" id="takeReceiptPhotoBtn">📷 Hacer foto</button>
-          <button class="secondary-button" type="button" id="chooseReceiptImagesBtn">🖼️ Elegir foto</button>
+          <label class="secondary-button file-action" for="receiptCameraInput">
+            📷 Hacer foto
+            <input id="receiptCameraInput" class="native-file-input" type="file" accept="image/*" capture="environment">
+          </label>
+          <label class="secondary-button file-action" for="receiptGalleryInput">
+            🖼️ Elegir foto
+            <input id="receiptGalleryInput" class="native-file-input" type="file" accept="image/*" multiple>
+          </label>
           <button class="primary-button" type="button" id="runReceiptOcrBtn" disabled>Leer ticket</button>
         </div>
-        <input id="receiptCameraInput" type="file" accept="image/*" capture="environment" hidden>
-        <input id="receiptGalleryInput" type="file" accept="image/*" multiple hidden>
+        <p class="mobile-photo-help">En iPhone o Android, toca directamente <strong>Hacer foto</strong> o <strong>Elegir foto</strong>. Si una foto HEIC no se abre, prueba a hacer una captura de pantalla del ticket o usa JPG.</p>
 
         <div id="receiptPreviewWrap" class="receipt-preview-wrap" hidden>
           <img id="receiptPreview" class="receipt-preview" alt="Vista previa del ticket seleccionado">
@@ -353,10 +359,10 @@
   <input id="backupFileInput" type="file" accept="application/json,.json" hidden>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="./js/db.js"></script>
-  <script src="./js/export.js"></script>
-  <script src="./js/xlsx.js"></script>
-  <script src="./js/ocr.js"></script>
-  <script src="./js/app.js"></script>
+  <script src="./js/db.js?v=1.2"></script>
+  <script src="./js/export.js?v=1.2"></script>
+  <script src="./js/xlsx.js?v=1.2"></script>
+  <script src="./js/ocr.js?v=1.2"></script>
+  <script src="./js/app.js?v=1.2"></script>
 </body>
 </html>

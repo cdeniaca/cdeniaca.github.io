@@ -585,8 +585,8 @@
     $('newPurchaseTopBtn').addEventListener('click', openPurchase);
     $('newPurchaseHeroBtn').addEventListener('click', openPurchase);
     $('addPurchaseLineBtn').addEventListener('click', () => makePurchaseLine());
-    $('takeReceiptPhotoBtn').addEventListener('click', () => { $('receiptCameraInput').value = ''; $('receiptCameraInput').click(); });
-    $('chooseReceiptImagesBtn').addEventListener('click', () => { $('receiptGalleryInput').value = ''; $('receiptGalleryInput').click(); });
+    $('receiptCameraInput').addEventListener('click', e => { e.currentTarget.value = ''; });
+    $('receiptGalleryInput').addEventListener('click', e => { e.currentTarget.value = ''; });
     $('receiptCameraInput').addEventListener('change', e => setReceiptFiles(e.target.files));
     $('receiptGalleryInput').addEventListener('change', e => setReceiptFiles(e.target.files));
     $('runReceiptOcrBtn').addEventListener('click', runReceiptOcr);
