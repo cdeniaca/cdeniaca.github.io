@@ -1,0 +1,15 @@
+*** CAMBIO EXACTO PARA index.html ***
+
+En la sección <section ... id="projects">, después del bloque Visual Studio Code y antes del cierre de la fila, añade:
+
+          <!-- FoodLoop → página independiente -->
+          <div class="col-6 col-md-3 mb-4 text-center">
+            <a href="/foodloop/" class="project-link" aria-label="Abrir FoodLoop">
+              <img src="images/FoodLoop_Logo.svg" alt="FoodLoop" class="Projects-icon mb-2">
+              <p>FoodLoop</p>
+            </a>
+          </div>
+
+Opcional pero recomendado: actualiza el texto descriptivo de Proyectos para incluir desarrollo web local-first.
+
+No hay que crear un modal para FoodLoop. El enlace abre directamente /foodloop/.
