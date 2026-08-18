@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18392B">
+  <meta name="description" content="FoodLoop: inventario doméstico local-first, histórico de compras y reposición basada en hábitos.">
+  <title>FoodLoop</title>
+  <link rel="icon" href="./assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" data-nav="home" aria-label="FoodLoop Inicio">
+        <img src="./assets/logo.svg" alt="" width="46" height="46">
+        <span>
+          <strong>FoodLoop</strong>
+          <small>Compra · consume · repón · aprende</small>
+        </span>
+      </a>
+      <div class="top-actions">
+        <a class="portfolio-link" href="/" title="Volver al portfolio">← Portfolio</a>
+        <button class="icon-button" id="privacyInfoBtn" title="Privacidad" aria-label="Información de privacidad">◉</button>
+        <button class="primary-button compact" id="newPurchaseTopBtn">＋ Nueva compra</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="screen active" id="screen-home" data-screen="home">
+        <div class="hero-grid">
+          <article class="hero-card">
+            <span class="eyebrow">HOY</span>
+            <h1>Tu comida, en un ciclo que aprende contigo.</h1>
+            <p>FoodLoop guarda compras, consumos y ajustes en este navegador. Cuanto más lo usas, mejor reconoce qué productos son habituales y cuándo conviene reponerlos.</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="newPurchaseHeroBtn">＋ Registrar compra</button>
+              <button class="secondary-button" data-nav="stock">Ver mi cocina</button>
+            </div>
+          </article>
+
+          <article class="loop-card" aria-label="Ciclo FoodLoop">
+            <div class="loop-node node-buy"><span>01</span><strong>Compra</strong></div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-node node-stock"><span>02</span><strong>Stock</strong></div>
+            <div class="loop-arrow">↓</div>
+            <div class="loop-node node-history"><span>04</span><strong>Aprende</strong></div>
+            <div class="loop-arrow reverse">←</div>
+            <div class="loop-node node-use"><span>03</span><strong>Consume</strong></div>
+          </article>
+        </div>
+
+        <div class="metric-grid" id="homeMetrics"></div>
+
+        <div class="content-grid two-columns">
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">⚡ ACCIONES RÁPIDAS</span>
+                <h2>¿Qué has gastado?</h2>
+              </div>
+              <button class="text-button" data-nav="stock">Ver todo</button>
+            </div>
+            <div id="quickConsumeList" class="stack-list"></div>
+          </section>
+
+          <section class="panel soft-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">🛒 PRÓXIMA COMPRA</span>
+                <h2>Reposición sugerida</h2>
+              </div>
+              <button class="text-button" data-nav="shopping">Abrir lista</button>
+            </div>
+            <div id="homeShoppingList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">⏳ PRIORIDAD</span>
+              <h2>Consume primero</h2>
+            </div>
+          </div>
+          <div id="expiryPriority" class="expiry-strip"></div>
+        </section>
+      </section>
+
+      <section class="screen" id="screen-stock" data-screen="stock">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">MI COCINA</span>
+            <h1>Stock actual</h1>
+            <p>El stock se calcula desde el histórico de movimientos; no se borra el pasado al consumir un producto.</p>
+          </div>
+          <button class="primary-button" id="addAdjustmentBtn">＋ Añadir / ajustar</button>
+        </div>
+
+        <div class="toolbar">
+          <input id="stockSearch" type="search" placeholder="Buscar producto..." autocomplete="off">
+          <select id="stockLocationFilter">
+            <option value="">Todas las ubicaciones</option>
+            <option>Nevera</option>
+            <option>Congelador</option>
+            <option>Despensa</option>
+            <option>Otro</option>
+          </select>
+          <select id="stockStateFilter">
+            <option value="positive">Con stock</option>
+            <option value="all">Todos</option>
+            <option value="zero">Agotados</option>
+          </select>
+        </div>
+
+        <div id="stockList" class="stock-grid"></div>
+      </section>
+
+      <section class="screen" id="screen-shopping" data-screen="shopping">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">PRÓXIMA COMPRA</span>
+            <h1>Lista de compra</h1>
+            <p>FoodLoop solo propone automáticamente productos que ya muestran un patrón habitual de compra.</p>
+          </div>
+          <button class="secondary-button" id="manualShoppingBtn">＋ Añadir manualmente</button>
+        </div>
+
+        <div class="content-grid two-columns">
+          <section class="panel">
+            <div class="panel-heading">
+              <div><span class="eyebrow">REPONER</span><h2>En tu lista</h2></div>
+            </div>
+            <div id="shoppingList" class="stack-list"></div>
+          </section>
+          <section class="panel soft-panel">
+            <div class="panel-heading">
+              <div><span class="eyebrow">PATRONES</span><h2>Lo que FoodLoop ha aprendido</h2></div>
+            </div>
+            <div id="habitList" class="habit-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-history" data-screen="history">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">HISTÓRICO</span>
+            <h1>Qué compras y cómo cambia</h1>
+            <p>Filtra un periodo para revisar gasto, frecuencia y movimientos, o para exportarlo.</p>
+          </div>
+        </div>
+
+        <section class="panel range-panel">
+          <div class="range-fields">
+            <label>Desde<input id="historyFrom" type="date"></label>
+            <label>Hasta<input id="historyTo" type="date"></label>
+            <button class="primary-button" id="applyHistoryRangeBtn">Aplicar periodo</button>
+          </div>
+          <div class="export-actions">
+            <button class="secondary-button" id="exportXlsxBtn">↧ Excel (.xlsx)</button>
+            <button class="secondary-button" id="exportCsvBtn">↧ CSV</button>
+            <button class="secondary-button" id="exportPeriodArchiveBtn">↧ Archivo restaurable del periodo</button>
+          </div>
+        </section>
+
+        <div class="metric-grid" id="historyMetrics"></div>
+
+        <div class="content-grid two-columns">
+          <section class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">GASTO</span><h2>Productos del periodo</h2></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Producto</th><th>Compras</th><th>Cantidad</th><th>Gastado</th></tr></thead>
+                <tbody id="historyProductsTable"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">MOVIMIENTOS</span><h2>Actividad reciente</h2></div></div>
+            <div id="historyMovements" class="timeline"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-data" data-screen="data">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">MIS DATOS</span>
+            <h1>Control, copia y traslado</h1>
+            <p>La base vive en este navegador. El backup completo es la copia maestra que puedes guardar donde quieras e importar en otro dispositivo.</p>
+          </div>
+        </div>
+
+        <div class="content-grid two-columns">
+          <section class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">COPIA MAESTRA</span><h2>Backup completo</h2></div></div>
+            <p class="muted-copy">Incluye productos, tickets, líneas de compra, movimientos, lista de compra y configuración. Es el archivo que debes conservar para reconstruir FoodLoop.</p>
+            <div class="button-stack">
+              <button class="primary-button" id="fullBackupBtn">💾 Descargar backup completo</button>
+              <button class="secondary-button" id="restoreBackupBtn">📂 Importar / restaurar backup</button>
+            </div>
+            <div class="status-card" id="backupStatus"></div>
+          </section>
+
+          <section class="panel soft-panel">
+            <div class="panel-heading"><div><span class="eyebrow">ALMACENAMIENTO</span><h2>Este dispositivo</h2></div></div>
+            <div id="storageStatus" class="data-facts"></div>
+            <div class="button-stack">
+              <button class="secondary-button" id="requestPersistenceBtn">Solicitar almacenamiento persistente</button>
+              <button class="danger-button" id="clearAllDataBtn">Borrar todos los datos locales</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-heading"><div><span class="eyebrow">TRASPASO</span><h2>Móvil ↔ ordenador</h2></div></div>
+          <div class="transfer-flow">
+            <div><span>1</span><strong>Exporta</strong><small>Descarga el backup completo en el móvil.</small></div>
+            <div class="transfer-arrow">→</div>
+            <div><span>2</span><strong>Transfiere</strong><small>AirDrop, Drive, correo, cable o el método que prefieras.</small></div>
+            <div class="transfer-arrow">→</div>
+            <div><span>3</span><strong>Importa</strong><small>Abre FoodLoop en el ordenador y restaura el mismo JSON.</small></div>
+          </div>
+          <p class="inline-note">No hay sincronización automática: cada navegador tiene su propia copia hasta que importas un backup.</p>
+        </section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="nav-button active" data-nav="home"><span>⌂</span><small>Inicio</small></button>
+      <button class="nav-button" data-nav="stock"><span>▦</span><small>Stock</small></button>
+      <button class="nav-button" data-nav="shopping"><span>⌑</span><small>Compra</small></button>
+      <button class="nav-button" data-nav="history"><span>◫</span><small>Histórico</small></button>
+      <button class="nav-button" data-nav="data"><span>⚙</span><small>Datos</small></button>
+    </nav>
+  </div>
+
+  <dialog id="purchaseDialog" class="modal modal-wide">
+    <form id="purchaseForm" method="dialog">
+      <div class="modal-head">
+        <div><span class="eyebrow">NUEVA COMPRA</span><h2>Registrar ticket</h2></div>
+        <button class="icon-button" type="button" data-close-dialog="purchaseDialog" aria-label="Cerrar">×</button>
+      </div>
+      <div class="form-grid three">
+        <label>Fecha<input id="purchaseDate" type="date" required></label>
+        <label>Tienda<input id="purchaseStore" type="text" placeholder="Mercadona, Lidl..."></label>
+        <label>Total ticket (€)<input id="purchaseTicketTotal" type="number" min="0" step="0.01" placeholder="Opcional"></label>
+      </div>
+      <div class="purchase-lines-head">
+        <div><strong>Productos</strong><small>Introduce una línea por producto. Más adelante esta misma tabla recibirá el OCR del ticket.</small></div>
+        <button class="secondary-button compact" type="button" id="addPurchaseLineBtn">＋ Línea</button>
+      </div>
+      <div id="purchaseLines" class="purchase-lines"></div>
+      <div class="modal-actions">
+        <button class="secondary-button" type="button" data-close-dialog="purchaseDialog">Cancelar</button>
+        <button class="primary-button" type="submit">Guardar compra</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="consumeDialog" class="modal">
+    <form id="consumeForm" method="dialog">
+      <div class="modal-head"><div><span class="eyebrow">MOVIMIENTO</span><h2 id="consumeDialogTitle">Actualizar producto</h2></div><button class="icon-button" type="button" data-close-dialog="consumeDialog">×</button></div>
+      <input id="consumeProductId" type="hidden">
+      <div class="form-grid two">
+        <label>Cantidad<input id="consumeQuantity" type="number" min="0.01" step="0.01" value="1" required></label>
+        <label>Acción<select id="consumeType"><option value="consume">Consumido</option><option value="waste">Tirado / desperdiciado</option></select></label>
+      </div>
+      <label class="full-label">Nota<input id="consumeNote" type="text" placeholder="Opcional"></label>
+      <div class="modal-actions"><button class="secondary-button" type="button" data-close-dialog="consumeDialog">Cancelar</button><button class="primary-button" type="submit">Registrar</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="adjustDialog" class="modal">
+    <form id="adjustForm" method="dialog">
+      <div class="modal-head"><div><span class="eyebrow">AJUSTE</span><h2>Corregir stock</h2></div><button class="icon-button" type="button" data-close-dialog="adjustDialog">×</button></div>
+      <input id="adjustProductId" type="hidden">
+      <label class="full-label">Producto<input id="adjustProductName" type="text" list="knownProducts" placeholder="Ej. Leche" required></label>
+      <div class="form-grid two">
+        <label>Stock real ahora<input id="adjustTargetStock" type="number" min="0" step="0.01" required></label>
+        <label>Unidad<select id="adjustUnit"><option>ud</option><option>kg</option><option>g</option><option>l</option><option>ml</option><option>paquete</option><option>bote</option><option>lata</option></select></label>
+        <label>Ubicación<select id="adjustLocation"><option>Nevera</option><option>Congelador</option><option>Despensa</option><option>Otro</option></select></label>
+        <label>Caducidad<input id="adjustExpiry" type="date"></label>
+      </div>
+      <label class="full-label">Nota<input id="adjustNote" type="text" value="Corrección manual"></label>
+      <div class="modal-actions"><button class="secondary-button" type="button" data-close-dialog="adjustDialog">Cancelar</button><button class="primary-button" type="submit">Guardar ajuste</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="shoppingDialog" class="modal">
+    <form id="shoppingForm" method="dialog">
+      <div class="modal-head"><div><span class="eyebrow">LISTA DE COMPRA</span><h2>Añadir producto</h2></div><button class="icon-button" type="button" data-close-dialog="shoppingDialog">×</button></div>
+      <label class="full-label">Producto<input id="shoppingProductName" type="text" list="knownProducts" required></label>
+      <label class="full-label">Nota<input id="shoppingNote" type="text" placeholder="Opcional"></label>
+      <div class="modal-actions"><button class="secondary-button" type="button" data-close-dialog="shoppingDialog">Cancelar</button><button class="primary-button" type="submit">Añadir</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="privacyDialog" class="modal">
+    <div class="modal-head"><div><span class="eyebrow">PRIVACIDAD</span><h2>Dónde están tus datos</h2></div><button class="icon-button" type="button" data-close-dialog="privacyDialog">×</button></div>
+    <div class="privacy-copy">
+      <p><strong>FoodLoop no necesita cuenta, backend ni API.</strong> La base IndexedDB vive en el navegador de este dispositivo.</p>
+      <p>El código de la web puede estar publicado en GitHub; tus tickets e histórico no forman parte del repositorio.</p>
+      <p>Para no depender de una única copia local, usa periódicamente <strong>Mis datos → Descargar backup completo</strong>.</p>
+    </div>
+  </dialog>
+
+  <datalist id="knownProducts"></datalist>
+  <input id="backupFileInput" type="file" accept="application/json,.json" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./js/db.js"></script>
+  <script src="./js/export.js"></script>
+  <script src="./js/xlsx.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
