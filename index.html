@@ -1,331 +1,323 @@
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
-      <title>Cristina Denia Carretero | Portfolio</title>
-      <link rel="icon" type="image/png" href="images/custom-icon.png" />
-    
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-      <!-- Bootstrap & FontAwesome (CSS) -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-      <style>
-        /* ─────────────────────────────────────────────────────────────
-           Variables y ajustes globales
-        ───────────────────────────────────────────────────────────── */
-        :root{
-          --sidebar-width: 200px;   /* ancho barra lateral */
-          --sidebar-border: 1px;    /* grosor borde lateral */
-        }
-    
-        html { scroll-behavior: smooth; } /* scroll suave a anclas */
-    
-        body {
-          font-family: 'Inter', sans-serif;
-          background: linear-gradient(to right, #f5f7fa, #e8ecf3);
-          margin: 0;
-          font-size: 15px;
-        }
-    
-        /* Tipografía responsiva ligera */
-        @media (min-width: 992px) { body { font-size: 14px; } }
-        @media (max-width: 768px) { body { font-size: 13px; } }
-    
-        /* Cuando haces clic en un enlace a #seccion, deja espacio superior
-           para que el título no quede pegado al borde */
-        section[id] { scroll-margin-top: 90px; }
-    
-        .profile-photo {
-          width: 180px;
-          border-radius: 0%;
-          margin-bottom: 20px;
-        }
-    
-        .btn-purple {
-          background: linear-gradient(45deg, #6f42c1, #9b59b6);
-          color: white;
-          border: none;
-        }
-        .btn-purple:hover {
-          background: linear-gradient(45deg, #5a32a3, #8e44ad);
-          color: white;
-        }
-    
-        .section h2,
-        .section h1 {
-          background: linear-gradient(45deg, #6f42c1, #9b59b6);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          color: transparent;
-          font-weight: 800;
-          margin-bottom: 20px;
-        }
-    
-        /* ─────────────────────────────────────────────────────────────
-           Selector de idioma (fijo arriba a la derecha)
-        ───────────────────────────────────────────────────────────── */
-        .language-switch {
-          position: fixed;
-          top: 10px;
-          right: 20px;
-          z-index: 9999;
-        }
-    
-        /* ─────────────────────────────────────────────────────────────
-           Sidebar (solo escritorio)
-        ───────────────────────────────────────────────────────────── */
-        .sidebar {
-          position: fixed;
-          top: 0; left: 0;
-          width: var(--sidebar-width);
-          height: 100vh;
-          background-color: #fff;
-          border-right: 1px solid #ddd;
-          z-index: 998;
-          overflow-y: auto;
-    
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around; /* reparte verticalmente */
-          align-items: flex-start;       /* texto a la izquierda */
-          padding: 40px 0;
-        }
-    
-        .sidebar ul {
-          list-style: none;
-          margin: 0;
-          padding-left: 10px;
-          padding-right: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          width: 100%;
-        }
-        .sidebar ul li { margin: 0; }
-          
-        .linkedin-clean {
-          background: white;
-          padding: 20px;
-          border-radius: 12px;
-          display: inline-block;
-        }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Data Analyst portfolio - Power BI, SQL, Python, VSC experience and certifications" />
+  <title>Cristina Denia Carretero | Portfolio</title>
+  <link rel="icon" type="image/png" href="images/custom-icon.png" />
 
-        .sidebar ul li a {
-          display: block;
-          width: 100%;
-          text-decoration: none;
-          color: #333;
-          font-weight: 500;
-          padding: 8px 10px;
-          border-radius: 10px;
-          transition: background .25s ease, color .25s ease;
-        }
-        .sidebar ul li a:hover {
-          color: #6f42c1;
-          background: rgba(111,66,193,.08);
-        }
-        .sidebar ul li a.active {
-          color: #6f42c1;
-          background: #f5f7fa;
-          font-weight: 700;
-          box-shadow: inset 0 0 0 1px rgba(111,66,193,.12);
-        }
-        .sidebar ul li a::after { content: none; }
-    
-        /* Contenedor del contenido principal:
-           usa la MISMA variable de ancho que la sidebar */
-        .content-wrapper {
-          margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
-          padding: 40px;
-        }
-    
-        .section { padding: 80px 0; }
-    
-        .section-center {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        }
-    
-        .Projects-icon { max-height: 70px; width: auto; }
-        @media (min-width: 768px) { .Projects-icon { max-height: 60px; } }
-        @media (max-width: 576px) { .Projects-icon { max-height: 40px; } }
-    
-        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    
-        .section.bg-light {
-          margin-bottom: 60px;
-          padding-top: 40px;
-          padding-bottom: 40px;
-          border-radius: 12px;
-          box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
-    
-        .project-link {
-          display: inline-block;
-          text-decoration: none;
-          color: inherit;
-          padding: 10px;
-          border-radius: 10px;
-          transition: all 0.3s ease;
-        }
-        .project-link:hover {
-          background-color: rgba(111, 66, 193, 0.1);
-          transform: translateY(-3px);
-        }
-    
-        /* ─────────────────────────────────────────────────────────────
-           Responsive: en móvil ocultamos sidebar y ajustamos paddings
-        ───────────────────────────────────────────────────────────── */
-        @media (max-width: 768px) {
-          .sidebar { display: none; }
-          .content-wrapper { margin-left: 0; padding: 90px 20px 20px; }
-          #mobileMenu { margin-top: 60px; }
-          .profile-photo { max-width: 140px; }
-        }
-        @media (min-width: 769px) {
-          .profile-photo { max-width: 200px; }
-        }
-    
-        /* ─────────────────────────────────────────────────────────────
-           Footer con el mismo offset que el contenido en desktop
-        ───────────────────────────────────────────────────────────── */
-        .site-footer {
-          background-color: #6f42c1;
-          color: #fff;
-          padding: 1.25rem 0;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .site-footer a { color: #fff; text-decoration: underline; }
-    
-        .site-footer__inner {
-          max-width: 900px;
-          padding: 0 16px;
-          text-align: center;
-          margin: 0 auto;
-        }
-        .site-footer p { font-size: 0.9rem; margin: 0; }
-    
-        @media (max-width: 768px) {
-          .site-footer { margin-left: 0; width: 100%; }
-          .site-footer p { font-size: 0.8rem; }
-        }
-        @media (min-width: 769px) {
-          .site-footer {
-            margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
-            width: calc(100% - (var(--sidebar-width) + var(--sidebar-border)));
-          }
-        }
-    
-        /* ─────────────────────────────────────────────────────────────
-           Botón toggler móvil (usamos icono FA para asegurar visibilidad)
-        ───────────────────────────────────────────────────────────── */
-        .mobile-toggler {
-          position: fixed;
-          top: 10px; left: 20px;
-          z-index: 9999;
-          background-color: white;
-          border: 1px solid #ccc;
-          padding: 6px 10px;
-          border-radius: 6px;
-          line-height: 1;
-        }
-        .mobile-toggler i { font-size: 20px; }
-      </style>
-    </head>
-    <body>
-  
-    <!-- Botón de idioma -->
-    <div class="language-switch" aria-label="Cambiar idioma">
-      <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')" aria-label="Set English">EN</button>
-      <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')" aria-label="Cambiar a español">ES</button>
-    </div>
-  
-    <!-- Sidebar solo para escritorio -->
-    <!-- role y aria-label mejoran accesibilidad para lectores de pantalla -->
-    <nav class="sidebar d-none d-md-flex" role="navigation" aria-label="Navegación lateral">
-      <div class="sidebar-inner">
-        <!-- EN -->
-        <ul class="sidebar-nav" data-lang="en" aria-label="Sections (English)">
-          <li><a href="#home">🏠 Home</a></li>
-          <li><a href="#about">👤 About Me</a></li>
-          <li><a href="#experience">💼 Experience</a></li>
-          <!-- Sugerencia: usa ids en minúsculas por consistencia: #projects -->
-          <li><a href="#projects">🧩 Projects</a></li>
-          <li><a href="#certifications">📜 Certifications</a></li>
-          <li><a href="#contact">📬 Contact</a></li>
-        </ul>
-        <!-- ES -->
-        <ul class="sidebar-nav" data-lang="es" aria-label="Secciones (Español)">
-          <li><a href="#home">🏠 Inicio</a></li>
-          <li><a href="#about">👤 Sobre mí</a></li>
-          <li><a href="#experience">💼 Experiencia</a></li>
-          <li><a href="#projects">🧩 Proyectos</a></li>
-          <li><a href="#certifications">📜 Certificaciones</a></li>
-          <li><a href="#contact">📬 Contacto</a></li>
-        </ul>
-      </div>
-    </nav>
-  
-    <!-- Botón de menú móvil fijo -->
-    <!-- Usamos un icono de FontAwesome para evitar depender de .navbar-light/.navbar-dark -->
-    <button
-      class="mobile-toggler d-md-none"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu"
-      aria-expanded="false"
-      aria-label="Abrir menú de navegación">
-      <i class="fa-solid fa-bars" aria-hidden="true"></i>
-    </button>
-  
-    <!-- Menú móvil (Offcanvas) -->
-    <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-      </div>
-      <div class="offcanvas-body">
-        <!-- EN -->
-        <ul class="list-unstyled mb-0" data-lang="en" aria-label="Mobile menu (English)">
-          <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
-          <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
-          <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
-          <li><a class="d-block py-2" href="#projects" data-bs-dismiss="offcanvas">🧩 Projects</a></li>
-          <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
-          <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
-        </ul>
-        <!-- ES -->
-        <ul class="list-unstyled mb-0" data-lang="es" aria-label="Menú móvil (Español)">
-          <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
-          <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
-          <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
-          <li><a class="d-block py-2" href="#projects" data-bs-dismiss="offcanvas">🧩 Proyectos</a></li>
-          <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
-          <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
-        </ul>
-      </div>
-    </div>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
+  <!-- Bootstrap & FontAwesome (CSS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       Variables y ajustes globales
+    ───────────────────────────────────────────────────────────── */
+    :root{
+      --sidebar-width: 200px;
+      --sidebar-border: 1px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #e8ecf3);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    @media (min-width: 992px) { body { font-size: 14px; } }
+    @media (max-width: 768px) { body { font-size: 13px; } }
+
+    section[id] { scroll-margin-top: 90px; }
+
+    .profile-photo {
+      width: 180px;
+      border-radius: 0%;
+      margin-bottom: 20px;
+    }
+
+    .btn-purple {
+      background: linear-gradient(45deg, #6f42c1, #9b59b6);
+      color: white;
+      border: none;
+    }
+    .btn-purple:hover {
+      background: linear-gradient(45deg, #5a32a3, #8e44ad);
+      color: white;
+    }
+
+    .section h2,
+    .section h1 {
+      background: linear-gradient(45deg, #6f42c1, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .language-switch {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      z-index: 998;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 40px 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding-left: 10px;
+      padding-right: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+    .sidebar ul li { margin: 0; }
+
+    .linkedin-clean {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background .25s ease, color .25s ease;
+    }
+    .sidebar ul li a:hover {
+      color: #6f42c1;
+      background: rgba(111,66,193,.08);
+    }
+    .sidebar ul li a.active {
+      color: #6f42c1;
+      background: #f5f7fa;
+      font-weight: 700;
+      box-shadow: inset 0 0 0 1px rgba(111,66,193,.12);
+    }
+    .sidebar ul li a::after { content: none; }
+
+    .content-wrapper {
+      margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
+      padding: 40px;
+    }
+
+    .section { padding: 80px 0; }
+
+    .section-center {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .Projects-icon { max-height: 70px; width: auto; }
+    @media (min-width: 768px) { .Projects-icon { max-height: 60px; } }
+    @media (max-width: 576px) { .Projects-icon { max-height: 40px; } }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .section.bg-light {
+      margin-bottom: 60px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .project-link {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      padding: 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .project-link:hover {
+      background-color: rgba(111, 66, 193, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* FoodLoop: mantiene el estilo de los proyectos y destaca ligeramente */
+    .project-link-foodloop {
+      position: relative;
+    }
+    .project-link-foodloop::after {
+      content: "APP";
+      position: absolute;
+      top: 0;
+      right: -6px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: #6f42c1;
+      background: rgba(111,66,193,.10);
+      border: 1px solid rgba(111,66,193,.18);
+      border-radius: 999px;
+      padding: 3px 6px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .content-wrapper { margin-left: 0; padding: 90px 20px 20px; }
+      #mobileMenu { margin-top: 60px; }
+      .profile-photo { max-width: 140px; }
+    }
+    @media (min-width: 769px) {
+      .profile-photo { max-width: 200px; }
+    }
+
+    .site-footer {
+      background-color: #6f42c1;
+      color: #fff;
+      padding: 1.25rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .site-footer a { color: #fff; text-decoration: underline; }
+
+    .site-footer__inner {
+      max-width: 900px;
+      padding: 0 16px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .site-footer p { font-size: 0.9rem; margin: 0; }
+
+    @media (max-width: 768px) {
+      .site-footer { margin-left: 0; width: 100%; }
+      .site-footer p { font-size: 0.8rem; }
+    }
+    @media (min-width: 769px) {
+      .site-footer {
+        margin-left: calc(var(--sidebar-width) + var(--sidebar-border));
+        width: calc(100% - (var(--sidebar-width) + var(--sidebar-border)));
+      }
+    }
+
+    .mobile-toggler {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 9999;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      border-radius: 6px;
+      line-height: 1;
+    }
+    .mobile-toggler i { font-size: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Botón de idioma -->
+  <div class="language-switch" aria-label="Cambiar idioma">
+    <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('en')" aria-label="Set English">EN</button>
+    <button class="btn btn-sm btn-outline-secondary" onclick="setLanguage('es')" aria-label="Cambiar a español">ES</button>
+  </div>
+
+  <!-- Sidebar solo para escritorio -->
+  <nav class="sidebar d-none d-md-flex" role="navigation" aria-label="Navegación lateral">
+    <div class="sidebar-inner">
+      <ul class="sidebar-nav" data-lang="en" aria-label="Sections (English)">
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#about">👤 About Me</a></li>
+        <li><a href="#experience">💼 Experience</a></li>
+        <li><a href="#projects">🧩 Projects</a></li>
+        <li><a href="#certifications">📜 Certifications</a></li>
+        <li><a href="#contact">📬 Contact</a></li>
+      </ul>
+      <ul class="sidebar-nav" data-lang="es" aria-label="Secciones (Español)">
+        <li><a href="#home">🏠 Inicio</a></li>
+        <li><a href="#about">👤 Sobre mí</a></li>
+        <li><a href="#experience">💼 Experiencia</a></li>
+        <li><a href="#projects">🧩 Proyectos</a></li>
+        <li><a href="#certifications">📜 Certificaciones</a></li>
+        <li><a href="#contact">📬 Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Botón de menú móvil fijo -->
+  <button
+    class="mobile-toggler d-md-none"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#mobileMenu"
+    aria-controls="mobileMenu"
+    aria-expanded="false"
+    aria-label="Abrir menú de navegación">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  </button>
+
+  <!-- Menú móvil (Offcanvas) -->
+  <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-unstyled mb-0" data-lang="en" aria-label="Mobile menu (English)">
+        <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Home</a></li>
+        <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 About Me</a></li>
+        <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experience</a></li>
+        <li><a class="d-block py-2" href="#projects" data-bs-dismiss="offcanvas">🧩 Projects</a></li>
+        <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certifications</a></li>
+        <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contact</a></li>
+      </ul>
+      <ul class="list-unstyled mb-0" data-lang="es" aria-label="Menú móvil (Español)">
+        <li><a class="d-block py-2" href="#home" data-bs-dismiss="offcanvas">🏠 Inicio</a></li>
+        <li><a class="d-block py-2" href="#about" data-bs-dismiss="offcanvas">👤 Sobre mí</a></li>
+        <li><a class="d-block py-2" href="#experience" data-bs-dismiss="offcanvas">💼 Experiencia</a></li>
+        <li><a class="d-block py-2" href="#projects" data-bs-dismiss="offcanvas">🧩 Proyectos</a></li>
+        <li><a class="d-block py-2" href="#certifications" data-bs-dismiss="offcanvas">📜 Certificaciones</a></li>
+        <li><a class="d-block py-2" href="#contact" data-bs-dismiss="offcanvas">📬 Contacto</a></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Contenido -->
   <div class="content-wrapper">
 
-    <!-- Hero (solo este centrado) -->
+    <!-- Hero -->
     <section class="section section-center fade-in text-center" id="home">
       <div class="container">
         <img src="images/photo_profile.jpg" alt="Cristina Denia Carretero" class="profile-photo img-fluid mb-4" style="border-radius: 0; width: 100%; height: auto;">
@@ -342,75 +334,45 @@
       </div>
     </section>
 
-<!-- About -->
-<section class="section bg-light fade-in" id="about">
-  <div class="container">
-    <div class="row align-items-center justify-content-center flex-row-reverse">
-      
-      <!-- FOTO + BOTÓN CV -->
-      <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
-        <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
-
-        <div class="mt-3">
-          <!-- English -->
-          <div data-lang="en">
-            <a href="Carta de presentación - Cristina Denia Carretero.pdf" 
-               class="btn btn-purple" 
-               target="_blank" 
-               rel="noopener noreferrer">
-               📄 View CV
-            </a>
+    <!-- About -->
+    <section class="section bg-light fade-in" id="about">
+      <div class="container">
+        <div class="row align-items-center justify-content-center flex-row-reverse">
+          <div class="col-lg-4 col-md-5 text-center mb-4 mb-md-0">
+            <img src="images/photo_profile.jpg" alt="Profile Photo" class="profile-photo img-fluid">
+            <div class="mt-3">
+              <div data-lang="en">
+                <a href="Carta de presentación - Cristina Denia Carretero.pdf" class="btn btn-purple" target="_blank" rel="noopener noreferrer">📄 View CV</a>
+              </div>
+              <div data-lang="es">
+                <a href="Carta de presentación - Cristina Denia Carretero.pdf" class="btn btn-purple" target="_blank" rel="noopener noreferrer">📄 Ver CV</a>
+              </div>
+            </div>
           </div>
 
-          <!-- Español -->
-          <div data-lang="es">
-            <a href="Carta de presentación - Cristina Denia Carretero.pdf" 
-               class="btn btn-purple" 
-               target="_blank" 
-               rel="noopener noreferrer">
-               📄 Ver CV
-            </a>
+          <div class="col-lg-8 col-md-7" style="padding-left: 30px;">
+            <div data-lang="es">
+              <h2>Sobre Mí</h2>
+              <p>Soy una persona <strong>curiosa por naturaleza</strong> y <strong>Analista de Datos</strong> por vocación. No trabajo con datos porque sí, sino porque me permiten <strong>descubrir patrones</strong>, <strong>contar historias</strong> y ofrecer <strong>soluciones</strong> que generan <em>impacto real</em>.</p>
+              <p>Soy <strong>independiente</strong> y <strong>resolutiva</strong>, aunque creo firmemente en la fuerza del <strong>trabajo en equipo</strong>. Me caracteriza la <strong>organización</strong>: me da seguridad tener un plan y una estructura, no para controlarlo todo, sino para <em>no perderme en el camino</em>.</p>
+              <p>Durante años sentí que <em>iba tarde</em>. Pero con el tiempo entendí que <strong>no existe un solo reloj</strong>. Que cada persona tiene su <strong>tiempo</strong>, su <strong>ritmo</strong>, su forma de <strong>crecer</strong>. Y si hoy miro hacia atrás, veo cuánto he crecido y cuánto me queda por crecer. Y eso no me asusta. <em>Me inspira</em>.</p>
+            </div>
+            <div data-lang="en">
+              <h2>About Me</h2>
+              <p>I’m <strong>naturally curious</strong> and a <strong>Data Analyst</strong> by vocation. I don’t work with data just for the sake of it; I work with it because it allows me to <strong>discover patterns</strong>, <strong>tell stories</strong>, and deliver <strong>solutions</strong> that create <em>real impact</em>.</p>
+              <p>I’m <strong>independent</strong> and <strong>resourceful</strong>, yet I firmly believe in the power of <strong>teamwork</strong>. <strong>Organization</strong> defines me: having a plan and structure gives me clarity — not to control everything, but to <em>stay on track</em>.</p>
+              <p>For years, I felt I was <em>running late</em>. Over time, I realized there’s <strong>no single clock</strong>. Each person has their own <strong>pace</strong>, <strong>rhythm</strong>, and way of <strong>growing</strong>. Today, when I look back, I see how much I’ve grown and how much more I have yet to grow. And that doesn’t scare me. <em>It inspires me</em>.</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- TEXTO -->
-      <div class="col-lg-8 col-md-7" style="padding-left: 30px;">
-        
-        <!-- Español -->
-        <div data-lang="es">
-          <h2>Sobre Mí</h2>
-          <p>Soy una persona <strong>curiosa por naturaleza</strong> y <strong>Analista de Datos</strong> por vocación. No trabajo con datos porque sí, sino porque me permiten <strong>descubrir patrones</strong>, <strong>contar historias</strong> y ofrecer <strong>soluciones</strong> que generan <em>impacto real</em>.</p>
-          <p>Soy <strong>independiente</strong> y <strong>resolutiva</strong>, aunque creo firmemente en la fuerza del <strong>trabajo en equipo</strong>. Me caracteriza la <strong>organización</strong>: me da seguridad tener un plan y una estructura, no para controlarlo todo, sino para <em>no perderme en el camino</em>.</p>
-          <p>Durante años sentí que <em>iba tarde</em>. Pero con el tiempo entendí que <strong>no existe un solo reloj</strong>. Que cada persona tiene su <strong>tiempo</strong>, su <strong>ritmo</strong>, su forma de <strong>crecer</strong>. Y si hoy miro hacia atrás, veo cuánto he crecido y cuánto me queda por crecer. Y eso no me asusta. <em>Me inspira</em>.</p>
-        </div>
-
-        <!-- English -->
-        <div data-lang="en">
-          <h2>About Me</h2>
-          <p>I’m <strong>naturally curious</strong> and a <strong>Data Analyst</strong> by vocation. I don’t work with data just for the sake of it; I work with it because it allows me to <strong>discover patterns</strong>, <strong>tell stories</strong>, and deliver <strong>solutions</strong> that create <em>real impact</em>.</p>
-          <p>I’m <strong>independent</strong> and <strong>resourceful</strong>, yet I firmly believe in the power of <strong>teamwork</strong>. <strong>Organization</strong> defines me: having a plan and structure gives me clarity — not to control everything, but to <em>stay on track</em>.</p>
-          <p>For years, I felt I was <em>running late</em>. Over time, I realized there’s <strong>no single clock</strong>. Each person has their own <strong>pace</strong>, <strong>rhythm</strong>, and way of <strong>growing</strong>. Today, when I look back, I see how much I’ve grown and how much more I have yet to grow. And that doesn’t scare me. <em>It inspires me</em>.</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
+    </section>
 
     <!-- Experience -->
     <section class="section bg-light fade-in" id="experience">
       <div class="container" style="padding-left: 30px; padding-right: 30px;">
-    
-        <!-- ENGLISH -->
         <div data-lang="en">
           <h2 class="mb-4">Experience</h2>
-    
-          <!-- Job 1 -->
           <div class="mb-5">
             <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Present)</small></h4>
             <p><em>Business Process Analyst</em></p>
@@ -423,8 +385,6 @@
               <li><em>Tools:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
             </ul>
           </div>
-    
-          <!-- Job 2 -->
           <div class="mb-5">
             <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
             <p><em>Business Process Analyst - Internship</em></p>
@@ -435,12 +395,9 @@
             </ul>
           </div>
         </div>
-    
-        <!-- SPANISH -->
+
         <div data-lang="es">
           <h2 class="mb-4">Experiencia</h2>
-    
-          <!-- Job 1 -->
           <div class="mb-5">
             <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(Mar 2024 - Actualidad)</small></h4>
             <p><em>Business Process Analyst</em></p>
@@ -453,8 +410,6 @@
               <li><em>Herramientas:</em> Power BI (80%), SQL (5%), Python (11%), Figma (4%).</li>
             </ul>
           </div>
-    
-          <!-- Job 2 -->
           <div class="mb-5">
             <h4>NTT DATA Europe &amp; Latam <small class="text-muted">(May 2023 - Feb 2024)</small></h4>
             <p><em>Business Process Analyst - Prácticas</em></p>
@@ -465,103 +420,76 @@
             </ul>
           </div>
         </div>
-    
       </div>
     </section>
 
-
-
-    <!-- ===========================
-         Projects
-         =========================== -->
+    <!-- Projects -->
     <section class="section bg-light fade-in" id="projects">
       <div class="container">
         <div class="row align-items-start">
-          
-          <!-- ────────────── Texto descriptivo ────────────── -->
           <div class="col-12" style="padding-left: 30px;">
-            <!-- EN -->
             <div data-lang="en">
               <h2 class="mb-4">Projects</h2>
-              <p class="mb-4">Selected work across <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em> and <em>DAX Studio</em>.</p>
+              <p class="mb-4">Selected work across <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em>, <em>DAX Studio</em> and local-first web development.</p>
             </div>
-            <!-- ES -->
             <div data-lang="es">
               <h2 class="mb-4">Proyectos</h2>
-              <p class="mb-4">Trabajo seleccionado en <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em> y <em>DAX Studio</em>.</p>
+              <p class="mb-4">Trabajo seleccionado en <strong>Power BI</strong>, <strong>SQL</strong>, <strong>Python</strong>, <em>Figma</em>, <em>DAX Studio</em> y desarrollo web local-first.</p>
             </div>
           </div>
-          
-          <!-- ────────────── Iconos / enlaces ────────────── -->
+
           <div class="col-12">
             <div class="row justify-content-center">
-    
-              <!-- Power BI → enlace normal -->
               <div class="col-6 col-md-3 mb-4 text-center">
                 <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#modalPowerBI">
-
-
                   <img src="images/Powerbi_Logo.png" alt="Power BI" class="Projects-icon mb-2">
                   <p>Power BI</p>
                 </a>
               </div>
-    
-              <!-- SQL → abre modal -->
+
               <div class="col-6 col-md-3 mb-4 text-center">
                 <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#modalSQL">
                   <img src="images/sql_Logo.jpg" alt="SQL" class="Projects-icon mb-2">
                   <p>SQL</p>
                 </a>
               </div>
-              
-              <!-- VS Code → abre modal -->
+
               <div class="col-6 col-md-3 mb-4 text-center">
                 <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#modalVSCode">
                   <img src="images/VSC-logo.png" alt="Visual Studio Code" class="Projects-icon mb-2">
                   <p>Visual Studio Code</p>
                 </a>
               </div>
-    
+
+              <!-- FoodLoop → página independiente dentro del mismo dominio -->
+              <div class="col-6 col-md-3 mb-4 text-center">
+                <a href="/foodloop/" class="project-link project-link-foodloop" aria-label="Abrir FoodLoop">
+                  <img src="images/FoodLoop_Logo.svg" alt="FoodLoop" class="Projects-icon mb-2">
+                  <p>FoodLoop</p>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- ===========================
-         Modals para Power bi, SQL y VS Code
-         =========================== -->
-          
+
     <!-- Modal Power BI -->
     <div class="modal fade" id="modalPowerBI" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen-sm-down modal-xl modal-dialog-centered">
         <div class="modal-content border-0">
-    
           <div class="modal-header">
             <h5 class="modal-title">Power BI Project</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
           <div class="modal-body p-0">
-    
-            <!-- Responsive PDF container -->
             <div class="pdf-container">
-              <iframe 
-                src="Fluctuaciones_precios.pdf"
-                frameborder="0">
-              </iframe>
+              <iframe src="Fluctuaciones_precios.pdf" frameborder="0"></iframe>
             </div>
-    
           </div>
-    
           <div class="modal-footer">
-            <a href="Fluctuaciones_precios.pdf"
-               download
-               class="btn btn-outline-dark">
-               Download PDF
-            </a>
+            <a href="Fluctuaciones_precios.pdf" download class="btn btn-outline-dark">Download PDF</a>
           </div>
-    
         </div>
       </div>
     </div>
@@ -570,452 +498,202 @@
     <div class="modal fade" id="modalSQL" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0">
-    
           <div class="modal-header">
             <h5 class="modal-title">SQL Projects</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
           <div class="modal-body">
-    
-            <!-- Proyecto 1 -->
             <div class="mb-4">
               <h6 class="fw-bold">SQL Subqueries & Nested Queries</h6>
-              <p>
-                Advanced use of subqueries for filtering, aggregation and conditional analysis.
-                Includes correlated subqueries and performance considerations.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-sql-subqueries"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Advanced use of subqueries for filtering, aggregation and conditional analysis. Includes correlated subqueries and performance considerations.</p>
+              <a href="https://github.com/cdeniaca/lab-sql-subqueries" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 2 -->
             <div class="mb-4">
               <h6 class="fw-bold">Temporary Tables, Views & CTEs</h6>
-              <p>
-                Implementation of temporary tables, reusable views and Common Table Expressions (CTEs)
-                for modular query design and data transformation workflows.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-sql-temp-tables-views-ctes"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Implementation of temporary tables, reusable views and Common Table Expressions (CTEs) for modular query design and data transformation workflows.</p>
+              <a href="https://github.com/cdeniaca/lab-sql-temp-tables-views-ctes" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 3 -->
             <div class="mb-4">
               <h6 class="fw-bold">Relational Joins & Data Integration</h6>
-              <p>
-                Practical implementation of INNER, LEFT and multi-table joins to integrate
-                relational datasets and generate analytical outputs.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-sql-joins"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Practical implementation of INNER, LEFT and multi-table joins to integrate relational datasets and generate analytical outputs.</p>
+              <a href="https://github.com/cdeniaca/lab-sql-joins" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
           </div>
-    
         </div>
       </div>
     </div>
 
-    
     <!-- Modal VS Code -->
     <div class="modal fade" id="modalVSCode" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0">
-    
           <div class="modal-header">
             <h5 class="modal-title">Python Projects (VS Code)</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
           <div class="modal-body">
-    
-            <!-- Proyecto 1 -->
             <div class="mb-4">
               <h6 class="fw-bold">Advanced Data Structures & Comprehensions</h6>
-              <p>
-                Practical implementation of lists, dictionaries, sets and advanced comprehension
-                techniques for efficient data manipulation.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-python-list-dict-set-comprehension-extra"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Practical implementation of lists, dictionaries, sets and advanced comprehension techniques for efficient data manipulation.</p>
+              <a href="https://github.com/cdeniaca/lab-python-list-dict-set-comprehension-extra" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 2 -->
             <div class="mb-4">
               <h6 class="fw-bold">Error Handling & Exception Management</h6>
-              <p>
-                Robust error handling using try/except blocks, custom exceptions
-                and defensive programming practices.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-python-error-handling-extra"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Robust error handling using try/except blocks, custom exceptions and defensive programming practices.</p>
+              <a href="https://github.com/cdeniaca/lab-python-error-handling-extra" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 3 -->
             <div class="mb-4">
               <h6 class="fw-bold">Lambda, Map, Reduce & Functional Programming</h6>
-              <p>
-                Functional programming techniques applied to data transformation
-                and streamlined processing workflows.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-python-lambda-map-reduce-filter"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Functional programming techniques applied to data transformation and streamlined processing workflows.</p>
+              <a href="https://github.com/cdeniaca/lab-python-lambda-map-reduce-filter" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 4 -->
             <div class="mb-4">
               <h6 class="fw-bold">Web Scraping & Data Extraction</h6>
-              <p>
-                Automated data extraction from web sources using Python,
-                including parsing and structured output generation.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-web-scraping"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Automated data extraction from web sources using Python, including parsing and structured output generation.</p>
+              <a href="https://github.com/cdeniaca/lab-web-scraping" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 5 -->
             <div class="mb-4">
               <h6 class="fw-bold">Object-Oriented Programming (OOP)</h6>
-              <p>
-                Implementation of classes, encapsulation and modular design
-                principles to build scalable Python applications.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-python-oop"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Implementation of classes, encapsulation and modular design principles to build scalable Python applications.</p>
+              <a href="https://github.com/cdeniaca/lab-python-oop" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
             <hr>
-    
-            <!-- Proyecto 6 -->
             <div class="mb-4">
               <h6 class="fw-bold">Functions & Modular Programming</h6>
-              <p>
-                Development of reusable functions and modular code structures
-                to improve readability and maintainability.
-              </p>
-              <a href="https://github.com/cdeniaca/lab-python-functions-extra"
-                 target="_blank"
-                 class="btn btn-sm btn-purple">
-                 View Repository
-              </a>
+              <p>Development of reusable functions and modular code structures to improve readability and maintainability.</p>
+              <a href="https://github.com/cdeniaca/lab-python-functions-extra" target="_blank" class="btn btn-sm btn-purple">View Repository</a>
             </div>
-    
           </div>
-    
         </div>
       </div>
     </div>
 
-    
-    <!-- ===========================
-         CSS extra para los enlaces de proyectos
-         =========================== -->
-    <style>
-      .project-link {
-        display: inline-block;
-        text-decoration: none;
-        color: inherit;
-        padding: 10px;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-      }
-      .project-link:hover {
-        background-color: rgba(111, 66, 193, 0.1);
-        transform: translateY(-3px);
-      }
-    </style>
-
-
-
-
-
-    <!-- ===========================
-         Certifications / Certificaciones
-    =========================== -->
+    <!-- Certifications -->
     <section class="section bg-light fade-in" id="certifications">
       <div class="container">
         <div class="row align-items-start">
           <div class="col-12" style="padding-left: 30px;">
-    
-            <!-- ENGLISH -->
             <div data-lang="en">
               <h2 class="mb-4">Certifications</h2>
               <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
-                    Data Analytics Bootcamp – Ironhack
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">
-                    University Degree – Universidad Miguel Hernández <em>(In progress)</em>
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">
-                    Certification PL-300 – Microsoft <em>(In progress)</em>
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">
-                    Udemy Certifications – Data Analytics & Python
-                  </a>
-                </li>
-    
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">Data Analytics Bootcamp – Ironhack</a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">University Degree – Universidad Miguel Hernández <em>(In progress)</em></a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">Certification PL-300 – Microsoft <em>(In progress)</em></a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">Udemy Certifications – Data Analytics & Python</a></li>
               </ul>
             </div>
-    
-            <!-- ESPAÑOL -->
+
             <div data-lang="es">
               <h2 class="mb-4">Certificaciones</h2>
               <ul class="list-group list-group-flush mx-auto text-start" style="max-width:700px;">
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">
-                    Bootcamp en Data Analytics – Ironhack
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">
-                    Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em>
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">
-                    Certificación PL-300 – Microsoft <em>(En progreso)</em>
-                  </a>
-                </li>
-    
-                <li class="list-group-item">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">
-                    Certificaciones Udemy – Data Analytics & Python
-                  </a>
-                </li>
-    
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalBootcamp">Bootcamp en Data Analytics – Ironhack</a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalUMH">Grado universitario – Universidad Miguel Hernández <em>(En progreso)</em></a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalPL300">Certificación PL-300 – Microsoft <em>(En progreso)</em></a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#modalUdemy">Certificaciones Udemy – Data Analytics & Python</a></li>
               </ul>
             </div>
-    
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- ===========================
-         Modals
-    =========================== -->
-    
+
     <!-- Modal Bootcamp -->
     <div class="modal fade" id="modalBootcamp" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content border-0">
-    
           <div class="modal-header">
             <h5 class="modal-title">Bootcamp en Data Analytics – Ironhack</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
           <div class="modal-body p-0" style="height:80vh;">
-            <iframe 
-              src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072"
-              width="100%" 
-              height="100%" 
-              style="border:0;"
-              loading="lazy">
-            </iframe>
+            <iframe src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
           </div>
-    
           <div class="modal-footer">
-            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072"
-               target="_blank"
-               class="btn btn-purple">
-               Abrir en nueva pestaña
-            </a>
+            <a href="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/137270072" target="_blank" class="btn btn-purple">Abrir en nueva pestaña</a>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
-    
         </div>
       </div>
     </div>
-    
+
     <!-- Modal Udemy -->
     <div class="modal fade" id="modalUdemy" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0">
-    
           <div class="modal-header">
             <h5 class="modal-title">Udemy Certifications</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
           <div class="modal-body">
-    
             <div data-lang="en">
-              <p>
-                Advanced training in Data Analytics and Python focused on practical
-                implementation, analytical thinking and business application.
-              </p>
+              <p>Advanced training in Data Analytics and Python focused on practical implementation, analytical thinking and business application.</p>
             </div>
-    
             <div data-lang="es">
-              <p>
-                Formación avanzada en Data Analytics y Python enfocada en aplicación
-                práctica, pensamiento analítico y contexto empresarial.
-              </p>
+              <p>Formación avanzada en Data Analytics y Python enfocada en aplicación práctica, pensamiento analítico y contexto empresarial.</p>
             </div>
-    
             <hr>
-    
             <div class="mb-4">
               <strong>Udemy Official Certificate</strong>
               <div class="mt-2">
-                <a href="https://www.udemy.com/certificate/UC-061213dc-680a-4b2e-bfa2-1c96a2ac3912/"
-                   target="_blank"
-                   class="btn btn-purple btn-sm">
-                   View Certificate
-                </a>
+                <a href="https://www.udemy.com/certificate/UC-061213dc-680a-4b2e-bfa2-1c96a2ac3912/" target="_blank" class="btn btn-purple btn-sm">View Certificate</a>
               </div>
             </div>
-    
             <div>
               <strong>NTT Data Learn – Udemy Certificate</strong>
               <div class="mt-2">
-                <a href="https://nttdatalearn.udemy.com/certificate/UC-7bb119dc-982a-42da-9b69-7768897cd0e7/"
-                   target="_blank"
-                   class="btn btn-outline-dark btn-sm">
-                   View Certificate
-                </a>
+                <a href="https://nttdatalearn.udemy.com/certificate/UC-7bb119dc-982a-42da-9b69-7768897cd0e7/" target="_blank" class="btn btn-outline-dark btn-sm">View Certificate</a>
               </div>
             </div>
-    
           </div>
-    
         </div>
       </div>
     </div>
 
-      
     <!-- Contact Section -->
     <section class="section bg-light fade-in" id="contact">
       <div class="container">
-    
         <div class="row">
           <div class="col-12" style="padding-left: 30px;">
-    
-            <!-- TÍTULO -->
-            <div data-lang="es">
-              <h2 class="mb-4">Contacto</h2>
-            </div>
-    
-            <div data-lang="en">
-              <h2 class="mb-4">Contact</h2>
-            </div>
-    
-            <!-- LINKEDIN -->
+            <div data-lang="es"><h2 class="mb-4">Contacto</h2></div>
+            <div data-lang="en"><h2 class="mb-4">Contact</h2></div>
             <div class="mb-4">
-              <div class="badge-base LI-profile-badge"
-                   data-locale="es_ES"
-                   data-size="medium"
-                   data-theme="light"
-                   data-type="HORIZONTAL"
-                   data-vanity="cristinadeniacarretero"
-                   data-version="v1">
-              </div>
+              <div class="badge-base LI-profile-badge" data-locale="es_ES" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="cristinadeniacarretero" data-version="v1"></div>
             </div>
-    
-            <!-- TEXTO -->
-            <div data-lang="es">
-              <p>No dudes en conectarte conmigo en LinkedIn.</p>
-            </div>
-    
-            <div data-lang="en">
-              <p>Feel free to connect with me on LinkedIn.</p>
-            </div>
-    
+            <div data-lang="es"><p>No dudes en conectarte conmigo en LinkedIn.</p></div>
+            <div data-lang="en"><p>Feel free to connect with me on LinkedIn.</p></div>
           </div>
         </div>
-    
       </div>
     </section>
 
-
-
-
-
- 
   </div><!-- /content-wrapper -->
 
-  <!-- Footer fuera del content-wrapper -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="mb-2">
         <img src="images/custom-icon.png" alt="Logo" class="img-fluid" style="width: 40px; height: auto;" aria-label="Footer logo">
       </div>
       <p class="mb-0" data-lang="en">
-        &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
+        &copy; 2026 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
       <p class="mb-0" data-lang="es">
-        &copy; 2025 Cristina Denia Carretero &nbsp;|&nbsp;
+        &copy; 2026 Cristina Denia Carretero &nbsp;|&nbsp;
         <a href="https://www.cristinadeniacarretero.com" class="text-white text-decoration-underline" target="_blank">www.cristinadeniacarretero.com</a>
       </p>
     </div>
   </footer>
 
-
-
-
-  <!-- Bootstrap JS bundle (incluye Popper). Debe ir antes de tu script personalizado -->
+  <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Script personalizado -->
+
   <script>
-    // ─────────────────────────────────────────────────────────────────────────────
-    // Utilidad: debounce para limitar la frecuencia de ejecución en scroll/resize.
-    // Evita ejecuciones excesivas y mejora rendimiento.
-    // ─────────────────────────────────────────────────────────────────────────────
     function debounce(fn, delay = 100) {
       let t;
       return (...args) => {
@@ -1023,78 +701,53 @@
         t = setTimeout(() => fn.apply(null, args), delay);
       };
     }
-  
-    // ─────────────────────────────────────────────────────────────────────────────
-    // Cambio de idioma visible: muestra solo los nodos con data-lang=lang
-    // Además, marca aria-hidden por accesibilidad y recuerda la preferencia.
-    // ─────────────────────────────────────────────────────────────────────────────
+
     function setLanguage(lang) {
       document.querySelectorAll('[data-lang]').forEach(el => {
         const show = el.getAttribute('data-lang') === lang;
         el.style.display = show ? 'block' : 'none';
         el.toggleAttribute('aria-hidden', !show);
       });
-      // Guardar preferencia para próximas visitas
       try { localStorage.setItem('lang', lang); } catch {}
     }
-  
+
     document.addEventListener('DOMContentLoaded', () => {
-      // ───────────────────────────────────────────────────────────────────────────
-      // Idioma inicial:
-      // 1) Restaura el guardado en localStorage si existe.
-      // 2) Si no, detecta el idioma del navegador (es/en).
-      // ───────────────────────────────────────────────────────────────────────────
-      const savedLang = (() => { try { return localStorage.getItem('lang'); } catch { return null; } })();
+      const savedLang = (() => {
+        try { return localStorage.getItem('lang'); } catch { return null; }
+      })();
       const userLang = savedLang || (navigator.language && navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en');
       setLanguage(userLang);
-  
-      // Exponer setLanguage globalmente (útil si tienes botones <button onclick="setLanguage('es')">)
       window.setLanguage = setLanguage;
-  
-      // ───────────────────────────────────────────────────────────────────────────
-      // Animaciones de aparición (fade-in)
-      // - Usa IntersectionObserver con threshold 0.1 (aparecen antes y de forma fiable).
-      // - Respeta "prefers-reduced-motion": si el usuario prefiere menos movimiento,
-      //   se muestran directamente sin animación.
-      // ───────────────────────────────────────────────────────────────────────────
+
       const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
+
       if (!prefersReduced && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
-              // Deja de observar el elemento una vez visible para ahorrar recursos
               observer.unobserve(entry.target);
             }
           });
         }, { threshold: 0.1 });
-  
+
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
       } else {
-        // Fallback sin animación
         document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
       }
-  
-      // ───────────────────────────────────────────────────────────────────────────
-      // Resaltar enlace activo del sidebar:
-      // - Encuentra la sección cuyo centro está más cercano al centro del viewport.
-      // - Añade .active y aria-current al enlace correspondiente.
-      // - Usa debounce en scroll/resize para rendimiento.
-      // ───────────────────────────────────────────────────────────────────────────
+
       const sections = Array.from(document.querySelectorAll('section[id]'));
       const navLinks = Array.from(document.querySelectorAll('.sidebar ul li a'));
-  
+
       function highlightCurrent() {
         if (!sections.length || !navLinks.length) return;
-  
+
         const viewportCenter = window.innerHeight / 2;
         let closestId = null;
         let minDist = Infinity;
-  
+
         sections.forEach(section => {
           const rect = section.getBoundingClientRect();
-          // Distancia entre el centro de la sección y el centro del viewport
           const sectionCenter = (rect.top + rect.bottom) / 2;
           const dist = Math.abs(sectionCenter - viewportCenter);
           if (dist < minDist) {
@@ -1102,41 +755,32 @@
             closestId = section.id;
           }
         });
-  
+
         if (!closestId) return;
-  
+
         navLinks.forEach(link => {
           const isActive = link.getAttribute('href') === `#${closestId}`;
           link.classList.toggle('active', isActive);
-          link.setAttribute('aria-current', isActive ? 'page' : 'false');
+          if (isActive) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
         });
       }
-  
+
       window.addEventListener('scroll', debounce(highlightCurrent, 50), { passive: true });
       window.addEventListener('resize', debounce(highlightCurrent, 100));
-      // Estado inicial
       highlightCurrent();
-  
-      // ───────────────────────────────────────────────────────────────────────────
-      // Cerrar offcanvas en móvil al pulsar un enlace:
-      // - Si el enlace ya tiene data-bs-dismiss="offcanvas", Bootstrap se encarga.
-      // - Si no, intentamos cerrarlo nosotros como mejora de UX.
-      // ───────────────────────────────────────────────────────────────────────────
+
       const mobileMenu = document.getElementById('mobileMenu');
       if (mobileMenu) {
         mobileMenu.addEventListener('click', (e) => {
           const a = e.target.closest('a');
           if (!a) return;
-          // Si ya está marcado para que Bootstrap lo cierre, no intervenimos
           if (a.hasAttribute('data-bs-dismiss')) return;
-  
-          // Intentar cerrar manualmente (fallback seguro)
+
           try {
             const instance = bootstrap?.Offcanvas?.getInstance?.(mobileMenu) || new bootstrap.Offcanvas(mobileMenu);
             if (instance) instance.hide();
-          } catch {
-            // Si Bootstrap no está disponible por algún motivo, simplemente no hacemos nada
-          }
+          } catch {}
         });
       }
     });
