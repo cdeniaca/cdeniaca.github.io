@@ -243,13 +243,54 @@
         <div><span class="eyebrow">NUEVA COMPRA</span><h2>Registrar ticket</h2></div>
         <button class="icon-button" type="button" data-close-dialog="purchaseDialog" aria-label="Cerrar">×</button>
       </div>
+      <section class="receipt-import" aria-labelledby="receiptImportTitle">
+        <div class="receipt-import-head">
+          <div>
+            <span class="eyebrow">📷 ENTRADA RÁPIDA</span>
+            <h3 id="receiptImportTitle">Fotografiar o subir ticket</h3>
+            <p>La imagen se procesa en tu navegador. No se guarda en FoodLoop: solo conservamos los datos que confirmes al guardar la compra.</p>
+          </div>
+          <span class="badge habitual">OCR LOCAL</span>
+        </div>
+
+        <div class="receipt-capture-actions">
+          <button class="secondary-button" type="button" id="takeReceiptPhotoBtn">📷 Hacer foto</button>
+          <button class="secondary-button" type="button" id="chooseReceiptImagesBtn">🖼️ Elegir foto</button>
+          <button class="primary-button" type="button" id="runReceiptOcrBtn" disabled>Leer ticket</button>
+        </div>
+        <input id="receiptCameraInput" type="file" accept="image/*" capture="environment" hidden>
+        <input id="receiptGalleryInput" type="file" accept="image/*" multiple hidden>
+
+        <div id="receiptPreviewWrap" class="receipt-preview-wrap" hidden>
+          <img id="receiptPreview" class="receipt-preview" alt="Vista previa del ticket seleccionado">
+          <div class="receipt-preview-info">
+            <strong id="receiptFileLabel">Ticket seleccionado</strong>
+            <small id="receiptPrivacyNote">La foto no se incorpora al backup ni al histórico.</small>
+          </div>
+        </div>
+
+        <div id="receiptOcrProgressWrap" class="ocr-progress-wrap" hidden>
+          <div class="ocr-progress-track"><div id="receiptOcrProgressBar" class="ocr-progress-bar"></div></div>
+          <small id="receiptOcrProgressText">Preparando OCR…</small>
+        </div>
+
+        <details id="receiptOcrDetails" class="ocr-details" hidden>
+          <summary>Revisar texto detectado</summary>
+          <textarea id="receiptOcrText" rows="8" spellcheck="false" placeholder="Aquí aparecerá el texto reconocido del ticket."></textarea>
+          <div class="ocr-details-actions">
+            <button class="secondary-button compact" type="button" id="parseReceiptTextBtn">↻ Convertir texto en productos</button>
+          </div>
+        </details>
+        <p class="receipt-tech-note">En la primera lectura el navegador descarga el motor OCR y el modelo de español; el reconocimiento se ejecuta localmente en el dispositivo.</p>
+      </section>
+
       <div class="form-grid three">
         <label>Fecha<input id="purchaseDate" type="date" required></label>
         <label>Tienda<input id="purchaseStore" type="text" placeholder="Mercadona, Lidl..."></label>
         <label>Total ticket (€)<input id="purchaseTicketTotal" type="number" min="0" step="0.01" placeholder="Opcional"></label>
       </div>
       <div class="purchase-lines-head">
-        <div><strong>Productos</strong><small>Introduce una línea por producto. Más adelante esta misma tabla recibirá el OCR del ticket.</small></div>
+        <div><strong>Productos</strong><small>Revisa y corrige las líneas antes de guardar. El OCR puede equivocarse con abreviaturas, cantidades o precios.</small></div>
         <button class="secondary-button compact" type="button" id="addPurchaseLineBtn">＋ Línea</button>
       </div>
       <div id="purchaseLines" class="purchase-lines"></div>
@@ -303,6 +344,7 @@
     <div class="privacy-copy">
       <p><strong>FoodLoop no necesita cuenta, backend ni API.</strong> La base IndexedDB vive en el navegador de este dispositivo.</p>
       <p>El código de la web puede estar publicado en GitHub; tus tickets e histórico no forman parte del repositorio.</p>
+      <p>Cuando utilizas el OCR, el navegador descarga Tesseract.js y su modelo de idioma, pero <strong>la foto del ticket se reconoce en tu dispositivo y no se guarda en FoodLoop</strong>.</p>
       <p>Para no depender de una única copia local, usa periódicamente <strong>Mis datos → Descargar backup completo</strong>.</p>
     </div>
   </dialog>
@@ -314,6 +356,7 @@
   <script src="./js/db.js"></script>
   <script src="./js/export.js"></script>
   <script src="./js/xlsx.js"></script>
+  <script src="./js/ocr.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>

@@ -4,9 +4,12 @@
   const DB = window.FoodLoopDB;
   const EX = window.FoodLoopExport;
   const XLSX = window.FoodLoopXLSX;
+  const OCR = window.FoodLoopOCR;
   const $ = id => document.getElementById(id);
   let toastTimer = null;
   let historyRange = { from: '', to: '' };
+  let receiptFiles = [];
+  let receiptPreviewUrl = null;
 
   function money(value) {
     return Number(value || 0).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
@@ -294,8 +297,122 @@
     $('purchaseLines').appendChild(row);
   }
 
+  function resetReceiptImport() {
+    receiptFiles = [];
+    if (receiptPreviewUrl) URL.revokeObjectURL(receiptPreviewUrl);
+    receiptPreviewUrl = null;
+    $('receiptCameraInput').value = '';
+    $('receiptGalleryInput').value = '';
+    $('receiptPreviewWrap').hidden = true;
+    $('receiptPreview').removeAttribute('src');
+    $('receiptFileLabel').textContent = 'Ticket seleccionado';
+    $('runReceiptOcrBtn').disabled = true;
+    $('receiptOcrProgressWrap').hidden = true;
+    $('receiptOcrProgressBar').style.width = '0%';
+    $('receiptOcrProgressText').textContent = 'Preparando OCR…';
+    $('receiptOcrDetails').hidden = true;
+    $('receiptOcrDetails').open = false;
+    $('receiptOcrText').value = '';
+  }
+
+  function setReceiptFiles(fileList) {
+    const files = Array.from(fileList || []).filter(file => file && String(file.type || '').startsWith('image/'));
+    if (!files.length) return;
+    receiptFiles = files;
+    if (receiptPreviewUrl) URL.revokeObjectURL(receiptPreviewUrl);
+    receiptPreviewUrl = URL.createObjectURL(files[0]);
+    $('receiptPreview').src = receiptPreviewUrl;
+    $('receiptPreviewWrap').hidden = false;
+    $('receiptFileLabel').textContent = files.length === 1 ? files[0].name || '1 imagen seleccionada' : `${files.length} imágenes seleccionadas`;
+    $('runReceiptOcrBtn').disabled = false;
+    $('receiptOcrDetails').hidden = true;
+    $('receiptOcrProgressWrap').hidden = true;
+    toast(files.length === 1 ? 'Ticket listo para leer' : `${files.length} fotos listas para leer`);
+  }
+
+  function ocrProgress(message) {
+    const wrap = $('receiptOcrProgressWrap');
+    const bar = $('receiptOcrProgressBar');
+    const label = $('receiptOcrProgressText');
+    wrap.hidden = false;
+    const status = String(message?.status || '');
+    const progress = Number(message?.progress);
+    const pct = Number.isFinite(progress) ? Math.max(0, Math.min(100, Math.round(progress * 100))) : 8;
+    if (status === 'foodloop-image') {
+      const current = Number(message.index || 0) + 1;
+      const total = Number(message.total || receiptFiles.length || 1);
+      bar.style.width = `${Math.round((current - 1) / total * 100)}%`;
+      label.textContent = `Preparando imagen ${current} de ${total}…`;
+      return;
+    }
+    const labels = {
+      'loading tesseract core': 'Cargando motor OCR…',
+      'initializing tesseract': 'Inicializando OCR…',
+      'loading language traineddata': 'Cargando modelo de español…',
+      'initializing api': 'Preparando reconocimiento…',
+      'recognizing text': 'Leyendo el ticket…',
+      'done': 'Lectura completada'
+    };
+    bar.style.width = `${status === 'done' ? 100 : pct}%`;
+    label.textContent = `${labels[status] || 'Procesando ticket…'}${Number.isFinite(progress) && status !== 'done' ? ` ${pct}%` : ''}`;
+  }
+
+  function currentPurchaseHasContent() {
+    return [...$('purchaseLines').querySelectorAll('.purchase-line')].some(row => row.querySelector('.line-name')?.value.trim());
+  }
+
+  function applyReceiptResult(result, askBeforeReplace = true) {
+    if (!result) return 0;
+    if (result.date) $('purchaseDate').value = result.date;
+    if (result.store) $('purchaseStore').value = result.store;
+    if (result.total != null) $('purchaseTicketTotal').value = Number(result.total).toFixed(2);
+
+    const lines = Array.isArray(result.lines) ? result.lines : [];
+    if (!lines.length) return 0;
+    if (askBeforeReplace && currentPurchaseHasContent() && !confirm('El OCR sustituirá las líneas de producto que ya has escrito. ¿Continuar?')) return 0;
+    $('purchaseLines').innerHTML = '';
+    lines.forEach(line => makePurchaseLine(line));
+    return lines.length;
+  }
+
+  function parseReceiptText(askBeforeReplace = true) {
+    const text = $('receiptOcrText').value.trim();
+    if (!text) return toast('No hay texto del ticket para convertir');
+    const result = OCR?.parseReceipt(text);
+    const count = applyReceiptResult(result, askBeforeReplace);
+    if (count) toast(`${count} producto${count === 1 ? '' : 's'} detectado${count === 1 ? '' : 's'} · revísalos antes de guardar`);
+    else toast('No he podido separar productos automáticamente; puedes editar el texto o añadir líneas manualmente');
+  }
+
+  async function runReceiptOcr() {
+    if (!receiptFiles.length) return toast('Selecciona una foto del ticket');
+    const button = $('runReceiptOcrBtn');
+    button.disabled = true;
+    button.textContent = 'Leyendo…';
+    $('receiptOcrProgressWrap').hidden = false;
+    $('receiptOcrProgressBar').style.width = '2%';
+    $('receiptOcrProgressText').textContent = 'Preparando OCR…';
+    try {
+      const text = await OCR.recognizeFiles(receiptFiles, ocrProgress);
+      $('receiptOcrText').value = text.trim();
+      $('receiptOcrDetails').hidden = false;
+      $('receiptOcrDetails').open = true;
+      const result = OCR.parseReceipt(text);
+      const count = applyReceiptResult(result, false);
+      if (count) toast(`Ticket leído: ${count} producto${count === 1 ? '' : 's'} · revisa la tabla`);
+      else toast('Texto leído, pero no he separado productos. Revisa el texto detectado.');
+    } catch (err) {
+      console.error(err);
+      alert(err.message || 'No se pudo leer el ticket. Puedes introducir la compra manualmente.');
+    } finally {
+      button.disabled = receiptFiles.length === 0;
+      button.textContent = 'Leer ticket';
+    }
+  }
+
   async function openPurchase() {
     $('purchaseForm').reset();
+    resetReceiptImport();
     $('purchaseDate').value = DB.localDateString();
     $('purchaseLines').innerHTML = '';
     makePurchaseLine();
@@ -468,6 +585,12 @@
     $('newPurchaseTopBtn').addEventListener('click', openPurchase);
     $('newPurchaseHeroBtn').addEventListener('click', openPurchase);
     $('addPurchaseLineBtn').addEventListener('click', () => makePurchaseLine());
+    $('takeReceiptPhotoBtn').addEventListener('click', () => { $('receiptCameraInput').value = ''; $('receiptCameraInput').click(); });
+    $('chooseReceiptImagesBtn').addEventListener('click', () => { $('receiptGalleryInput').value = ''; $('receiptGalleryInput').click(); });
+    $('receiptCameraInput').addEventListener('change', e => setReceiptFiles(e.target.files));
+    $('receiptGalleryInput').addEventListener('change', e => setReceiptFiles(e.target.files));
+    $('runReceiptOcrBtn').addEventListener('click', runReceiptOcr);
+    $('parseReceiptTextBtn').addEventListener('click', () => parseReceiptText(true));
     $('purchaseForm').addEventListener('submit', submitPurchase);
     $('consumeForm').addEventListener('submit', submitConsume);
     $('adjustForm').addEventListener('submit', submitAdjust);
