@@ -11,7 +11,9 @@
       const script = document.createElement('script');
       script.src = TESSERACT_URL;
       script.crossOrigin = 'anonymous';
-      script.onload = () => window.Tesseract?.createWorker ? resolve(window.Tesseract) : reject(new Error('El motor OCR se ha descargado pero no se ha inicializado.'));
+      script.onload = () => window.Tesseract?.createWorker
+        ? resolve(window.Tesseract)
+        : reject(new Error('El motor OCR se ha descargado pero no se ha inicializado.'));
       script.onerror = () => reject(new Error('No se ha podido descargar el motor OCR. Comprueba la conexión a Internet.'));
       document.head.appendChild(script);
     });
@@ -19,7 +21,17 @@
   }
 
   function normalizeWhitespace(value) {
-    return String(value || '').replace(/\u00a0/g, ' ').replace(/[ \t]+/g, ' ').trim();
+    return String(value || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/[\t ]+/g, ' ')
+      .trim();
+  }
+
+  function normalizeOcrLine(value) {
+    return normalizeWhitespace(value)
+      .replace(/[–—−]/g, '-')
+      .replace(/(\d)[,.;:]\s+(\d{2})(?=\D|$)/g, '$1,$2')
+      .replace(/(\d)\s+([,.])\s*(\d{2})(?=\D|$)/g, '$1$2$3');
   }
 
   function titleCase(value) {
@@ -30,7 +42,10 @@
 
   function parseMoney(raw) {
     if (raw == null || raw === '') return null;
-    const clean = String(raw).replace(/\s/g, '').replace(/\.(?=\d{3}(?:\D|$))/g, '').replace(',', '.');
+    const clean = String(raw)
+      .replace(/\s/g, '')
+      .replace(/\.(?=\d{3}(?:\D|$))/g, '')
+      .replace(',', '.');
     const value = Number(clean.replace(/[^0-9.-]/g, ''));
     return Number.isFinite(value) ? value : null;
   }
@@ -78,158 +93,284 @@
     return candidate ? titleCase(candidate.replace(/[^\p{L}\p{N}&.'\- ]/gu, '')) : '';
   }
 
+  function moneyTokens(line) {
+    const tokens = [];
+    const pattern = /(?:^|\s|[=:])([0-9]{1,5}\s*[.,]\s*[0-9]{2})(?=\s*(?:€|EUR|[A-Z])?(?:\s|$))/gi;
+    let match;
+    while ((match = pattern.exec(line)) !== null) {
+      const raw = match[1];
+      const offset = match[0].indexOf(raw);
+      const value = parseMoney(raw);
+      if (!Number.isFinite(value)) continue;
+      tokens.push({ raw, value, index: match.index + Math.max(0, offset), end: match.index + Math.max(0, offset) + raw.length });
+    }
+    return tokens;
+  }
+
   function detectTotal(lines) {
-    const totalWords = /(TOTAL(?:\s+A\s+PAGAR)?|IMPORTE(?:\s+TOTAL)?|A\s+PAGAR)/i;
+    const totalWords = /\b(TOTAL(?:\s+A\s+PAGAR)?|IMPORTE(?:\s+TOTAL)?|A\s+PAGAR)\b/i;
     for (let i = lines.length - 1; i >= 0; i--) {
       const line = lines[i];
       if (!totalWords.test(line)) continue;
-      const amounts = [...line.matchAll(/(\d{1,5}[.,]\d{2})/g)].map(m => parseMoney(m[1])).filter(Number.isFinite);
+      const amounts = moneyTokens(line).map(t => t.value);
       if (amounts.length) return amounts[amounts.length - 1];
     }
     return null;
   }
 
-  const IGNORE_LINE = /(TOTAL|SUBTOTAL|IMPORTE|IVA|I\.V\.A|BASE\s+IMPONIBLE|EFECTIVO|TARJETA|CAMBIO|ENTREGADO|PAGO|AHORRO|DESCUENTO|DTO\.?|NIF|CIF|TEL(?:EFONO)?|FECHA|HORA|TICKET|FACTURA|CAJA|OPERACION|AUTORIZACION|GRACIAS|WWW\.|HTTP|VISA|MASTERCARD|CONTACTLESS|REDONDEO|DONACION|APERTURA)/i;
+  const ADMIN_LINE = /\b(TOTAL|SUBTOTAL|IMPORTE|IVA|I\.V\.A|BASE\s+IMPONIBLE|EFECTIVO|TARJETA|CAMBIO|ENTREGADO|PAGO|AHORRO|DESCUENTO|DTO\.?|NIF|CIF|TEL(?:EFONO)?|FECHA|HORA|TICKET|FACTURA|CAJA|OPERACION|AUTORIZACION|GRACIAS|WWW\.|HTTP|VISA|MASTERCARD|CONTACTLESS|REDONDEO|DONACION|APERTURA|PUNTOS|SALDO|CUPON|CUPÓN)\b/i;
+  const HEADER_LINE = /\b(DESCRIPCION|DESCRIPCIÓN|ARTICULO|ARTÍCULO|PRODUCTO|CANTIDAD|CANT\.?|UDS?\.?|UNIDADES|PVP|PRECIO|IMPORTE|EUROS?|EUR\/KG|PRECIO\/KG)\b/i;
+  const TOTAL_LINE = /(?:^|\s)(TOTAL(?:\s+A\s+PAGAR)?|IMPORTE\s+TOTAL|A\s+PAGAR)(?:\s|$)/i;
+  const STORE_LINE = /\b(MERCADONA|LIDL|CARREFOUR|ALDI|CONSUM|ALCAMPO|HIPERCOR|EROSKI|MASYMAS|MAS Y MAS|EL CORTE INGLES|SUPERCOR|BONAREA|FROIZ)\b/i;
 
   function cleanupName(raw) {
     return normalizeWhitespace(String(raw || '')
-      .replace(/^[*#·:;,.\-\s]+/, '')
-      .replace(/[*#·:;,.\-\s]+$/, '')
+      .replace(/^[*#·:;,._\-\s]+/, '')
+      .replace(/[*#·:;,._\-\s]+$/, '')
+      .replace(/^\d{6,14}\s+/, '')
       .replace(/\s{2,}/g, ' '));
   }
 
+  function letterCount(value) {
+    return (String(value || '').match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g) || []).length;
+  }
+
   function looksLikeProductName(name) {
-    if (!name || name.length < 2 || name.length > 80 || IGNORE_LINE.test(name)) return false;
-    const letters = (name.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g) || []).length;
-    return letters >= 2;
+    const clean = cleanupName(name);
+    if (!clean || clean.length < 2 || clean.length > 100 || ADMIN_LINE.test(clean) || HEADER_LINE.test(clean) || STORE_LINE.test(clean)) return false;
+    if (/^\d[\d\s:/.,\-]+$/.test(clean)) return false;
+    return letterCount(clean) >= 2;
+  }
+
+  function productScore(line) {
+    const clean = cleanupName(line);
+    if (!looksLikeProductName(clean)) return -100;
+    let score = 0;
+    const letters = letterCount(clean);
+    const digits = (clean.match(/\d/g) || []).length;
+    if (letters >= 4) score += 3;
+    if (letters >= 8) score += 1;
+    if (digits <= letters) score += 1;
+    if (/\b(KG|G|ML|CL|L|UD|UDS|U|PAQ|PACK)\b/i.test(clean)) score += 1;
+    if (/\b(CALLE|AVDA|AVENIDA|C\/|CP|C\.P\.|CLIENTE|CAJERO|TIENDA|CENTRO|DOMICILIO)\b/i.test(clean)) score -= 4;
+    if (/[@]|\.COM\b|WWW\b/i.test(clean)) score -= 5;
+    return score;
+  }
+
+  function parseQuantityContext(raw) {
+    let text = cleanupName(raw);
+    let qty = 1;
+    let unit = 'ud';
+
+    const weightExplicit = text.match(/(?:^|\s)(\d+(?:[.,]\d+)?)\s*(KG|G|L|ML)\b/i);
+    if (weightExplicit) {
+      qty = parseMoney(weightExplicit[1]) || 1;
+      unit = weightExplicit[2].toLocaleLowerCase('es');
+      text = cleanupName(text.replace(weightExplicit[0], ' '));
+    }
+
+    const leadingCount = text.match(/^(\d{1,3})\s*(?:[xX*]\s*)?(.+)$/);
+    if (unit === 'ud' && leadingCount && looksLikeProductName(leadingCount[2]) && Number(leadingCount[1]) <= 99) {
+      qty = Number(leadingCount[1]) || 1;
+      text = cleanupName(leadingCount[2]);
+    }
+
+    const multiplierWithUnitPrice = raw.match(/\b(\d+(?:[.,]\d+)?)\s*[xX*]\s*\d{1,5}(?:[.,]\d{2})\b/i);
+    if (multiplierWithUnitPrice && unit === 'ud') qty = parseMoney(multiplierWithUnitPrice[1]) || qty;
+
+    if (qty === 1) {
+      const packUnits = text.match(/\b(\d{1,2})\s*U(?:D|DS)?\b/i);
+      const packFormat = text.match(/\b(\d{1,2})\s*[xX]\s*\d+(?:[.,]\d+)?\s*(?:G|ML|CL)\b/i);
+      const pack = packUnits || packFormat;
+      if (pack) qty = Number(pack[1]) || 1;
+    }
+
+    return { name: cleanupName(text), qty, unit };
+  }
+
+  function inferUnitFromPriceContext(line, currentUnit) {
+    if (currentUnit !== 'ud') return currentUnit;
+    if (/€?\s*\/\s*KG\b|EUR\s*\/\s*KG\b/i.test(line)) return 'kg';
+    if (/€?\s*\/\s*L\b|EUR\s*\/\s*L\b/i.test(line)) return 'l';
+    return currentUnit;
+  }
+
+  function stripPricingFragments(raw, lastToken) {
+    let text = raw.slice(0, lastToken.index);
+    text = text
+      .replace(/\b\d+(?:[.,]\d+)?\s*[xX*]\s*\d{1,5}(?:[.,]\d{2})\b/g, ' ')
+      .replace(/\b\d{1,5}[.,]\d{2}\b/g, ' ')
+      .replace(/\b\d{1,5}(?:[.,]\d{2})\s*(?:€|EUR)?\s*\/\s*(?:KG|L)\b/gi, ' ')
+      .replace(/\b\d+(?:[.,]\d+)?\s*(?:KG|G|L|ML)\b/gi, match => match)
+      .replace(/\s+[A-Z]$/i, ' ');
+    return cleanupName(text);
+  }
+
+  function findPreviousProductCandidate(lines, index, consumed) {
+    for (let back = 1; back <= 3; back++) {
+      const j = index - back;
+      if (j < 0 || consumed.has(j)) break;
+      const candidate = lines[j];
+      if (!candidate || ADMIN_LINE.test(candidate) || HEADER_LINE.test(candidate) || moneyTokens(candidate).length) continue;
+      if (productScore(candidate) >= 2) return { index: j, line: candidate };
+    }
+    return null;
   }
 
   function parseProductLines(lines) {
     const parsed = [];
-    let pendingName = '';
+    const consumed = new Set();
+    const sourceIndexes = [];
+    const totalIndex = lines.findIndex(line => TOTAL_LINE.test(line));
 
-    for (const original of lines) {
-      const line = normalizeWhitespace(original);
+    for (let i = 0; i < lines.length; i++) {
+      if (consumed.has(i)) continue;
+      const line = lines[i];
       if (!line) continue;
+      if (TOTAL_LINE.test(line)) break;
+      if (ADMIN_LINE.test(line)) continue;
 
-      const priceMatches = [...line.matchAll(/(\d{1,5}[.,]\d{2})(?:\s*€)?/g)];
-      const lastPrice = priceMatches.length ? priceMatches[priceMatches.length - 1] : null;
+      const tokens = moneyTokens(line);
+      if (HEADER_LINE.test(line) && !tokens.length) continue;
+      if (!tokens.length) continue;
 
-      if (!lastPrice) {
-        if (looksLikeProductName(line) && !/^\d[\d\s:/.\-]+$/.test(line)) pendingName = cleanupName(line);
-        continue;
-      }
+      const lastPrice = tokens[tokens.length - 1];
+      let totalPrice = lastPrice.value;
+      let beforePrice = stripPricingFragments(line, lastPrice);
+      let context = parseQuantityContext(beforePrice);
+      let name = context.name;
+      let qty = context.qty;
+      let unit = inferUnitFromPriceContext(line, context.unit);
+      let sourceIndex = i;
+      let confidence = 'high';
+      let reviewReason = '';
 
-      if (IGNORE_LINE.test(line)) {
-        pendingName = '';
-        continue;
-      }
-
-      const totalPrice = parseMoney(lastPrice[1]);
-      if (!Number.isFinite(totalPrice)) continue;
-
-      let beforePrice = cleanupName(line.slice(0, lastPrice.index));
-      let qty = 1;
-      let unit = 'ud';
-
-      // Líneas del tipo "2 x 1,25 2,50" suelen corresponder al nombre de la línea anterior.
-      const multiplierOnly = beforePrice.match(/^([0-9]+(?:[.,][0-9]+)?)\s*[xX*]\s*(\d{1,5}[.,]\d{2})\s*$/);
-      if (multiplierOnly && pendingName) {
-        qty = parseMoney(multiplierOnly[1]) || 1;
-        beforePrice = pendingName;
-      } else {
-        // Si el multiplicador está al inicio pero también hay nombre, retirarlo del nombre.
-        const leadingMultiplier = beforePrice.match(/^([0-9]+(?:[.,][0-9]+)?)\s*[xX*]\s*(?:\d{1,5}[.,]\d{2})?\s*(.+)$/);
-        if (leadingMultiplier && looksLikeProductName(leadingMultiplier[2])) {
-          qty = parseMoney(leadingMultiplier[1]) || 1;
-          beforePrice = cleanupName(leadingMultiplier[2]);
+      // Si la línea es casi solo precio/cálculo, asociarla con un nombre de las líneas anteriores.
+      if (!looksLikeProductName(name) || productScore(name) < 1) {
+        const previous = findPreviousProductCandidate(lines, i, consumed);
+        if (previous) {
+          const previousContext = parseQuantityContext(previous.line);
+          name = previousContext.name;
+          qty = previousContext.qty;
+          unit = inferUnitFromPriceContext(line, previousContext.unit);
+          sourceIndex = previous.index;
+          consumed.add(previous.index);
         }
       }
 
-      // Peso explícito al principio: "0,842 KG PECHUGA ... 5,72".
-      const weight = beforePrice.match(/^([0-9]+(?:[.,][0-9]+)?)\s*(KG|G)\b\s*(.+)$/i);
-      if (weight && looksLikeProductName(weight[3])) {
-        qty = parseMoney(weight[1]) || 1;
-        unit = weight[2].toLocaleLowerCase('es');
-        beforePrice = cleanupName(weight[3]);
+      // Formatos como "2 x 1,25 2,50" conservan la cantidad aunque el nombre esté en la línea anterior.
+      const multiplier = line.match(/\b(\d+(?:[.,]\d+)?)\s*[xX*]\s*\d{1,5}(?:[.,]\d{2})\b/i);
+      if (multiplier && unit === 'ud') qty = parseMoney(multiplier[1]) || qty;
+
+      // Formatos de peso en una línea de cálculo: "0,792 kg x 2,49 EUR/kg 1,97".
+      const weightCalc = line.match(/\b(\d+(?:[.,]\d+)?)\s*(KG|G|L|ML)\b/i);
+      if (weightCalc) {
+        qty = parseMoney(weightCalc[1]) || qty;
+        unit = weightCalc[2].toLocaleLowerCase('es');
       }
 
-      let name = beforePrice;
-      if (!looksLikeProductName(name) && pendingName) name = pendingName;
       name = cleanupName(name);
-
-      // Packs explícitos: "YOGUR 6U" o "YOGUR 6x125G".
-      if (qty === 1) {
-        const packUnits = name.match(/\b(\d{1,2})\s*U(?:D|DS)?\b/i);
-        const packFormat = name.match(/\b(\d{1,2})\s*[xX]\s*\d+(?:[.,]\d+)?\s*(?:G|ML|CL)\b/i);
-        const pack = packUnits || packFormat;
-        if (pack) qty = Number(pack[1]) || 1;
-      }
-
-      // Peso decimal dentro de la línea: "MANZANA 0,842 KG".
-      if (unit === 'ud') {
-        const inlineWeight = name.match(/\b(0[.,]\d+|\d+[.,]\d+)\s*(KG|G)\b/i);
-        if (inlineWeight) {
-          qty = parseMoney(inlineWeight[1]) || qty;
-          unit = inlineWeight[2].toLocaleLowerCase('es');
-          name = cleanupName(name.replace(inlineWeight[0], ''));
-        }
-      }
-
-      if (!looksLikeProductName(name)) {
-        pendingName = '';
-        continue;
-      }
-
-      // Evita interpretar códigos largos como parte principal del nombre.
-      name = cleanupName(name.replace(/^\d{6,14}\s+/, ''));
       if (!looksLikeProductName(name)) continue;
 
-      parsed.push({ name, rawName: name, qty, unit, totalPrice });
-      pendingName = '';
+      // Si el precio parece extraordinariamente grande para una línea, la dejamos pero marcada.
+      if (totalPrice > 1000) {
+        confidence = 'low';
+        reviewReason = 'Comprueba el precio detectado';
+      }
+
+      parsed.push({
+        name,
+        rawName: name,
+        qty: Number(qty || 1),
+        unit: unit || 'ud',
+        totalPrice,
+        confidence,
+        reviewReason,
+        sourceIndex
+      });
+      consumed.add(i);
+      sourceIndexes.push(sourceIndex, i);
     }
 
-    // Agrupa líneas idénticas para que dos unidades repetidas no ocupen dos filas.
-    const grouped = new Map();
+    // Segunda pasada: no ocultar productos que el OCR ha leído pero cuyo precio no ha podido aislar.
+    // Solo se consideran líneas dentro de la zona donde ya hemos encontrado artículos.
+    if (parsed.length) {
+      const minParsed = Math.max(0, Math.min(...sourceIndexes));
+      const maxParsed = totalIndex >= 0 ? totalIndex : Math.min(lines.length, Math.max(...sourceIndexes) + 12);
+
+      for (let i = minParsed; i < maxParsed; i++) {
+        if (consumed.has(i)) continue;
+        const line = lines[i];
+        if (!line || ADMIN_LINE.test(line) || HEADER_LINE.test(line) || moneyTokens(line).length) continue;
+        if (productScore(line) < 3) continue;
+
+        const context = parseQuantityContext(line);
+        if (!looksLikeProductName(context.name)) continue;
+
+        parsed.push({
+          name: context.name,
+          rawName: context.name,
+          qty: Number(context.qty || 1),
+          unit: context.unit || 'ud',
+          totalPrice: null,
+          confidence: 'low',
+          reviewReason: 'Precio no detectado; revisa esta línea',
+          sourceIndex: i
+        });
+        consumed.add(i);
+      }
+    }
+
+    parsed.sort((a, b) => Number(a.sourceIndex || 0) - Number(b.sourceIndex || 0));
+
+    // Agrupa únicamente líneas claramente idénticas. Las filas dudosas sin precio se mantienen separadas.
+    const grouped = [];
+    const highMap = new Map();
     for (const row of parsed) {
+      const canGroup = row.confidence !== 'low' && Number.isFinite(row.totalPrice);
       const key = `${row.name.toLocaleUpperCase('es')}|${row.unit}`;
-      const current = grouped.get(key);
-      if (!current) grouped.set(key, { ...row });
-      else {
+      if (!canGroup || !highMap.has(key)) {
+        const copy = { ...row };
+        grouped.push(copy);
+        if (canGroup) highMap.set(key, copy);
+      } else {
+        const current = highMap.get(key);
         current.qty += Number(row.qty || 0);
         current.totalPrice = Number(current.totalPrice || 0) + Number(row.totalPrice || 0);
       }
     }
-    return [...grouped.values()].map(row => ({
-      ...row,
-      qty: Number(row.qty.toFixed(3)),
-      totalPrice: Number(row.totalPrice.toFixed(2))
+
+    return grouped.map(row => ({
+      name: row.name,
+      rawName: row.rawName,
+      qty: Number(Number(row.qty || 1).toFixed(3)),
+      unit: row.unit || 'ud',
+      totalPrice: Number.isFinite(row.totalPrice) ? Number(row.totalPrice.toFixed(2)) : null,
+      confidence: row.confidence || 'high',
+      reviewReason: row.reviewReason || ''
     }));
   }
 
   function parseReceipt(text) {
     const normalized = String(text || '').replace(/\r/g, '\n');
-    const lines = normalized.split(/\n+/).map(normalizeWhitespace).filter(Boolean);
+    const lines = normalized.split(/\n+/).map(normalizeOcrLine).filter(Boolean);
+    const parsedLines = parseProductLines(lines);
     return {
       date: isoDateFromReceipt(normalized),
       store: detectStore(lines),
       total: detectTotal(lines),
-      lines: parseProductLines(lines),
+      lines: parsedLines,
+      reviewCount: parsedLines.filter(line => line.confidence === 'low').length,
       rawText: normalized
     };
   }
 
   async function decodeImage(file) {
-    // createImageBitmap es rápido, pero algunas versiones de Safari/iOS fallan con
-    // determinadas fotos de cámara (especialmente HEIC/HEIF). Si falla, usamos
-    // HTMLImageElement como alternativa antes de dar error al usuario.
     if ('createImageBitmap' in window) {
       try {
         const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
         return { source: bitmap, width: bitmap.width, height: bitmap.height, close: () => bitmap.close?.() };
-      } catch (_) {
-        // Continuar con el fallback compatible con Safari.
-      }
+      } catch (_) {}
     }
     const url = URL.createObjectURL(file);
     try {
@@ -249,7 +390,7 @@
   async function imageToOptimizedBlob(file) {
     const decoded = await decodeImage(file);
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '') || Math.min(window.innerWidth || 9999, window.innerHeight || 9999) < 900;
-    const maxDimension = isMobile ? 1700 : 2200;
+    const maxDimension = isMobile ? 1900 : 2400;
     const scale = Math.min(1, maxDimension / Math.max(decoded.width, decoded.height));
     const width = Math.max(1, Math.round(decoded.width * scale));
     const height = Math.max(1, Math.round(decoded.height * scale));
@@ -260,18 +401,17 @@
     ctx.drawImage(decoded.source, 0, 0, width, height);
     decoded.close();
 
-    // Conversión suave a escala de grises y aumento de contraste para tickets térmicos.
     const data = ctx.getImageData(0, 0, width, height);
     const px = data.data;
     for (let i = 0; i < px.length; i += 4) {
       const gray = 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
-      const contrasted = Math.max(0, Math.min(255, (gray - 128) * 1.28 + 128));
+      const contrasted = Math.max(0, Math.min(255, (gray - 128) * 1.34 + 128));
       px[i] = px[i + 1] = px[i + 2] = contrasted;
     }
     ctx.putImageData(data, 0, 0);
 
     return new Promise((resolve, reject) => {
-      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('No se pudo preparar la imagen.')), 'image/jpeg', 0.92);
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('No se pudo preparar la imagen.')), 'image/jpeg', 0.94);
     });
   }
 

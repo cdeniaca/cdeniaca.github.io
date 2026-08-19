@@ -286,7 +286,9 @@
 
   function makePurchaseLine(values = {}) {
     const row = document.createElement('div');
-    row.className = 'purchase-line';
+    const needsReview = values.confidence === 'low';
+    row.className = `purchase-line${needsReview ? ' needs-review' : ''}`;
+    if (needsReview) row.title = values.reviewReason || 'Revisa esta línea antes de guardar';
     row.innerHTML = `<input class="line-name" type="text" list="knownProducts" placeholder="Producto" value="${escapeHtml(values.name || '')}" required>
       <input class="line-qty" type="number" min="0.01" step="0.01" value="${escapeHtml(values.qty || 1)}" aria-label="Cantidad">
       <select class="line-unit" aria-label="Unidad"><option>ud</option><option>kg</option><option>g</option><option>l</option><option>ml</option><option>paquete</option><option>bote</option><option>lata</option></select>
@@ -294,6 +296,10 @@
       <button class="line-remove" type="button" aria-label="Eliminar línea">×</button>`;
     row.querySelector('.line-unit').value = values.unit || 'ud';
     row.querySelector('.line-remove').addEventListener('click', () => row.remove());
+    row.querySelectorAll('input, select').forEach(control => {
+      control.addEventListener('input', () => row.classList.remove('needs-review'));
+      control.addEventListener('change', () => row.classList.remove('needs-review'));
+    });
     $('purchaseLines').appendChild(row);
   }
 
@@ -362,26 +368,29 @@
   }
 
   function applyReceiptResult(result, askBeforeReplace = true) {
-    if (!result) return 0;
+    if (!result) return { count: 0, reviewCount: 0 };
     if (result.date) $('purchaseDate').value = result.date;
     if (result.store) $('purchaseStore').value = result.store;
     if (result.total != null) $('purchaseTicketTotal').value = Number(result.total).toFixed(2);
 
     const lines = Array.isArray(result.lines) ? result.lines : [];
-    if (!lines.length) return 0;
-    if (askBeforeReplace && currentPurchaseHasContent() && !confirm('El OCR sustituirá las líneas de producto que ya has escrito. ¿Continuar?')) return 0;
+    if (!lines.length) return { count: 0, reviewCount: 0 };
+    if (askBeforeReplace && currentPurchaseHasContent() && !confirm('El OCR sustituirá las líneas de producto que ya has escrito. ¿Continuar?')) return { count: 0, reviewCount: 0 };
     $('purchaseLines').innerHTML = '';
     lines.forEach(line => makePurchaseLine(line));
-    return lines.length;
+    const reviewCount = lines.filter(line => line.confidence === 'low').length;
+    return { count: lines.length, reviewCount };
   }
 
   function parseReceiptText(askBeforeReplace = true) {
     const text = $('receiptOcrText').value.trim();
     if (!text) return toast('No hay texto del ticket para convertir');
     const result = OCR?.parseReceipt(text);
-    const count = applyReceiptResult(result, askBeforeReplace);
-    if (count) toast(`${count} producto${count === 1 ? '' : 's'} detectado${count === 1 ? '' : 's'} · revísalos antes de guardar`);
-    else toast('No he podido separar productos automáticamente; puedes editar el texto o añadir líneas manualmente');
+    const { count, reviewCount } = applyReceiptResult(result, askBeforeReplace);
+    if (count) {
+      const reviewText = reviewCount ? ` · ${reviewCount} línea${reviewCount === 1 ? '' : 's'} marcada${reviewCount === 1 ? '' : 's'} para revisar` : '';
+      toast(`${count} producto${count === 1 ? '' : 's'} detectado${count === 1 ? '' : 's'}${reviewText}`);
+    } else toast('No he podido separar productos automáticamente; puedes editar el texto o añadir líneas manualmente');
   }
 
   async function runReceiptOcr() {
@@ -398,9 +407,11 @@
       $('receiptOcrDetails').hidden = false;
       $('receiptOcrDetails').open = true;
       const result = OCR.parseReceipt(text);
-      const count = applyReceiptResult(result, false);
-      if (count) toast(`Ticket leído: ${count} producto${count === 1 ? '' : 's'} · revisa la tabla`);
-      else toast('Texto leído, pero no he separado productos. Revisa el texto detectado.');
+      const { count, reviewCount } = applyReceiptResult(result, false);
+      if (count) {
+        const reviewText = reviewCount ? ` · ${reviewCount} para revisar` : '';
+        toast(`Ticket leído: ${count} producto${count === 1 ? '' : 's'}${reviewText}`);
+      } else toast('Texto leído, pero no he separado productos. Revisa el texto detectado.');
     } catch (err) {
       console.error(err);
       alert(err.message || 'No se pudo leer el ticket. Puedes introducir la compra manualmente.');

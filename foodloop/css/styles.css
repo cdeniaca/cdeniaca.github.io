@@ -344,6 +344,8 @@ td:last-child, th:last-child { text-align: right; }
 .purchase-lines { display: grid; gap: 8px; }
 .purchase-line { display: grid; grid-template-columns: minmax(180px,2fr) 100px 110px 120px 44px; gap: 7px; align-items: center; }
 .purchase-line button { height: 44px; border-radius: 12px; background: var(--danger-soft); color: var(--danger); font-size: 18px; }
+.purchase-line.needs-review { padding: 7px; border: 1px solid #f0b45a; border-radius: 14px; background: #fff8e8; }
+.purchase-line.needs-review::before { content: '⚠ Revisar: el OCR no pudo confirmar precio o formato'; grid-column: 1 / -1; color: #8a5a00; font-size: 11px; font-weight: 800; }
 .privacy-copy { color: var(--muted); line-height: 1.7; }
 .privacy-copy strong { color: var(--ink); }
 
