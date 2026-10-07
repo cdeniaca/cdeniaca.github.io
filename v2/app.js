@@ -173,3 +173,78 @@
     }, { passive: true });
   }
 })();
+
+(() => {
+  const stage = document.querySelector(".hero-reference .hero-stage");
+  const hero = document.querySelector(".hero.hero-reference");
+  if (!stage || !hero) return;
+
+  const reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  document.body.classList.add("hero-motion-ready");
+
+  if (reduceMotion) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let scrollY = 0;
+  let raf = 0;
+
+  const render = () => {
+    currentX += (targetX - currentX) * 0.075;
+    currentY += (targetY - currentY) * 0.075;
+
+    stage.style.setProperty("--hero-x", currentX.toFixed(2) + "px");
+    stage.style.setProperty("--hero-y", currentY.toFixed(2) + "px");
+    stage.style.setProperty("--hero-scroll-y", scrollY.toFixed(2) + "px");
+
+    const moving =
+      Math.abs(targetX - currentX) > 0.05 ||
+      Math.abs(targetY - currentY) > 0.05;
+
+    raf = moving ? requestAnimationFrame(render) : 0;
+  };
+
+  const ensureRender = () => {
+    if (!raf) raf = requestAnimationFrame(render);
+  };
+
+  if (finePointer && window.innerWidth > 860) {
+    hero.addEventListener("pointermove", (event) => {
+      const rect = hero.getBoundingClientRect();
+      const nx = ((event.clientX - rect.left) / rect.width) - 0.5;
+      const ny = ((event.clientY - rect.top) / rect.height) - 0.5;
+      targetX = nx * 14;
+      targetY = ny * 9;
+      ensureRender();
+    }, { passive: true });
+
+    hero.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+      ensureRender();
+    });
+  }
+
+  let scrollTick = false;
+  const updateHeroScroll = () => {
+    const rect = hero.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)));
+    scrollY = progress * 18;
+    stage.style.setProperty("--hero-scroll-y", scrollY.toFixed(2) + "px");
+    scrollTick = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(updateHeroScroll);
+  }, { passive: true });
+
+  updateHeroScroll();
+})();
