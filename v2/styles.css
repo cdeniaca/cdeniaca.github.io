@@ -1568,3 +1568,12 @@ a.case-visual:hover {
   .hero-reference .hero-stage { animation: none; }
   .hero-reference .hero-scroll i::after { animation: none; }
 }
+
+.hero-reference .hero-stage { mix-blend-mode: normal !important; }
+.hero-reference .hero-stage img {
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
