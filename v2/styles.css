@@ -1577,3 +1577,69 @@ a.case-visual:hover {
   -webkit-mask-image: none !important;
   mask-image: none !important;
 }
+
+/* === Hero composition correction === */
+@media (min-width: 1060px) {
+  .hero.hero-reference {
+    min-height: calc(100svh - 82px);
+  }
+
+  .hero-reference .hero-stage {
+    width: clamp(300px, 24vw, 390px) !important;
+    height: auto !important;
+    aspect-ratio: 360 / 630 !important;
+    left: 53% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    overflow: visible !important;
+  }
+
+  .hero-reference .hero-stage img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: calc(100svh - 104px) !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    display: block !important;
+  }
+
+  .hero-reference .hero-ghost {
+    top: clamp(95px, 15svh, 150px) !important;
+    font-size: clamp(120px, 15.6vw, 250px) !important;
+  }
+
+  .hero-reference-copy {
+    left: var(--gutter) !important;
+    bottom: clamp(96px, 11svh, 132px) !important;
+    width: min(34vw, 500px) !important;
+  }
+
+  .hero-reference-title {
+    font-size: clamp(54px, 4.8vw, 82px) !important;
+  }
+
+  .hero-reference-side {
+    right: var(--gutter) !important;
+    bottom: clamp(92px, 10svh, 124px) !important;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1059px) {
+  .hero-reference .hero-stage {
+    width: clamp(270px, 32vw, 340px) !important;
+    height: auto !important;
+    aspect-ratio: 360 / 630 !important;
+    left: 54% !important;
+    bottom: 0 !important;
+  }
+
+  .hero-reference .hero-stage img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .hero-reference-copy {
+    width: min(41vw, 430px) !important;
+  }
+}
