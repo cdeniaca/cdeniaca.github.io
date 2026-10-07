@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261007-6">
+  <link rel="stylesheet" href="./styles.css?v=20261007-7">
+  <link rel="stylesheet" href="./hero-v3.css?v=20261007-1">
 </head>
 <body>
   <div class="progress" aria-hidden="true"><span id="scrollProgress"></span></div>
@@ -52,27 +53,32 @@
   </nav>
 
   <main>
-    <section class="hero hero-reference section-shell" aria-labelledby="heroTitle">
-      <div class="hero-ghost" aria-hidden="true">CRISTINA</div>
+    <section class="hero-v3 section-shell" aria-labelledby="heroTitle">
+      <div class="hero-v3-name" aria-hidden="true">CRISTINA</div>
 
-      <div class="hero-stage" aria-hidden="true">
-        <img id="heroPortrait" alt="Cristina Denia Carretero">
+      <div class="hero-v3-media" aria-label="Retrato de Cristina Denia Carretero">
+        <div class="hero-v3-image-wrap">
+          <img src="../images/photo_profile.jpg" alt="Cristina Denia Carretero" class="hero-v3-image">
+        </div>
+        <div class="hero-v3-media-meta" aria-hidden="true">
+          <span>DATA · BI · AUTOMATION</span>
+          <span>01 / 06</span>
+        </div>
       </div>
 
-      <div class="hero-reference-copy">
-        <p class="hero-kicker">CRISTINA DENIA CARRETERO · SPAIN</p>
-        <h1 class="hero-reference-title" id="heroTitle">
-          <span>Business</span>
-          <span>Process</span>
-          <em>Analyst.</em>
+      <div class="hero-v3-copy">
+        <p class="hero-v3-kicker">CRISTINA DENIA CARRETERO · SPAIN</p>
+        <h1 class="hero-v3-title" id="heroTitle">
+          <span class="hero-v3-line"><span>Business Process</span></span>
+          <span class="hero-v3-line hero-v3-line-accent"><span>Analyst.</span></span>
         </h1>
-        <p class="hero-reference-roles">Data &amp; Business Intelligence <i>/</i> Automation <i>/</i> Process Analysis</p>
-        <p class="hero-reference-lead"
+        <p class="hero-v3-roles">Data &amp; Business Intelligence <i>/</i> Automation <i>/</i> Process Analysis</p>
+        <p class="hero-v3-lead"
           data-es="Conecto datos, procesos y personas para convertir información en decisiones con impacto."
           data-en="I connect data, processes and people to turn information into decisions with impact.">
           Conecto datos, procesos y personas para convertir información en decisiones con impacto.
         </p>
-        <div class="hero-reference-actions">
+        <div class="hero-v3-actions">
           <a class="button button-dark" href="#work">
             <span data-es="Ver trabajo" data-en="Explore work">Ver trabajo</span>
             <span aria-hidden="true">→</span>
@@ -80,22 +86,21 @@
           <a class="button button-light" href="#contact">
             <span data-es="Hablemos" data-en="Let's talk">Hablemos</span>
           </a>
-          <a class="hero-down" href="#about" aria-label="Ir a Sobre mí">↓</a>
         </div>
       </div>
 
-      <aside class="hero-reference-side">
-        <a class="hero-play" href="#about" aria-label="Ir a Sobre mí">▶</a>
-        <p class="hero-side-label" data-es="ACTUALMENTE" data-en="CURRENT">ACTUALMENTE</p>
-        <p>Business Process Analyst<br>@ NTT DATA Europe &amp; Latam</p>
-        <a class="hero-scroll" href="#about">
-          <span>SCROLL</span>
-          <i aria-hidden="true"></i>
-          <b aria-hidden="true">↓</b>
+      <aside class="hero-v3-side">
+        <a class="hero-v3-orb" href="#about" aria-label="Ir a Sobre mí"><span>↓</span></a>
+        <div>
+          <p class="hero-v3-side-label" data-es="ACTUALMENTE" data-en="CURRENT">ACTUALMENTE</p>
+          <p>Business Process Analyst<br>@ NTT DATA Europe &amp; Latam</p>
+        </div>
+        <a class="hero-v3-scroll" href="#about">
+          <span>SCROLL</span><i aria-hidden="true"></i><b aria-hidden="true">↓</b>
         </a>
       </aside>
 
-      <div class="hero-reference-footer" aria-hidden="true">
+      <div class="hero-v3-footer" aria-hidden="true">
         <div><span>01</span><i></i><span>DATOS · PROCESOS · PERSONAS · IMPACTO</span></div>
         <div><span data-es="DISPONIBLE PARA NUEVOS RETOS" data-en="OPEN TO NEW CHALLENGES">DISPONIBLE PARA NUEVOS RETOS</span><b></b></div>
       </div>
@@ -494,6 +499,6 @@
     <a href="#top"><span data-es="Volver arriba" data-en="Back to top">Volver arriba</span> ↑</a>
   </footer>
 
-  <script src="./app.js?v=20261007-6"></script>
+  <script src="./app.js?v=20261007-7"></script>
 </body>
 </html>
